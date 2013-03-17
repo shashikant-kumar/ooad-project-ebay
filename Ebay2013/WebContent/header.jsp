@@ -35,8 +35,17 @@
 				<div id="AreaTitle" class="AreaTitle">
 					<div class="title">
 						<b id="mainContent">
-							<b class="g-nav coreFooterLegalNotice">Welcome!</b>&nbsp;<a href="login">Sign in</a><br>&nbsp;<br />
-							
+							<b class="g-nav coreFooterLegalNotice">Welcome! </b>&nbsp;
+							<s:if test="%{username==null}">
+                            <a href="Login">Sign in</a> or <a href="Register">Register</a><br>&nbsp;<br />
+                            </s:if>
+                             <s:elseif test="%{username==''}">
+                            <a href="Login">Sign in</a> or <a href="Register">Register</a><br>&nbsp;<br />
+                            </s:elseif>						
+                            <s:else>
+                             Hi, <s:property value="username"/>!
+                            (<a href="signout">Sign out</a>)<br>&nbsp;<br />
+                            </s:else>
 							<ul id="NOINTERFERE00_menu">
 							
     <li><a href="categories">CATEGORIES</a></li>
