@@ -34,7 +34,7 @@ public class Login extends ActionSupport {
 	private String emailId="";
 	private String submit;
 	private String rollNo="";
-	private String image="";
+	private String mobile="";
 	private Timestamp lastLogin;
 	
 
@@ -80,12 +80,12 @@ public class Login extends ActionSupport {
 	}
 	
 
-	public String getImage() {
-		return image;
+	public String getMobile() {
+		return mobile;
 	}
 
-	public void setImage(String image) {
-		this.image = image;
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 
 	public Timestamp getLastLogin() {
@@ -104,6 +104,7 @@ public class Login extends ActionSupport {
 		MyLog.log("in Login.execute() with commandButton = " + 
     	        this.commandButton);
 		System.out.println("In login action");
+		System.out.println("USer id coming is"+userid);
         if (this.userid.isEmpty()) {
 			// first time screen
 		    return "initial_entry";
@@ -111,19 +112,18 @@ public class Login extends ActionSupport {
          Connection con = DB.getConnection();
         Statement stm = null;
 		String sql = "SELECT * FROM USER";
-		sql += " WHERE ROLL_NO = '" + userid + "'";
-		sql += " AND password = '" + password+ "'";
+		sql += " WHERE user_id = '" + userid + "'";
+		sql += " AND pwd = '" + password+ "'";
 		ResultSet rs = null;
 		try {
 			stm = con.createStatement();
 			rs = stm.executeQuery(sql);
 			while (rs.next()) {
-				userid=rs.getString("ROLL_NO");
+				userid=rs.getString("USER_ID");
 				username=rs.getString("USER_NAME");
 				emailId =rs.getString("EMAIL_ID");
-				password=rs.getString("PASSWORD");
-				image= rs.getString("IMAGE");
-				lastLogin=rs.getTimestamp("LAST_LOGIN");
+				password=rs.getString("PWD");
+				mobile= rs.getString("MOBILE");
 				setUserid(userid);
 				setEmailId(emailId);
 				setUsername(username);
@@ -131,9 +131,8 @@ public class Login extends ActionSupport {
 				User user=new User();
 				user.setEmailId(emailId);
 				user.setPassword(password);
-				user.setRollNor(userid);
-				user.setImage(image);
-				user.setLastLogin(lastLogin);
+				user.setUserid(userid);
+				user.setMobile(mobile);
 				user.setUsername(username);
 				Map<String, Object> session = ActionContext.getContext().getSession();
 				

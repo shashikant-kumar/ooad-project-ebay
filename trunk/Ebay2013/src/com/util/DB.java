@@ -172,6 +172,17 @@ public class DB {
 			}
 		}
 	}
+	public static void close(ResultSet rs) {
+		// return;
+		if (rs != null) {
+			try {
+				rs.close();
+				rs = null;
+			} catch (SQLException ex) {
+				// MyLog.myCatch("/java", 214, ex);
+			}
+		}
+	}
 
 	public static String getPassword(String username, String password) {
 		System.out.println("In getpassword method");

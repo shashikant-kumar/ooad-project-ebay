@@ -125,7 +125,7 @@
 																							</label> </span> 
 																						
 																							<span> <input id="userid" class="txtBxF"
-																								name="uid" value="" maxlength="64" size="27">
+																								name="userid" value="" maxlength="64" size="27">
 																							</span>
 																						</div>
 																						<div>

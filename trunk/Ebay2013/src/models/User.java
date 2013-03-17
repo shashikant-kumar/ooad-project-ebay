@@ -19,11 +19,10 @@ Author: Satya Deepthi Bhagi
 public class User {
 private String username="";
 private  String password="";
-private String rollNor="";
+private String userid="";
 private String emailId="";
-private String image="";
-private Date dob;
-private Timestamp lastLogin;
+private String mobile="";
+
 
 public static User userDetails(String selectionModifier) {
 	User user = new User();
@@ -36,8 +35,7 @@ public static User userDetails(String selectionModifier) {
 			
 			user.username=resultSet.getString("USER_NAME");
 			user.emailId= resultSet.getString("EMAIL_ID");
-			user.image= resultSet.getString("IMAGE");
-			user.lastLogin=resultSet.getTimestamp("LAST_LOGIN");
+			user.mobile= resultSet.getString("MOBILE");
 		}
 	} catch (SQLException e) {
        System.out.println("Exception while reading from db"+ e);
@@ -74,10 +72,9 @@ public  static User findone(String sql){
 		while (resultSet.next()) {
 			
 			user.username=resultSet.getString("USER_NAME");
-			user.rollNor=resultSet.getString("ROLL_NO");
+			user.userid=resultSet.getString("USER_ID");
 			user.emailId=resultSet.getString("EMAIL_ID");
-			user.dob=resultSet.getDate("DOB");
-			user.image=resultSet.getString("image");
+			user.mobile=resultSet.getString("MOBILE");
 		}
 	} catch (SQLException e) {
        System.out.println("Exception while reading from db"+ e);
@@ -85,13 +82,7 @@ public  static User findone(String sql){
 	return user;
 }
 
-public  static  int  updateLastLogin(String RollNor){
-	
-	String updateSQL =  "update user set Last_Login=sysdate() where Roll_No='" + RollNor +"'";
-	System.out.println("updating lastlogin "+updateSQL);
-	return DB.update(updateSQL);
-	
-}
+
 public String getUsername() {
 	return username;
 }
@@ -108,14 +99,12 @@ public void setPassword(String password) {
 	this.password = password;
 }
 
-public String getRollNor() {
-	return rollNor;
+public String getUserid() {
+	return userid;
 }
-
-public void setRollNor(String rollNor) {
-	this.rollNor = rollNor;
+public void setUserid(String userid) {
+	this.userid = userid;
 }
-
 public String getEmailId() {
 	return emailId;
 }
@@ -123,30 +112,14 @@ public String getEmailId() {
 public void setEmailId(String emailId) {
 	this.emailId = emailId;
 }
-
-public String getImage() {
-	return image;
+public String getMobile() {
+	return mobile;
+}
+public void setMobile(String mobile) {
+	this.mobile = mobile;
 }
 
-public void setImage(String image) {
-	this.image = image;
-}
 
-public Date getDob() {
-	return dob;
-}
-
-public void setDob(Date dob) {
-	this.dob = dob;
-}
-
-public Timestamp getLastLogin() {
-	return lastLogin;
-}
-
-public void setLastLogin(Timestamp lastLogin) {
-	this.lastLogin = lastLogin;
-}
 
 
 

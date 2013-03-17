@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+ <struts>
+<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+<constant name="struts.devMode" value="false" />
+<constant name="struts.custom.i18n.resources" value="ApplicationResources" />
+ 
+<package name="default" extends="struts-default" namespace="/">
+<!-- <result-types>
+            <result-type name="tiles"
+                class="org.apache.struts2.views.tiles.TilesResult" />
+        </result-types> -->
+<action name="Login" class="ebay.action.Login">
+			<result name="initial_entry">login.jsp</result>
+			<result name="success">ebayhome.jsp</result>
+			<result name="error">login.jsp</result>
+</action>
+ <action name="signout" class="ebay.action.Logout">
+			<result name="exit">ebayhome.jsp</result>
+			</action>
+ <action name="categories" class="ebay.action.ShowCategories">
+			<result name="success">Showcategories.jsp</result>
+			</action>
+<action name="fetchitem" class="ebay.action.FetchItem">
+			<result name="success">ebayhome.jsp</result>
+			</action>			
+</package>
+</struts>
