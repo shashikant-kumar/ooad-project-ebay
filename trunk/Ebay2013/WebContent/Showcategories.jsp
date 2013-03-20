@@ -49,7 +49,7 @@
 <s:iterator var="itr" value="%{list}">
     <s:iterator var="itr" value="#itr" status="stat1">
           <%-- <s:property value="[#stat.index].categ_name"/> --%>
-          <tr><s:url id="book_name" action="fetchitem">
+          <tr><s:url id="book_name" action="fetchitems">
 <s:param name="subcategory" value="book_subcategory_name"/>
 </s:url>
           <s:a href="%{book_name}"><s:property value="book_subcategory_name"/></s:a></tr>
@@ -61,7 +61,12 @@
 <table align="center" border="0" hcellspacing="100">
 <s:iterator var="itr" value="%{list}">
     <s:iterator var="itr" value="#itr" status="stat2">
-          <tr><a href="<s:property value="cosmetics_subcategory_name"/>"><s:property value="cosmetics_subcategory_name"/></a></tr>
+    
+    <tr><s:url id="cosmetic_name" action="fetchitems">
+<s:param name="subcategory" value="cosmetics_subcategory_name"/>
+</s:url>
+          <s:a href="%{cosmetic_name}"><s:property value="cosmetics_subcategory_name"/></s:a></tr>
+        <%--   <tr><a href="<s:property value="cosmetics_subcategory_name"/>"><s:property value="cosmetics_subcategory_name"/></a></tr> --%>
     </s:iterator><br/>
 </s:iterator>
 </table>
@@ -70,7 +75,11 @@
 <table align="center" border="0" hcellspacing="100">
 <s:iterator var="itr" value="%{list}">
     <s:iterator var="itr" value="#itr" status="stat2">
-    	<tr><a href="<s:property value="mobiles_subcategory_name"/>"><s:property value="mobiles_subcategory_name"/></a></tr>
+     <tr><s:url id="mobile_name" action="fetchitems">
+<s:param name="subcategory" value="mobiles_subcategory_name"/>
+</s:url>
+          <s:a href="%{mobile_name}"><s:property value="mobiles_subcategory_name"/></s:a></tr>
+    	<%-- <tr><a href="<s:property value="mobiles_subcategory_name"/>"><s:property value="mobiles_subcategory_name"/></a></tr> --%>
     </s:iterator><br/>
 </s:iterator>
 </table>

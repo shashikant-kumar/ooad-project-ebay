@@ -21,8 +21,12 @@
  <action name="categories" class="ebay.action.ShowCategories">
 			<result name="success">Showcategories.jsp</result>
 			</action>
-<action name="fetchitem" class="ebay.action.FetchItem">
-			<result name="success">ebayhome.jsp</result>
-			</action>			
+<action name="fetchitems" class="ebay.action.FetchItem">
+			<result name="success">DisplayItems.jsp</result>
+			</action>
+<action name="ItemDetails" class="ebay.action.ItemDetails">
+			<result name="success">ItemDetails.jsp</result>
+			</action>					
+				
 </package>
 </struts>
