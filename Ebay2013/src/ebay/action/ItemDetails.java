@@ -21,11 +21,11 @@ import models.*;
 Author: Satya Deepthi Bhagi
 **/
 
-public class FetchItem extends ActionSupport{
+public class ItemDetails extends ActionSupport{
 
-	private String subcategory;
+	private int item;
 	User user =new User();
-  	private List<Item> itemlist;
+  	Item item_detail=new Item();
 	
 	  
 	public String execute() throws Exception {
@@ -34,22 +34,35 @@ public class FetchItem extends ActionSupport{
 		if (user == null) {
 			user = new User();
 		}
-		itemlist = Item.fetchItemDetails(" where sub_categ_name='"+ subcategory +"')");
-		for(int i=0;i<itemlist.size();i++){
-			Item item=itemlist.get(i);
-			System.out.println("Item name is"+item.getItem_name());
-		}
+		item_detail = Item.fetchItem(" where item_id="+ item );
 		return "success";
 	}
 	
 	
-	public String getSubcategory() {
-		return subcategory;
+
+	public int getItem() {
+		return item;
 	}
 
-	public void setSubcategory(String subcategory) {
-		this.subcategory = subcategory;
+
+
+	public void setItem(int item) {
+		this.item = item;
 	}
+
+
+
+	public Item getItem_detail() {
+		return item_detail;
+	}
+
+
+
+	public void setItem_detail(Item item_detail) {
+		this.item_detail = item_detail;
+	}
+
+
 
 	public User getUser() {
 		return user;
@@ -59,13 +72,7 @@ public class FetchItem extends ActionSupport{
 		this.user = user;
 	}
 
-	public List<Item> getItemlist() {
-		return itemlist;
-	}
-
-	public void setItemlist(List<Item> itemlist) {
-		this.itemlist = itemlist;
-	}
+	
 
 	
 }
