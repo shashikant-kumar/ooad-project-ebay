@@ -24,6 +24,17 @@ public class Item {
 	private int item_discount;
 	private String item_condition;
 	private int quantity;
+	/*quantity Selected  while buying the item*/
+	private int selectedQuantity;
+	public int getSelectedQuantity() {
+		return selectedQuantity;
+	}
+
+	public void setSelectedQuantity(int selectedQuantity) {
+		this.selectedQuantity = selectedQuantity;
+	}
+
+
 	private int subcategory_id;
 	private int categ_id;
 	private String courier;
@@ -34,7 +45,7 @@ public class Item {
 
 public  static Item fetchItem(String param){
 		Item item=new Item();
-		String sql="select * from sell_item"+param;
+		String sql="select * from sell_item "+param;
 		System.out.println("Query is"+sql);
 		ResultSet resultSet = null;
 		Connection connection = DB.getConnection();
@@ -161,6 +172,34 @@ public static ArrayList<Item> fetchDeals(String param){
        System.out.println("Exception while reading from db"+ e);
 	}
 	return selection;
+	
+}
+
+/** @author Ruchika Sharma
+ * This function reduces the quantity of item in DB, when the payment is successful
+ * Input: item
+ * Output: int status, if successful '0' else '1'
+ */
+public static int reduceQty(Item item, int qty,int stock){
+	int status=1;
+	if(item.getQuantity()>0){
+		stock=stock-qty;
+		status=0;
+	}
+	String query = "update SELL_ITEM set STOCK="+stock+" where ITEM_ID="+item.getItem_id();
+	System.out.println("query is "+query);
+	//Connection con = DB.getConnection();
+	//ResultSet rs = DB.readFromDB(query, con);
+	try{
+		DB.update(query);
+	}
+	catch(Exception e){
+		status=1;
+		System.out.println("error occured");
+	}
+
+	
+	return status;
 	
 }
 

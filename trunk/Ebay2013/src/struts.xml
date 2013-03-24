@@ -6,10 +6,10 @@
 <constant name="struts.custom.i18n.resources" value="ApplicationResources" />
  
 <package name="default" extends="struts-default" namespace="/">
-<!-- <result-types>
+ <result-types>
             <result-type name="tiles"
                 class="org.apache.struts2.views.tiles.TilesResult" />
-        </result-types> -->
+        </result-types> 
 <action name="Login" class="ebay.action.Login">
 			<result name="initial_entry">login.jsp</result>
 			<result name="success">ebayhome.jsp</result>
@@ -35,6 +35,22 @@
 	<result name="success">ShowDeals.jsp</result>
 </action>
 					
+<action name="buyitNow" class="ebay.action.Payment">
+			<result name="success" type="tiles">/Payment.tiles</result>
+			</action>
+<action name="makePayment" class="ebay.action.MakePayment">
+			<result name="credit" type="tiles">/Credit.tiles</result>
+			<result name="debit" type="tiles">/Debit.tiles</result>
+			<result name="bank" type="tiles">/Bank.tiles</result>
+			</action>
+<action name="cardPayment" class="ebay.action.CardPayment">
+			<result name="success" type="tiles">/Ack.tiles</result>
+			<result name="error" type="tiles">/Fail.tiles</result>
+			</action>
+<action name="homePage" class="ebay.action.SuccessHome">
+			<result name="success" type="tiles">ebayhome.jsp</result>
+			</action>
+
 				
 </package>
 </struts>

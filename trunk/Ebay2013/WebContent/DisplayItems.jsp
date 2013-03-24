@@ -48,7 +48,9 @@
 <s:param name="item" value="item_id"/>
 </s:url>
 <td><s:a href="%{ItemName}"><s:property value="item_name"/></s:a></td>
-<td>Buy it Now</td>
+<td><s:form name="buy" action="buyitNow">
+<td><s:submit name="commandButton" label="Buy it Now" value="Buy It Now"/></td>
+</s:form></td>
 <td>Bid or Buying</td>
 <td>Rs. <s:property value="item_price"/></td>
 <td></td>

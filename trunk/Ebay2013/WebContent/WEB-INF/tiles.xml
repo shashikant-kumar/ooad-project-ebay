@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ 
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <definition name="innerLayout" template="/BasicLayout.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="header" value="/header.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="menu" value="" />
+        <put-attribute name="footer" value="/footer.jsp" />
+    </definition>    
+    
+    <definition name="/Payment.tiles" extends="innerLayout">
+        <put-attribute name="title" value="Welcome to eBay" />
+        <put-attribute name="header" value="" />
+        <put-attribute name="body" value="/Payment.jsp" />
+    </definition>
+    <definition name="/Credit.tiles" extends="innerLayout">
+        <put-attribute name="title" value="Welcome to eBay" />
+        <put-attribute name="header" value="" />
+        <put-attribute name="body" value="/Credit.jsp" />
+    </definition>
+    <definition name="/Debit.tiles" extends="innerLayout">
+        <put-attribute name="title" value="Welcome to eBay" />
+        <put-attribute name="header" value="" />
+        <put-attribute name="body" value="/Debit.jsp" />
+    </definition>
+    <definition name="/Bank.tiles" extends="innerLayout">
+        <put-attribute name="title" value="Welcome to eBay" />
+        <put-attribute name="header" value="" />
+        <put-attribute name="body" value="/Bank.jsp" />
+    </definition>
+    <definition name="/Ack.tiles" extends="innerLayout">
+        <put-attribute name="title" value="Welcome to eBay" />
+        <put-attribute name="header" value="" />
+        <put-attribute name="body" value="/Ack.jsp" />
+    </definition>
+    <definition name="/Fail.tiles" extends="innerLayout">
+        <put-attribute name="title" value="Welcome to eBay" />
+        <put-attribute name="header" value="" />
+        <put-attribute name="body" value="/Fail.jsp" />
+    </definition>
+    </tiles-definitions>

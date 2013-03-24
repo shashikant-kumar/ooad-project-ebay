@@ -37,6 +37,8 @@ public class FetchItem extends ActionSupport{
 		itemlist = Item.fetchItemDetails(" where sub_categ_name='"+ subcategory +"')");
 		for(int i=0;i<itemlist.size();i++){
 			Item item=itemlist.get(i);
+			session.put("item", item);
+			System.out.println("sesion item in fetch item @@@@@@@"+session.get("item"));
 			System.out.println("Item name is"+item.getItem_name());
 		}
 		return "success";

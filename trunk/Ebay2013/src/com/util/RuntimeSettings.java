@@ -11,7 +11,7 @@ public class RuntimeSettings {
 	public static final String SERVER_IP = "localhost";
 	static String databaseName = "ebay";
 	static String dbUserID = "root";
-	static String dbPassword = "sravhari"; 
+	static String dbPassword = "system"; 
 	public static String RUN_MODE = "Test"; // "Production"; //
 	public static boolean IS_IN_DEBUG_MODE = true; // false; //
 	static int portNo = 3306;
@@ -32,12 +32,15 @@ public class RuntimeSettings {
 
 			"CREATE TABLE ADDRESS("
 			+"USER_ID VARCHAR(25) NOT NULL,"
-			+"ADDRESS_TYPE VARCHAR(10) NOT NULL,"
+			+"ADDRESS_TYPE VARCHAR(20) NOT NULL,"
 			+"PRIMARY KEY(USER_ID,ADDRESS_TYPE),"
 			+"HOUSE_NO VARCHAR(10) NOT NULL,"
-			+"STREET VARCHAR(25) NOT NULL,"
+			+"ADD1 VARCHAR(40) NOT NULL,"
+			+"ADD2 VARCHAR(40) NOT NULL,"
 			+"CITY VARCHAR(25) NOT NULL,"
 			+"PIN VARCHAR(25) NOT NULL,"
+			+"STATE VARCHAR(25) NOT NULL,"
+			+"COUNTRY VARCHAR(25) NOT NULL,"
 			+"FOREIGN KEY (USER_ID) REFERENCES USER(USER_ID));",
 
 			"DROP TABLE IF EXISTS CATEGORY;",
@@ -92,6 +95,8 @@ public class RuntimeSettings {
 			"CREATE TABLE BANK_ACCT("
 			+"ACCOUNT_ID INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,"
 			+"ACCOUNT_NO INT(20) UNSIGNED NOT NULL,"
+			+"CARD_NO VARCHAR(16) NOT NULL,"
+			+"CVV_NO INT(3) UNSIGNED NOT NULL,"
 			+"ACC_HOLDER_NAME VARCHAR(50) NOT NULL,"
 			+"ACC_PWD VARCHAR(20) NOT NULL,"
 			+"ACC_BAL INT(10) NOT NULL,"
