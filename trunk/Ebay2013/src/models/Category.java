@@ -10,18 +10,20 @@ import com.util.DB;
 Author: Satya Deepthi Bhagi
  **/
 public class Category {
+	private int categ_id;
 	private String categ_name;
 	private List<Category> allcats;
 			
 	public static ArrayList<Category> findallcategory() {
 		ArrayList<Category> selection = new ArrayList<Category>();
-		String query = "select categ_name from category ";
+		String query = "select categ_id,categ_name from category ";
 		Connection connection = DB.getConnection();
 		ResultSet resultSet = DB.readFromDB(query, connection);
 		try {
 			while (resultSet.next()) {
 				Category cat = new Category();
 				cat.categ_name=resultSet.getString("categ_name");
+				cat.categ_id=resultSet.getInt("categ_id");
 				selection.add(cat);
 			}
 		}
@@ -48,6 +50,13 @@ public class Category {
 		this.allcats = allcats;
 	}
 
-	
+	public int getCateg_id() {
+		return categ_id;
+	}
+
+	public void setCateg_id(int categ_id) {
+		this.categ_id = categ_id;
+	}
+
 
 }
