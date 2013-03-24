@@ -1,0 +1,185 @@
+@CHARSET "ISO-8859-1";
+#basetable {
+        height: 100%;
+        width: 100%;
+}
+
+#headerrow {
+        height: 10%;
+        width: 100%;
+        background-color: C5D67B;
+        
+}
+
+#headercol {
+        height: 10%;
+        width: 100%;
+        background-color: C5D67B;
+}
+
+#bodyrow {
+        height: 85%;
+        width: 100%;
+}
+
+#bodycol {
+        height: 85%;
+        width: 100%;
+}
+
+#bodytable {
+        height: 100%;
+        width: 100%;
+        vertical-align: top;
+}
+
+#bodytablerow {
+        height: 100%;
+        width: 100%;
+        border-style: solid;
+        border-width: 5px;
+}
+
+#menutablecol {
+        height: 100%;
+        width: 20%;
+        background-color: #A9BCF5;
+}
+
+#bodytablecol {
+        height: 100%;
+        width: 90%;
+        /*background-image:url("image/backg_img.jpg");*/
+}
+
+#footerrow {
+        height: 15%;
+        width: 30%;
+        background-color: #b0c4de;
+}
+
+#footercol {
+        height: 15%;
+        width: 30%;
+}
+
+#layout {
+        font-family: "Arial";
+        width: 100%;
+        height: 100%;
+        background-color: #DFE9F;
+        background: #fff url(images/opera_bg.jpg);
+     	/*background-image:url("image/backg_img.jpg");*/
+       /* background-repeat:no-repeat;
+        background-attachment: url("image/backg.jpg"); */
+}
+
+#header {
+        font-size: 20px;
+        background-color: #b0c4de;
+        background-image: url(images/header.png);
+        background-repeat: no-repeat;
+background-position: left 0;
+        
+        width: 100%;
+        text-align: center;
+        vertical-align: middle;
+        
+}
+
+.headerheight {
+        height: 60px;
+        vertical-align: middle;
+}
+
+html {
+        width: 100%;
+        height: 100%
+}
+
+.floatright {
+        float: right;
+}
+
+#menustyle {
+        font-size: 15px;vertical-align: top;
+}
+
+#bodystyle {
+        font-size: 12px;
+        background: #fff url(images/opera_bg.jpg);
+}
+
+#bodyheader {
+        font-size: 20px;
+        background-color: #b0c4de;
+        width: 100%;
+        text-align: center;
+        vertical-align: top;
+        font-family:georgia;
+        background: #fff url(images/opera_bg.jpg);
+}
+
+.even {
+        background-color: #EFFBEF;
+}
+
+.odd {
+        background-color: white;
+}
+
+.borderAll {
+        border: 2px solid #8F99EF;
+        
+}
+
+.nowrap {
+        white-space: nowrap;text-align: center;
+}
+
+#datatable
+{
+font-size:12px;border: 2px solid #b0c4de;
+
+}
+#dataheader
+{
+    border-color: #600;
+    border-width: 1px 1px 0 0;
+    border-style: solid;
+    text-align: center;
+        vertical-align: middle;
+    margin: 0;
+    /*padding: 4px;*/
+    background-color: #FFC;
+   
+        
+}
+#datacolumn
+{
+    border-color: #600;
+    border-width: 1px 1px 0 0;
+    border-style: solid;
+    text-align: center;
+        vertical-align: middle;
+    margin: 0;
+    /*padding: 4px;*/
+    background-color: #FFC;
+}
+#hyperlink
+{
+font-size:15px;font-color:blue;
+}
+#th_background{
+background: rgb(178,225,255); /* Old browsers */
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2IyZTFmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM2NmI2ZmMiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(top,  rgba(178,225,255,1) 0%, rgba(102,182,252,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(178,225,255,1)), color-stop(100%,rgba(102,182,252,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(178,225,255,1) 0%,rgba(102,182,252,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(178,225,255,1) 0%,rgba(102,182,252,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(178,225,255,1) 0%,rgba(102,182,252,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(178,225,255,1) 0%,rgba(102,182,252,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b2e1ff', endColorstr='#66b6fc',GradientType=0 ); /* IE6-8 */
+
+}
