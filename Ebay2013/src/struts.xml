@@ -26,7 +26,15 @@
 			</action>
 <action name="ItemDetails" class="ebay.action.ItemDetails">
 			<result name="success">ItemDetails.jsp</result>
-			</action>					
+			</action>
+<!-- ****************************************************************************************************** -->
+<!-- ********************************************Sravvani code********************************************  -->
+<!-- ****************************************************************************************************** -->			
+
+<action name="viewdeals" class="ebay.action.ShowDeals">
+	<result name="success">ShowDeals.jsp</result>
+</action>
+					
 				
 </package>
 </struts>
