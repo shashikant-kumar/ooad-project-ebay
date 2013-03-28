@@ -26,15 +26,6 @@ public class Item {
 	private int quantity;
 	/*quantity Selected  while buying the item*/
 	private int selectedQuantity;
-	public int getSelectedQuantity() {
-		return selectedQuantity;
-	}
-
-	public void setSelectedQuantity(int selectedQuantity) {
-		this.selectedQuantity = selectedQuantity;
-	}
-
-
 	private int subcategory_id;
 	private int categ_id;
 	private String courier;
@@ -342,6 +333,13 @@ public void setOther(String other) {
 	this.other = other;
 }
 
+public int getSelectedQuantity() {
+	return selectedQuantity;
+}
+
+public void setSelectedQuantity(int selectedQuantity) {
+	this.selectedQuantity = selectedQuantity;
+}
 
 	
 	}
