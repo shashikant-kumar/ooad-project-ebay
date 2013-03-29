@@ -42,4 +42,21 @@
         <put-attribute name="header" value="" />
         <put-attribute name="body" value="/Fail.jsp" />
     </definition>
+    
+<!-- ****************************************************************************************************** -->
+<!-- ********************************************Sravvani code********************************************  -->
+<!-- ****************************************************************************************************** -->			
+   
+   <definition name="/ShowDeals.tiles" extends="innerLayout">
+        <put-attribute name="title" value="Welcome to eBay" />
+        <put-attribute name="header" value="" />
+        <put-attribute name="body" value="/ShowDeals.jsp" />
+    </definition>
+    <definition name="/ShowAllDeals.tiles" extends="innerLayout">
+        <put-attribute name="title" value="Welcome to eBay" />
+        <put-attribute name="header" value="" />
+        <put-attribute name="body" value="/ShowAllDeals.jsp" />
+    </definition>
+    
+    
     </tiles-definitions>
