@@ -31,9 +31,22 @@
 <!-- ********************************************Sravvani code********************************************  -->
 <!-- ****************************************************************************************************** -->			
 
+<!-- <action name="viewdeals" class="ebay.action.ShowDeals">
+	<result name="success" type="tiles">/ShowDeals.tiles</result>
+</action>
+
+<action name="viewAllDeals" class="ebay.action.ViewAllDeals">
+	<result name="success" type="tiles">/ShowAllDeals.tiles</result>
+</action> -->
+
 <action name="viewdeals" class="ebay.action.ShowDeals">
 	<result name="success">ShowDeals.jsp</result>
 </action>
+
+<action name="viewAllDeals" class="ebay.action.ViewAllDeals">
+	<result name="success">ShowAllDeals.jsp</result>
+</action>
+
 					
 <action name="buyitNow" class="ebay.action.Payment">
 			<result name="success" type="tiles">/Payment.tiles</result>
