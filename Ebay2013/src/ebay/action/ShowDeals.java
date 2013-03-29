@@ -24,11 +24,11 @@ public class ShowDeals extends ActionSupport{
 
 	private int item;
 	User user =new User();
-  	ArrayList<Item> item_details=new ArrayList<Item>();
-  	private List<Category> allcats;
-	private List<Item> book_categs;
-	private List<Item> Mobile_categs;
-	private List<Item> cosmetics_categs;
+  	ArrayList<Item> itemDetails=new ArrayList<Item>();
+  	private List<Category> allCats;
+	private List<Item> bookCategs;
+	private List<Item> mobileCategs;
+	private List<Item> cosmeticsCategs;
   	private List<List> list=new ArrayList<List>();
   	//Map<String, ArrayList<Item>> deals = new HashMap<String, ArrayList<Item>>();
 	  
@@ -38,37 +38,37 @@ public class ShowDeals extends ActionSupport{
 		if (user == null) {
 			user = new User();
 		}
-		allcats = new ArrayList<Category>();
-		book_categs=new ArrayList<Item>();
-		Mobile_categs=new ArrayList<Item>();
-		cosmetics_categs=new ArrayList<Item>();
+		allCats = new ArrayList<Category>();
+		bookCategs=new ArrayList<Item>();
+		mobileCategs=new ArrayList<Item>();
+		cosmeticsCategs=new ArrayList<Item>();
 		
-		allcats = Category.findallcategory();
-		System.out.println("size display"+allcats.size());
+		allCats = Category.findallcategory();
+		System.out.println("size display"+allCats.size());
 		
-		for (int i = 0; i < allcats.size(); i++){
-        	Category cat_list = allcats.get(i);
+		for (int i = 0; i < allCats.size(); i++){
+        	Category cat_list = allCats.get(i);
         	int categ_id=cat_list.getCateg_id();
-        	item_details = Item.fetchDeals(" where categ_id = "+categ_id);	
-        	if(item_details.size()!=0){
+        	itemDetails = Item.fetchDeals(" where categ_id = "+categ_id);	
+        	if(itemDetails.size()!=0){
         		if(cat_list.getCateg_name().equals("Books and Magazines")){
-        			book_categs=Item.fetchDeals(" where categ_id = "+categ_id);
-        			list.add(book_categs);		
+        			bookCategs=Item.fetchDeals(" where categ_id = "+categ_id+" limit 4");
+        			list.add(bookCategs);		
          		}
         		if(cat_list.getCateg_name().equals("Cosmetics")){
-        			cosmetics_categs=Item.fetchDeals(" where categ_id = "+categ_id);
-        			list.add(cosmetics_categs);		
+        			cosmeticsCategs=Item.fetchDeals(" where categ_id = "+categ_id+" limit 2");
+        			list.add(cosmeticsCategs);		
          		}
          		if(cat_list.getCateg_name().equals("Mobile Phones")){
-         			Mobile_categs=Item.fetchDeals(" where categ_id = "+categ_id);
-        			list.add(Mobile_categs);		
+         			mobileCategs=Item.fetchDeals(" where categ_id = "+categ_id+" limit 2");
+        			list.add(mobileCategs);		
          		}
-        	System.out.println("size of item details"+item_details.size());
-        	//list.add(item_details);
+        	System.out.println("size of item details"+itemDetails.size());
         	}
-      //  	deals.put(cat_list.getCateg_name(), item_details);
-        	}
-		System.out.println("list size finally"+list.size());
+        }
+		System.out.println("category"+bookCategs.get(0).getCategory_name());
+		System.out.println("category"+bookCategs.get(0).getCateg_id());
+		/*System.out.println("list size finally"+list.size());
 	
 		for (int i = 0; i < list.size(); i++){
 				ArrayList<Item> deals_list = new ArrayList<Item>();  
@@ -77,29 +77,18 @@ public class ShowDeals extends ActionSupport{
 				for (int k = 0; k < deals_list.size(); k++){
 					Item item= deals_list.get(k);
 					String itemname=item.getItem_name();
+					String image = item.getItem_image();
 					System.out.println("Item name"+itemname);
+					System.out.println("Item image"+image);
 				}
-        	}
-		//}
-/*		
-		
-		for (int i = 0; i < item_details.size(); i++){
-        	Item list = item_details.get(i);
-        	int categ_id=list.getCateg_id();
-        	
-        	//interestList.add(list.getName());
         	}*/
 		
 		return "success";
 	}
 	
-	
-
 	public int getItem() {
 		return item;
 	}
-
-
 
 	public void setItem(int item) {
 		this.item = item;
@@ -113,43 +102,52 @@ public class ShowDeals extends ActionSupport{
 		this.user = user;
 	}
 
-
-
-	public ArrayList<Item> getItem_details() {
-		return item_details;
+	public ArrayList<Item> getItemDetails() {
+		return itemDetails;
 	}
 
-
-
-	public void setItem_details(ArrayList<Item> item_details) {
-		this.item_details = item_details;
+	public void setItemDetails(ArrayList<Item> itemDetails) {
+		this.itemDetails = itemDetails;
 	}
 
-
-
-	public List<Category> getAllcats() {
-		return allcats;
+	public List<Category> getAllCats() {
+		return allCats;
 	}
 
-
-
-	public void setAllcats(List<Category> allcats) {
-		this.allcats = allcats;
+	public void setAllCats(List<Category> allCats) {
+		this.allCats = allCats;
 	}
-
-
 
 	public List<List> getList() {
 		return list;
 	}
 
-
-
 	public void setList(List<List> list) {
 		this.list = list;
 	}
 
-	
+	public List<Item> getBookCategs() {
+		return bookCategs;
+	}
 
-	
+	public void setBookCategs(List<Item> bookCategs) {
+		this.bookCategs = bookCategs;
+	}
+
+	public List<Item> getMobileCategs() {
+		return mobileCategs;
+	}
+
+	public void setMobileCategs(List<Item> mobileCategs) {
+		this.mobileCategs = mobileCategs;
+	}
+
+	public List<Item> getCosmeticsCategs() {
+		return cosmeticsCategs;
+	}
+
+	public void setCosmeticsCategs(List<Item> cosmeticsCategs) {
+		this.cosmeticsCategs = cosmeticsCategs;
+	}
+
 }
