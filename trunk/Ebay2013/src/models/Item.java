@@ -33,6 +33,9 @@ public class Item {
 	private String category_name;
 	private String subcategory_name;
 	private String other;
+	private int discount_price;
+	private int save_price;
+
 
 public  static Item fetchItem(String param){
 		Item item=new Item();
@@ -133,6 +136,11 @@ public  static String findSubCategoryName(int id){
 	return sub_category_name;
 }
 
+/**
+ * @author Sravvani
+ * To fetch all item details with discount price and reduced price values
+ */
+
 public static ArrayList<Item> fetchDeals(String param){
 	ArrayList<Item> selection = new ArrayList<Item>();
 	String sql="select * from sell_item"+param;
@@ -157,6 +165,14 @@ public static ArrayList<Item> fetchDeals(String param){
 			item.other=resultSet.getString("other");			
 			item.category_name=Item.findCategoryName(item.categ_id);
 			item.subcategory_name=Item.findSubCategoryName(item.subcategory_id);
+			if(item.item_discount!=0){
+				item.save_price=(item.item_discount*item.item_price)/100;
+				item.discount_price=item.item_price-item.save_price;
+			}
+			else{
+				item.discount_price=item.item_price;
+				item.save_price=0;
+			}
 			selection.add(item);
 		}
 	} catch (SQLException e) {
