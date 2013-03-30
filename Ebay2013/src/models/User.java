@@ -22,7 +22,7 @@ private  String password="";
 private String userid="";
 private String emailId="";
 private String mobile="";
-
+private String memberSince="";
 
 public static User userDetails(String selectionModifier) {
 	User user = new User();
@@ -75,6 +75,7 @@ public  static User findone(String sql){
 			user.userid=resultSet.getString("USER_ID");
 			user.emailId=resultSet.getString("EMAIL_ID");
 			user.mobile=resultSet.getString("MOBILE");
+			user.memberSince=resultSet.getString("MEMBER_SINCE");
 		}
 	} catch (SQLException e) {
        System.out.println("Exception while reading from db"+ e);
@@ -118,7 +119,12 @@ public String getMobile() {
 public void setMobile(String mobile) {
 	this.mobile = mobile;
 }
-
+public String getMemberSince() {
+	return memberSince;
+}
+public void setMemberSince(String memberSince) {
+	this.memberSince = memberSince;
+}
 
 
 
