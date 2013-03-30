@@ -11,7 +11,7 @@ public class RuntimeSettings {
 	public static final String SERVER_IP = "localhost";
 	static String databaseName = "ebay";
 	static String dbUserID = "root";
-	static String dbPassword = "mysql"; 
+	static String dbPassword = "system"; 
 	public static String RUN_MODE = "Test"; // "Production"; //
 	public static boolean IS_IN_DEBUG_MODE = true; // false; //
 	static int portNo = 3306;
@@ -28,18 +28,16 @@ public class RuntimeSettings {
 			+"PWD VARCHAR(100) NOT NULL,"
 			+"EMAIL_ID VARCHAR(50) NOT NULL,"
 			+"MOBILE VARCHAR(10),"
-			+"SECRET_QUESTION VARCHAR(50),"
-			+"SECRET_ANSWER VARCHAR(50)"
-			+"DOB DATE ,"
 			+"MEMBER_SINCE TIMESTAMP);",
 			
 
 			"DROP TABLE IF EXISTS ADDRESS;",
-			
+
 			"CREATE TABLE ADDRESS("
 			+"USER_ID VARCHAR(25) NOT NULL,"
-			+"ADDRESS_TYPE VARCHAR(20),"
+			+"ADDRESS_TYPE VARCHAR(20) NOT NULL,"
 			+"PRIMARY KEY(USER_ID,ADDRESS_TYPE),"
+			+"HOUSE_NO VARCHAR(10) NOT NULL,"
 			+"ADD1 VARCHAR(40) NOT NULL,"
 			+"ADD2 VARCHAR(40) NOT NULL,"
 			+"CITY VARCHAR(25) NOT NULL,"
@@ -178,6 +176,9 @@ public class RuntimeSettings {
 			"CREATE TABLE PAISAPAY("
 			+"TRAN_ID INT(5) UNSIGNED NOT NULL ,"
 			+"AMOUNT INT(10) NOT NULL ,"
+			+"PAISAPAY_TRAN_DATE TIMESTAMP,"
+			+"PAISAPAY_AMOUT INT(10),"
+			+"SELLER_AMOUNT INT(10),"
 			+"PAISAPAY_TRAN_DATE TIMESTAMP,"
 			+"FOREIGN KEY (TRAN_ID) REFERENCES TRANSACTION(TRAN_ID)"
 			+");"
