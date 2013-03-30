@@ -84,7 +84,7 @@ public class Order {
 	
 
 
-	
+/*	
 	//getting seller name
 		public static String getSellerName(String sellerId){
 		ResultSet resultSet = null;
@@ -171,7 +171,7 @@ public class Order {
 			public static ArrayList<String> getItemName(String itemID){
 				return null;
 				
-			}
+			}*/
 }
 
 
