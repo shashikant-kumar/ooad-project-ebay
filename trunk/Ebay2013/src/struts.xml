@@ -69,6 +69,15 @@
 <action name="sellerInfo" class="ebay.action.SellerInfo">
 	<result name="initial">SellerInfo.jsp</result>
 </action>	
+<!-- ****************************************************************************************************** -->
+<!-- ********************************************Suhani code********************************************  -->
+<!-- ****************************************************************************************************** -->			
+	  <action name="purchasehistory" class="ebay.action.ShowOrderDetails">
+	<result name="success">ShowPurchaseHistory.jsp</result>
+</action>	
+ <action name="showItemDetails" class="ebay.action.ShowItemDetails">
+	<result name="success">ShowItemDetails.jsp</result>
+</action>
 
 				
 </package>
