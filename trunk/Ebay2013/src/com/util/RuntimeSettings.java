@@ -11,7 +11,7 @@ public class RuntimeSettings {
 	public static final String SERVER_IP = "localhost";
 	static String databaseName = "ebay";
 	static String dbUserID = "root";
-	static String dbPassword = ""; 
+	static String dbPassword = "mysql"; 
 	public static String RUN_MODE = "Test"; // "Production"; //
 	public static boolean IS_IN_DEBUG_MODE = true; // false; //
 	static int portNo = 3306;
@@ -28,6 +28,9 @@ public class RuntimeSettings {
 			+"PWD VARCHAR(100) NOT NULL,"
 			+"EMAIL_ID VARCHAR(50) NOT NULL,"
 			+"MOBILE VARCHAR(10),"
+			+"SECRET_QUESTION VARCHAR(50),"
+			+"SECRET_ANSWER VARCHAR(50)"
+			+"DOB DATE ,"
 			+"MEMBER_SINCE TIMESTAMP);",
 			
 
@@ -35,9 +38,8 @@ public class RuntimeSettings {
 			
 			"CREATE TABLE ADDRESS("
 			+"USER_ID VARCHAR(25) NOT NULL,"
-			+"ADDRESS_TYPE VARCHAR(20) NOT NULL,"
+			+"ADDRESS_TYPE VARCHAR(20),"
 			+"PRIMARY KEY(USER_ID,ADDRESS_TYPE),"
-			+"HOUSE_NO VARCHAR(10) NOT NULL,"
 			+"ADD1 VARCHAR(40) NOT NULL,"
 			+"ADD2 VARCHAR(40) NOT NULL,"
 			+"CITY VARCHAR(25) NOT NULL,"

@@ -18,12 +18,14 @@ Author: Satya Deepthi Bhagi
  **/
 public class User {
 private String username="";
-private  String password="";
+private String password="";
 private String userid="";
 private String emailId="";
 private String mobile="";
+private String secQuestion="";
+private String secAnswer="";
+private Date dob;
 private String memberSince="";
-
 public static User userDetails(String selectionModifier) {
 	User user = new User();
 	ResultSet resultSet = null;
@@ -119,14 +121,30 @@ public String getMobile() {
 public void setMobile(String mobile) {
 	this.mobile = mobile;
 }
+public String getSecQuestion() {
+	return secQuestion;
+}
+public void setSecQuestion(String secQuestion) {
+	this.secQuestion = secQuestion;
+}
+public String getSecAnswer() {
+	return secAnswer;
+}
+public void setSecAnswer(String secAnswer) {
+	this.secAnswer = secAnswer;
+}
+public Date getDob() {
+	return dob;
+}
+public void setDob(Date dob) {
+	this.dob = dob;
+}
 public String getMemberSince() {
 	return memberSince;
 }
 public void setMemberSince(String memberSince) {
 	this.memberSince = memberSince;
 }
-
-
 
 
 }
