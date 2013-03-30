@@ -103,7 +103,7 @@
 														<div style="float: right;padding-right:5px;">
 														<s:a href="%{ItemName}" target="_top" style="text-decoration:none;">
 														<img height="20" border="0" width="70" src="./images/getit.jpg"></s:a></div></div></td>
-														<span id="controls"><a href="#" class="prevBtn"> previous </a><a href="#" class="nextBtn"> next </a></span>
+														<%-- <span id="controls"><a href="#" class="prevBtn"> previous </a><a href="#" class="nextBtn"> next </a></span> --%>
 														</tbody></li></div></div></div>
 														
 													</table>
