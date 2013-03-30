@@ -63,6 +63,12 @@
 <action name="homePage" class="ebay.action.SuccessHome">
 			<result name="success" type="tiles">ebayhome.jsp</result>
 			</action>
+<!-- ****************************************************************************************************** -->
+<!-- ********************************************Alpna code********************************************  -->
+<!-- ****************************************************************************************************** -->						
+<action name="sellerInfo" class="ebay.action.SellerInfo">
+	<result name="initial">SellerInfo.jsp</result>
+</action>	
 
 				
 </package>
