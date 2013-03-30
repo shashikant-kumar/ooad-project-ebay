@@ -18,7 +18,7 @@ Author: Satya Deepthi Bhagi
  **/
 public class User {
 private String username="";
-private String password="";
+private  String password="";
 private String userid="";
 private String emailId="";
 private String mobile="";
