@@ -357,5 +357,29 @@ public void setSelectedQuantity(int selectedQuantity) {
 	this.selectedQuantity = selectedQuantity;
 }
 
+
+
+public int getDiscount_price() {
+	return discount_price;
+}
+
+
+
+public void setDiscount_price(int discount_price) {
+	this.discount_price = discount_price;
+}
+
+
+
+public int getSave_price() {
+	return save_price;
+}
+
+
+
+public void setSave_price(int save_price) {
+	this.save_price = save_price;
+}
+
 	
-	}
+}
