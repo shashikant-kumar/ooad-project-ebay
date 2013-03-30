@@ -42,9 +42,9 @@
 <s:iterator value="orderlist">
 <!-- <tr>
 <td><img src="./images/<s:property value = "item_image" />" alt="image text" width="150" height="175"/> -->
-<s:url id="orderId" action="showItemDetails">
+<!--<s:url id="orderId" action="showItemDetails">
 <s:param name="order" value="order_id"/>
-</s:url>
+</s:url>-->
 <td><s:a href="%{orderId}"><s:property value="order_id"/></s:a></td>
 <!-- <td>Buy it Now</td>
 <td>Bid or Buying</td> -->
