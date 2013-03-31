@@ -46,6 +46,16 @@
                              Hi, <s:property value="username"/>!
                             (<a href="signout">Sign out</a>)<br>&nbsp;<br />
                             </s:else>
+                            <s:set name="theme" value="'simple'" scope="page" />
+                            <table>
+                            <tr>
+                            <s:form action="searchItem"> 
+<td>
+<s:textfield label= " Search by item or category" name="searchValue" value="" size="30" placeholder="search by item or category" /></td> &nbsp; &nbsp; &nbsp;
+ <td><s:submit name="commandButton" value="search" ></s:submit></td>
+                            </s:form>
+                            </tr>
+                            </table>
 							<ul id="NOINTERFERE00_menu">
 							
     <li><a href="categories">CATEGORIES</a></li>
