@@ -84,6 +84,13 @@
 	<result name="success">ShowPurchaseHistory.jsp</result>
 </action>	
  
+				<!-- ****************************************************************************************************** -->
+<!-- ********************************************Priyasmita code********************************************  -->
+<!-- ****************************************************************************************************** -->			
+
+<action name="searchItem" class="ebay.action.SearchItem">
+	<result name="success">ShowSearchItem.jsp</result>
+</action>
 				
 </package>
 </struts>

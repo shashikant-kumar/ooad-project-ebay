@@ -135,6 +135,79 @@ public  static String findSubCategoryName(int id){
 	}
 	return sub_category_name;
 }
+/** @author Priyasmita Ghosh
+ * For searching item by category name or item name
+ */
+
+ public static ArrayList<Item> fetchItemByCategory(String categoryName)
+{
+	 ArrayList<Item> selection = new ArrayList<Item>();
+		String sql="select * from sell_item , category where sell_item.categ_id = category.categ_id and category.categ_name like '%"+categoryName+"%';" ;
+		ResultSet resultSet = null;
+		Connection connection = DB.getConnection();
+		resultSet = DB.readFromDB(sql, connection);
+		try {
+			
+			while (resultSet.next()) {
+				Item item=new Item();
+				item.item_id=resultSet.getInt("item_id");
+				item.item_name= resultSet.getString("item_name");
+				item.seller_name=resultSet.getString("user_id");
+				item.item_price=resultSet.getInt("item_price");
+				item.item_discount=resultSet.getInt("item_discount");
+				item.item_condition=resultSet.getString("item_condition");
+				item.quantity=resultSet.getInt("Stock");
+				item.item_image=resultSet.getString("item_image");
+				item.categ_id=resultSet.getInt("categ_id");
+				item.subcategory_id=resultSet.getInt("sub_categ_id");
+				item.courier=resultSet.getString("courier");
+				item.other=resultSet.getString("other");			
+				item.category_name=categoryName;
+				item.subcategory_name=Item.findSubCategoryName(item.subcategory_id);
+				selection.add(item);
+			}
+		} catch (SQLException e) {
+	       System.out.println("Exception while reading from db"+ e);
+		}
+		return selection;
+		
+
+}
+ public static ArrayList<Item> fetchItemByName(String itemName)
+ {
+ 	 ArrayList<Item> selection = new ArrayList<Item>();
+ 		String sql="select * from sell_item  where item_name like'%"+itemName+"%';" ;
+ 		ResultSet resultSet = null;
+ 		Connection connection = DB.getConnection();
+ 		resultSet = DB.readFromDB(sql, connection);
+ 		try {
+ 			
+ 			while (resultSet.next()) {
+ 				Item item=new Item();
+ 				item.item_id=resultSet.getInt("item_id");
+ 				item.item_name= resultSet.getString("item_name");
+ 				item.seller_name=resultSet.getString("user_id");
+ 				item.item_price=resultSet.getInt("item_price");
+ 				item.item_discount=resultSet.getInt("item_discount");
+ 				item.item_condition=resultSet.getString("item_condition");
+ 				item.quantity=resultSet.getInt("Stock");
+ 				item.item_image=resultSet.getString("item_image");
+ 				item.categ_id=resultSet.getInt("categ_id");
+ 				item.subcategory_id=resultSet.getInt("sub_categ_id");
+ 				item.courier=resultSet.getString("courier");
+ 				item.other=resultSet.getString("other");			
+ 				item.category_name=Item.findCategoryName(item.categ_id);;
+ 				item.subcategory_name=Item.findSubCategoryName(item.subcategory_id);
+ 				selection.add(item);
+ 			}
+ 		} catch (SQLException e) {
+ 	       System.out.println("Exception while reading from db"+ e);
+ 		}
+ 		return selection;
+ 		
+
+ }
+
 
 /**
  * @author Sravvani
