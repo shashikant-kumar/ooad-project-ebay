@@ -33,9 +33,8 @@ public class RegisterUser extends ActionSupport {
 	public void setCommandButton(String commandButton) {
 		this.commandButton = commandButton;
 	}
-	private String uid;
-	private String firstname="";
-	private String lastname="";
+	private String firstName="";
+	private String lastName="";
 	private String username="";
 	private String password="";
 	private String userid="";
@@ -49,23 +48,16 @@ public class RegisterUser extends ActionSupport {
 	private String year="";
 	private String msg="";
     private String checknewusrmsg="";
-    private String countryId="";
+    private String country="";
     private String pincode="";
     private String state;
     private String city="";
     private String address1="";
     private String address2="";
 	
-    private String dateOfBirth="'"+year+"-"+month+"-"+date+"'";
+    private String dateOfBirth="";
     
-	public String getUid() {
-		return uid;
-	}
-
-	public void setUid(String uid) {
-		this.uid = uid;
-	}
-
+   
 	public String getChecknewusrmsg() {
 		return checknewusrmsg;
 	}
@@ -159,50 +151,107 @@ public class RegisterUser extends ActionSupport {
 		this.dob = dob;
 	}
 	
-	public String getFirstname() {
-		return firstname;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getLastname() {
-		return lastname;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
 	}
 
 	public String execute() {
 		
-		username = firstname + " " + lastname;
+		System.out.println("first name is"+firstName);
 		System.out.println("User name coming is"+ username);
-		System.out.println("uid is"+uid);
 		System.out.println("user id"+userid);
-		System.out.println("last name is"+lastname);
+		System.out.println("last name is"+lastName);
 		System.out.println("city"+city);
-		System.out.println("country is"+ countryId);
+		System.out.println("country is"+ country);
 		System.out.println("pin  is"+pincode);
+		System.out.println("date is"+date);
+		System.out.println("Month is"+month);
+		System.out.println("year is"+year);
+
+		if(month.equalsIgnoreCase("January"))
+			month="1";
+		
+		else if (month.equalsIgnoreCase("February"))
+			month="2";
+		
+		else if (month.equalsIgnoreCase("March"))
+			month="03";
+		
+		else if (month.equalsIgnoreCase("April"))
+			month="04";
+		
+		else if (month.equalsIgnoreCase("May"))
+			month="05";
+		
+		else if (month.equalsIgnoreCase("June"))
+			month="06";
+		
+		else if (month.equalsIgnoreCase("July"))
+			month="07";
+		
+		else if (month.equalsIgnoreCase("August"))
+			month="08";
+		
+		else if (month.equalsIgnoreCase("September"))
+			month="09";
+		
+		else if (month.equalsIgnoreCase("October"))
+			month="10";
+		
+		else if (month.equalsIgnoreCase("November"))
+			month="11";
+		
+		else if (month.equalsIgnoreCase("December"))
+			month="12";
 		
 		
-		if (userid == null || userid=="") {
+		dateOfBirth=year+"-"+month+"-"+date;
+		System.out.println("date of birth is:"+dateOfBirth);
+		
+		
+		if (firstName.equalsIgnoreCase("null")||firstName == null || firstName=="") {
 			System.out.println("going here");
 			// first time screen
 			return "initial";
 		}
 		
-		else if (this.commandButton.equalsIgnoreCase("Continue Register")) {
-			User check_username= new User();
+		else if (this.commandButton.equalsIgnoreCase("Continue")) {
+			//User check_username= new User();
+			User check_id=new User();
 			System.out.println("***********");
+			check_id=User.findone( "select * from user where user_id = '"+userid+"'");
+			if(check_id.getUserid().equalsIgnoreCase(userid)){
+				msg="User id "+userid+" already exists. Please choose another.";
+				return "initial";
+			}
+			username = firstName + " " + lastName;/*
 			check_username=User.findone( "select * from user where user_name = '"+username+"'");
 			String check_name="";
 			check_name=check_username.getUsername();
 			if(check_name.equals(username)){
-				msg="User "+username+" already exists. Please choose another.";
+				msg="User Name "+username+" already exists. Please choose another.";
 				return "initial";
-			}
+			}*/
 			int res= insertUser("user");
 			
 			if(res >0){
@@ -228,14 +277,18 @@ public class RegisterUser extends ActionSupport {
 
 	public int insertUser(String table) {
 		//SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");  
+		System.out.println("Inserting in user table");
 		String insertSQL = "insert into "+table
 				+ " (user_id,user_name,pwd,email_id,mobile,secret_question,secret_answer,DOB) " + "values('"+userid+"','"+username+"',"+ "'"+password +"'"+",'"+email +"','"+mobile+"','"+secQuestion+"','"+secAnswer +"','"+dateOfBirth+"');";
 		MyLog.log("insert query"+insertSQL);
 		return DB.update(insertSQL);
 	}
+	
 	public int insertAddress(String table) {
+		
+		System.out.println("Inserting in address table");
 		String insertSQL = "insert into "+table
-				+ " (user_id,ADD1,ADD2,CITY,PIN,STATE,COUNTRY,ADDRESS_TYPE) " + "values('"+userid+"','"+address1+"',"+ "'"+address2 +"'"+",'"+city +"','"+pincode+"','"+state+"','"+countryId +"','RESIDENCE');";
+				+ " (user_id,ADD1,ADD2,CITY,PIN,STATE,COUNTRY,ADDRESS_TYPE) " + "values('"+userid+"','"+address1+"',"+ "'"+address2 +"'"+",'"+city +"','"+pincode+"','"+state+"','"+country +"','RESIDENCE');";
 		MyLog.log("insert query"+insertSQL);
 		return DB.update(insertSQL);
 	}
@@ -255,14 +308,6 @@ public class RegisterUser extends ActionSupport {
     public void setPassword(String password) {
         this.password = password;
     }
-
-	public String getCountryId() {
-		return countryId;
-	}
-
-	public void setCountryId(String countryId) {
-		this.countryId = countryId;
-	}
 
 	public String getPincode() {
 		return pincode;
