@@ -5,8 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
 <title>Debit Card Payment</title>
 </head>
+<script src="http://code.jquery.com/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
 <body>
 <body>
 <h1>Debit Card Details</h1>
@@ -37,13 +40,13 @@
     <td colspan="2">&nbsp;
      <table>
     <tr><td>CVV (3-digit card verification number)</td>
-    <td><s:textfield type="password" size="5" name="cvv" value=""/></td><td><img alt="" src="images/icon_card_back.gif" height="30" width="100"></td></tr>
+    <td><s:password size="5" name="cvv" value=""/></td><td><img alt="" src="images/icon_card_back.gif" height="30" width="100"></td></tr>
     </table>
     </td>
   </tr>
   
 </table>
-<s:submit name="payNow" value="Pay Now">In the next step you may be redirected to your bank's website to verify yourself.</s:submit>
+<s:submit name="payNow" value="Pay Now"><i class="icon-play"></i>In the next step you may be redirected to your bank's website to verify yourself.</s:submit>
 </s:form> 
 </body>
 </html>
