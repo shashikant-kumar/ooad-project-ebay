@@ -35,6 +35,7 @@ public class Item {
 	private String other;
 	private int discount_price;
 	private int save_price;
+	private int item_subTotal;
 
 
 public  static Item fetchItem(String param){
@@ -453,6 +454,19 @@ public int getSave_price() {
 public void setSave_price(int save_price) {
 	this.save_price = save_price;
 }
+
+
+
+public int getItem_subTotal() {
+	return item_subTotal;
+}
+
+
+
+public void setItem_subTotal(int item_subTotal) {
+	this.item_subTotal = item_subTotal;
+}
+
 
 	
 }

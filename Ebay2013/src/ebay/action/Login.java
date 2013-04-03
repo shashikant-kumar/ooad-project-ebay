@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import com.util.MyLog;
@@ -36,13 +37,54 @@ public class Login extends ActionSupport {
 	private String rollNo="";
 	private String mobile="";
 	private Timestamp lastLogin;
+	private int item_id;
+	private int quantity;
+	private ArrayList<Item> items = new ArrayList<Item>();
+	private int cartTotal = 0;
+	private String cart;
+
+
 	
+	
+	public String getCart() {
+		return cart;
+	}
 
+	public void setCart(String cart) {
+		this.cart = cart;
+	}
 
+	public ArrayList<Item> getItems() {
+		return items;
+	}
+	public void setItems(ArrayList<Item> items) {
+		this.items = items;
+	}
+	public int getCartTotal() {
+		return cartTotal;
+	}
+
+	public void setCartTotal(int cartTotal) {
+		this.cartTotal = cartTotal;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public int getItem_id() {
+		return item_id;
+	}
+	public void setItem_id(int item_id) {
+		this.item_id = item_id;
+	}
 	public String getRollNo() {
 		return rollNo;
 	}
-
 	public void setRollNo(String rollNo) {
 		this.rollNo = rollNo;
 	}
@@ -109,7 +151,9 @@ public class Login extends ActionSupport {
 			// first time screen
 		    return "initial_entry";
         } 
-         Connection con = DB.getConnection();
+        
+        
+        Connection con = DB.getConnection();
         Statement stm = null;
 		String sql = "SELECT * FROM USER";
 		sql += " WHERE user_id = '" + userid + "'";
@@ -152,6 +196,7 @@ public class Login extends ActionSupport {
 		        return "error";
 			}		
 		
+			
 
 		} catch (SQLException e) {
 			MyLog.log("Error while checking credentials from database"+e);
@@ -160,6 +205,22 @@ public class Login extends ActionSupport {
 		if(userid.equals("admin")){
 			return "adminSuccess";
 		}
+		
+		System.out.println("Item_ID in Login.java is " + item_id);
+		System.out.println("Cart value is " + cart);
+		
+		//Sruti Code
+		if(item_id!=0 && cart.equalsIgnoreCase("selectedAddToCart")){
+			System.out.println("Inside Sruti's code in Login.java\n\n");
+        	Cart.addItem(userid, item_id, quantity);  
+        	items = Cart.fetchItems(userid);
+    		
+    		for(int i=0; i<items.size(); i++){
+    			cartTotal = cartTotal + items.get(i).getItem_subTotal();
+    		}
+    		System.out.println("Cart Total Price = " + cartTotal);
+        	return "addToCart";
+        }
 		
 		System.out.println("Returning success");
 		return "success";
