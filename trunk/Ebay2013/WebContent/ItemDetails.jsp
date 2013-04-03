@@ -33,7 +33,7 @@
     <li><a href="#">Item Details &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</a></li>
    </ul>
-   
+<s:form>   
 <table align="center">
 <tr>
 <td><img src="./images/<s:property value = "item_detail.item_image" />" alt="image text" width="350" height="375"/></td>
@@ -46,12 +46,14 @@
 <td><s:a href="%{seller}">View Seller Information: <s:property value="item_detail.seller_name"/></s:a></td></tr> <tr></tr><tr></tr>
     <tr><td><s:textfield label = "Quantity"  name="quantity"  size="10" /></td><td><s:property value="item_detail.quantity"/> available</td></tr><tr></tr><tr></tr>
     <tr><td>Price:  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; Rs.<s:property value="item_detail.item_price"/></td></tr><tr></tr><tr></tr>
-    <tr><td><s:submit name = "AddtoCart"  value="Add to Cart" align="center" /></td></tr><tr></tr><tr></tr>
+     <s:hidden name="item_id" value="%{item_detail.item_id}"/>
+    <tr><td><s:submit name = "AddtoCart"  value="Add to Cart" align="center" onclick='this.form.action="myShoppingCart";'/></td></tr><tr></tr><tr></tr>
     <tr><td><s:submit name = "Addtolist"  value="Add to List" align="center" /></td></tr><tr></tr><tr></tr>
     <tr><td>Shipping:&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<s:property value="item_detail.courier"/></td></tr><tr></tr><tr></tr>
     <tr><td>Payments:  PaisaPay(Online Bank Tranfer)</td></tr><tr></tr><tr></tr>
     <tr><td>Returns :&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;   7days, Exchange</td></table></td><tr></tr><tr></tr>
 </table>
+</s:form>
 </body>
 <div>
 				<div class="pcontent">

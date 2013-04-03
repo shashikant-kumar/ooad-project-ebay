@@ -14,6 +14,7 @@
 			<result name="initial_entry">login.jsp</result>
 			<result name="success">ebayhome.jsp</result>
 			<result name="error">login.jsp</result>
+			<result name="addToCart">ShoppingCart.jsp</result>
 </action>
 
 <action name="Register" class="ebay.action.RegisterUser">
@@ -91,6 +92,19 @@
 <action name="searchItem" class="ebay.action.SearchItem">
 	<result name="success">ShowSearchItem.jsp</result>
 </action>
+
+<!-- ****************************************************************************************************** -->
+<!-- ********************************************Sruti's code********************************************  -->
+<!-- ****************************************************************************************************** -->			
+	
+<action name="myShoppingCart" class="ebay.action.MyShoppingCart">
+	<result name="success">ShoppingCart.jsp</result>
+	<result name="notSignedIn">login.jsp</result>
+</action>
+<action name="removeFromCart" class="ebay.action.RemoveFromCart">
+	<result name="success">ShoppingCart.jsp</result>
+</action>
+
 				
 </package>
 </struts>

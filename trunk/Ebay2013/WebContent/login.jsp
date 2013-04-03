@@ -153,7 +153,11 @@
 																										today.</b> Don't check this box if you're at a
 																									public or shared computer.</font> </label> </span>
 																					</div>
+																					
 																				</div>
+																				<s:hidden name="item_id" value="%{item_id}"/>
+																				<s:hidden name="cart" value="%{cart}"/>
+																				<s:hidden name="quantity" value="%{quantity}"/>
 																				<div>
 																					<div class="sgnBtn">
 																						<b id="sgnBt" class="btn-w btn-m btn-p"> <i>Sign
@@ -165,11 +169,11 @@
 																						
 																					</div>
 																					Not an eBay member?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-																					<div class="sgnBtn"><a href="Register">Register Here</a>
-																					<%-- <b id="regSub" class="btn-w btn-m btn-p"> <i>Register</i>
-																			<a href="register"><span id="spn_regSub" class="btn-b moz btn-b sbn-S">
+																					<div class="sgnBtn">
+																					<b id="regSub" class="btn-w btn-m btn-p"> <i>Register</i>
+																			<a href="register.jsp"><span id="spn_regSub" class="btn-b moz btn-b sbn-S">
 																				<input id="but_regSub" type="button"
-																				value="Register" name="regSub"> </span>Register</a> </b> --%>
+																				value="Register" name="regSub"> </span></a> </b>
 																					
 																					</div>
 																					
