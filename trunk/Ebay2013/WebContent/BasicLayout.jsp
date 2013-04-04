@@ -1,6 +1,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
+<!--Author: Ruchika  -->
 <html>
 <head>
 <link rel="stylesheet" href="basestyle.css">
@@ -8,7 +9,7 @@
 <title><tiles:insertAttribute name="title" ignore="true" /></title>
 </head>
 <body id="layout"  >
-<table id="basetable" bgcolor="#A9BCF5" border=0>
+<table id="basetable"  border=0>
 
 	<tr id="headerrow">
 		<td id="headercol"><tiles:insertAttribute name="header" /></td>
