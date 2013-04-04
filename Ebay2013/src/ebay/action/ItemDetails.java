@@ -26,6 +26,7 @@ public class ItemDetails extends ActionSupport{
 	private int item;
 	User user =new User();
   	Item item_detail=new Item();
+  	ArrayList<NewList> nlist = new ArrayList<NewList>();
 	
 	  
 	public String execute() throws Exception {
@@ -35,6 +36,9 @@ public class ItemDetails extends ActionSupport{
 			user = new User();
 		}
 		item_detail = Item.fetchItem(" where item_id="+ item );
+		
+		nlist=NewList.fetchList(" where item_id="+item+" and userid='"+user.getUserid()+"'");
+		
 		return "success";
 	}
 	
@@ -72,7 +76,16 @@ public class ItemDetails extends ActionSupport{
 		this.user = user;
 	}
 
-	
 
-	
+
+	public ArrayList<NewList> getNlist() {
+		return nlist;
+	}
+
+
+
+	public void setNlist(ArrayList<NewList> nlist) {
+		this.nlist = nlist;
+	}
+
 }
