@@ -169,11 +169,11 @@
 																						
 																					</div>
 																					Not an eBay member?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-																					<div class="sgnBtn">
-																					<b id="regSub" class="btn-w btn-m btn-p"> <i>Register</i>
-																			<a href="register.jsp"><span id="spn_regSub" class="btn-b moz btn-b sbn-S">
+																				<div class="sgnBtn"><a href="Register">Register New User</a>
+																					<%-- <b id="regSub" class="btn-w btn-m btn-p"> <i>Register</i>
+																			<a href="register"><span id="spn_regSub" class="btn-b moz btn-b sbn-S">
 																				<input id="but_regSub" type="button"
-																				value="Register" name="regSub"> </span></a> </b>
+																				value="Register" name="regSub"> </span>Register</a> </b> --%>
 																					
 																					</div>
 																					

@@ -147,6 +147,10 @@ public class Login extends ActionSupport {
     	        this.commandButton);
 		System.out.println("In login action");
 		System.out.println("USer id coming is"+userid);
+		if(userid.equals("admin")){
+			return "adminSuccess";
+		}
+		
         if (this.userid.isEmpty()) {
 			// first time screen
 		    return "initial_entry";
