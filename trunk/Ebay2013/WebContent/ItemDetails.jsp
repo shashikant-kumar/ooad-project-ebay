@@ -33,6 +33,41 @@
     <li><a href="#">Item Details &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</a></li>
    </ul>
+   <br><br>
+<table align="left" border="0">
+<s:if test="%{nlist.size()!=0}">
+<s:url id="WatchList" action="WatchList">
+<s:param name="item" value="item_detail.item_id"/>
+</s:url>
+<!-- <h3>Saved in your Watch list |Remove</h3> -->
+<tr>
+<td>
+<h4>Added to your <s:a href="%{WatchList}">Watch list</s:a></h4>
+</td></tr>
+</s:if>
+<s:if test="%{msg=='saved'}">
+<s:url id="WatchList" action="WatchList">
+<s:param name="item" value="item_detail.item_id"/>
+</s:url>
+<tr>
+<td>
+<h4>Added to your <s:a href="%{WatchList}">Watch list</s:a></h4>
+</td></tr>
+</s:if>
+<s:if test="%{msg=='alreadyAdded'}">
+<s:url id="WatchList" action="WatchList">
+<s:param name="item" value="item_detail.item_id"/>
+</s:url>
+<tr>
+<td>
+<h4>Already Added to your <s:a href="%{WatchList}">Watch list</s:a></h4>
+</td></tr>
+</s:if>
+
+</table>
+<br>
+<br>
+<br><br><br>
 <s:form>   
 <table align="center">
 <tr>
@@ -48,7 +83,7 @@
     <tr><td>Price:  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; Rs.<s:property value="item_detail.item_price"/></td></tr><tr></tr><tr></tr>
      <s:hidden name="item_id" value="%{item_detail.item_id}"/>
     <tr><td><s:submit name = "AddtoCart"  value="Add to Cart" align="center" onclick='this.form.action="myShoppingCart";'/></td></tr><tr></tr><tr></tr>
-    <tr><td><s:submit name = "Addtolist"  value="Add to List" align="center" /></td></tr><tr></tr><tr></tr>
+    <tr><td><s:submit name = "Addtolist"  value="Add to List" align="center" onclick='this.form.action="AddToList";'/></td></tr><tr></tr><tr></tr>
     <tr><td>Shipping:&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<s:property value="item_detail.courier"/></td></tr><tr></tr><tr></tr>
     <tr><td>Payments:  PaisaPay(Online Bank Tranfer)</td></tr><tr></tr><tr></tr>
     <tr><td>Returns :&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;   7days, Exchange</td></table></td><tr></tr><tr></tr>
