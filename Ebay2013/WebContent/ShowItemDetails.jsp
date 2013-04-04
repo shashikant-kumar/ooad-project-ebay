@@ -4,14 +4,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Order Tracking</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Ebay Items</title>
 <link href="css1.css" type="text/css" rel="stylesheet">
 <link href="css2.css" type="text/css" rel="stylesheet">
 <link href="css3.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-<div>
+	<div>
 		<br />
 	</div>
 <div>
@@ -24,45 +24,39 @@
 					</div>
 			</div>
 
-	
-	<ul id="NOINTERFERE00_menu">
+	</br>
+<title>show all items in order</title>
+</head>
+<body>
+<ul id="NOINTERFERE00_menu">
 							
-    <li><a href="#">Order Details &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <li><a href="#">Item Details &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</a></li>
    </ul>
-<h1 align="center">      </h1> 
-<table align="center">
-
-<s:if test="%{orderlist.size()==0}">
-<h2>This user has no orders</h2>
+   
+<s:if test="%{orderItemList.size()==0}">
+<h4>This order has no items</h4>
 </s:if>
 <s:else>
-<table align="center" cellspacing="50">
-
+<table align="center" cellspacing="60">
 <tr> 
-    <th><h4>Order Id</h4></th>
-    <th><h4>Total Price</h4></th>
+    <th><h4>Item Image</h4></th>
+    <th><h4>Item Name</h4></th>
+    <th><h4>Item Price</h4></th>
+    <th><h4>Order Status</h4></th>
     <th><h4>Order Date</h4></th>
-    <th><h4>Check Order Status</h4></th>
-    </tr>
-<s:iterator value="orderlist">
-<tr>
-<td> <s:property value="order_id"/></td>
-<td> <s:property value="total_price"/></td>
-<td> <s:property value="order_date"/></td>
-<td>
-<s:url id="orderid" action="showItemDetails">
-<s:param name="order" value="order_id"/>
-</s:url>
-<s:a href="%{orderid}">Track Order Status</s:a></td>
-</tr>
+        </tr>
+<s:iterator value="orderItemList">
+<tr><td><img src="./images/<s:property value = "item_image" />" alt="image text" width="150" height="175"/></td>
+<td><s:property value="item_name"/></td>
+<td><s:property value="item_price"/></td>
+<td><s:property value="tran_status"/></td>
+<td><s:property value="trans_date"/></td></tr>
 </s:iterator>
 </table> 
 </s:else>
-</table>
- 
-	</body>
-	<div>
+</body> 
+<div>
 				<div class="pcontent">
 					<!--cacheStatus: false-->
 					<span class="ebay"> <%@include file="footer.jsp"%>
@@ -73,5 +67,5 @@
 
 					<!--vo{2d71f+}0nd{71hj,,RlogId p4kjkbsdabjkrk9%3Fvo%7B2d71f%2B%7D0nd%7F%7B71hj-1368e4f8187-0x153-->
 				</div>
-			</div>
-</html>
+	</div>
+	</html>	

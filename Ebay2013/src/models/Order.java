@@ -22,47 +22,28 @@ public class Order {
 		return order_id;
 	}
 
-
-
-
 	public void setOrder_id(int order_id) {
 		this.order_id = order_id;
 	}
 
-
-
-
 	public int getTotal_price() {
 		return total_price;
 	}
-
-
-
-
 	public void setTotal_price(int total_price) {
 		this.total_price = total_price;
 	}
-
-
-
 
 	public Date getOrder_date() {
 		return order_date;
 	}
 
-
-
-
 	public void setOrder_date(Date order_date) {
 		this.order_date = order_date;
 	}
-
-
-
-
 	public static ArrayList<Order> fetchOrderDetails(String userID){
 		ArrayList<Order> selection = new ArrayList<Order>();
 		String sql="select order_id,total_price,order_date from order_details where buyer_id= "+"'"+userID+"'" ;
+		System.out.println(sql);
 		ResultSet resultSet = null;
 		Connection connection = DB.getConnection();
 		resultSet = DB.readFromDB(sql, connection);
@@ -81,10 +62,7 @@ public class Order {
 		return selection;
 		
 	}
-	
 
-
-/*	
 	//getting seller name
 		public static String getSellerName(String sellerId){
 		ResultSet resultSet = null;
@@ -171,7 +149,7 @@ public class Order {
 			public static ArrayList<String> getItemName(String itemID){
 				return null;
 				
-			}*/
+			}
 }
 
 

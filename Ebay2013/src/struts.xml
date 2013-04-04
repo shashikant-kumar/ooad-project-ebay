@@ -104,8 +104,13 @@
 <!-- ****************************************************************************************************** -->
 <!-- ********************************************Suhani code********************************************  -->
 <!-- ****************************************************************************************************** -->			
-	  <action name="purchasehistory" class="ebay.action.ShowOrderDetails">
-	<result name="success">ShowPurchaseHistory.jsp</result>
+	  <action name="purchasehistory" class="ebay.action.ShowOrderDetails"> 
+	  <result name="success">ShowPurchaseHistory.jsp</result> 
+	  <result name="login">login.jsp</result>
+	  </action> 
+
+<action name="showItemDetails" class="ebay.action.ShowItemDetails"> 
+<result name="success">ShowItemDetails.jsp</result> 
 </action>	
  
 				<!-- ****************************************************************************************************** -->

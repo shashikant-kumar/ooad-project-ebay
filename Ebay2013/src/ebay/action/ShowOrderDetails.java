@@ -18,12 +18,18 @@ import com.util.MyLog;
 
 public class ShowOrderDetails {
 	
-	String userID="";
+	private String userid=" ";
 	String username="";
 	private List<Order> orderlist;
 	
 
 	
+	public String getUserid() {
+		return userid;
+	}
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -37,28 +43,29 @@ public class ShowOrderDetails {
 		this.orderlist = orderlist;
 	}
 
-
-		public String getUserID() {
-		return userID;
-	}
-	public void setUserID(String userID) {
-		this.userID = userID;
-	}
-	
 	
 	public String execute() throws Exception {
+		
+		
 		
 		User user=new User();
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		user = (User) session.get("user");
 		
-		if(session.get("user") != null && session.get("user") != "")
+		if(session.get("user") != null && session.get("user") != ""){
 			user = (User) session.get("user");
 			session.put("user", user);
-			userID = user.getUserid();
+			userid = user.getUserid();
 			username = user.getUsername();
+		}
+			System.out.println("userid in orders page"+userid);
+
+		if (this.userid.isEmpty()||this.userid==" ") {
+				// first time screen
+			    return "login";
+	       }
 			
-			orderlist = Order.fetchOrderDetails(userID);
+			orderlist = Order.fetchOrderDetails(userid);
 			for(int i=0;i<orderlist.size();i++){
 				Order order=orderlist.get(i);
 				System.out.println("Order id is"+order.getOrder_id());
