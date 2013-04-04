@@ -59,7 +59,7 @@ public  static Item fetchItem(String param){
 				item.categ_id=resultSet.getInt("categ_id");
 				item.subcategory_id=resultSet.getInt("sub_categ_id");
 				item.courier=resultSet.getString("courier");
-				item.other=resultSet.getString("other");			
+				//item.other=resultSet.getString("other");			
 				item.category_name=Item.findCategoryName(item.categ_id);
 				item.subcategory_name=Item.findSubCategoryName(item.subcategory_id);
 				
@@ -93,7 +93,7 @@ public static ArrayList<Item> fetchItemDetails(String param){
 				item.categ_id=resultSet.getInt("categ_id");
 				item.subcategory_id=resultSet.getInt("sub_categ_id");
 				item.courier=resultSet.getString("courier");
-				item.other=resultSet.getString("other");			
+				//item.other=resultSet.getString("other");			
 				item.category_name=Item.findCategoryName(item.categ_id);
 				item.subcategory_name=Item.findSubCategoryName(item.subcategory_id);
 				selection.add(item);
@@ -162,7 +162,7 @@ public  static String findSubCategoryName(int id){
 				item.categ_id=resultSet.getInt("categ_id");
 				item.subcategory_id=resultSet.getInt("sub_categ_id");
 				item.courier=resultSet.getString("courier");
-				item.other=resultSet.getString("other");			
+				//item.other=resultSet.getString("other");			
 				item.category_name=categoryName;
 				item.subcategory_name=Item.findSubCategoryName(item.subcategory_id);
 				selection.add(item);
@@ -196,7 +196,7 @@ public  static String findSubCategoryName(int id){
  				item.categ_id=resultSet.getInt("categ_id");
  				item.subcategory_id=resultSet.getInt("sub_categ_id");
  				item.courier=resultSet.getString("courier");
- 				item.other=resultSet.getString("other");			
+ 				//item.other=resultSet.getString("other");			
  				item.category_name=Item.findCategoryName(item.categ_id);;
  				item.subcategory_name=Item.findSubCategoryName(item.subcategory_id);
  				selection.add(item);
@@ -236,7 +236,7 @@ public static ArrayList<Item> fetchDeals(String param){
 			item.categ_id=resultSet.getInt("categ_id");
 			item.subcategory_id=resultSet.getInt("sub_categ_id");
 			item.courier=resultSet.getString("courier");
-			item.other=resultSet.getString("other");			
+			//item.other=resultSet.getString("other");			
 			item.category_name=Item.findCategoryName(item.categ_id);
 			item.subcategory_name=Item.findSubCategoryName(item.subcategory_id);
 			if(item.item_discount!=0){
