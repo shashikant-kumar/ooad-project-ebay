@@ -92,7 +92,7 @@ public  static ArrayList<NewList> fetchWatchList(String userId){
 			list.itemQuantity=resultSet.getInt("stock");
 			list.itemImage=resultSet.getString("item_image");
 			list.itemName=resultSet.getString("item_name");
-			list.sellerName=resultSet.getString("user_name");
+			list.sellerName=resultSet.getString("user_id");
 			list.itemPrice=resultSet.getInt("item_price");
 			
 			selection.add(list);
