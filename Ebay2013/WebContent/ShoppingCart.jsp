@@ -73,7 +73,9 @@ div.important {color:green;}
      <s:param name="item_id" value="item_id"/>
     </s:url>
     <td><s:a href="%{remove}">Remove</s:a></td>
-	<td><s:submit name = "ButItNow" value="But It Now!"/></td>
+	<td><s:form name="buy" action="buyitNow">
+	<td><s:submit name="commandButton" label="Buy it Now" value="Buy It Now"/></td>
+	</s:form></td>
 	</tr>
 	</s:iterator>
 	</body>

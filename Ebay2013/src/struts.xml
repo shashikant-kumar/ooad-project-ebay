@@ -9,20 +9,36 @@
  <result-types>
             <result-type name="tiles"
                 class="org.apache.struts2.views.tiles.TilesResult" />
-        </result-types> 
+        </result-types>
+        <!-- Ruchika's Code Starts here--> 
+ <interceptors>
+    <interceptor name="mylogging"
+        class="interceptor.LoginInterceptor">
+    </interceptor>
+    <interceptor-stack name="loggingStack">
+        <interceptor-ref name="mylogging" />
+        <interceptor-ref name="defaultStack" />
+    </interceptor-stack>
+</interceptors>
+	<!-- Ruchika's Code Ends here-->
 <action name="Login" class="ebay.action.Login">
+<!-- Ruchika's Code Starts here -->
+<interceptor-ref name="loggingStack"></interceptor-ref>
+<!-- Ruchika's Code Ends here-->
 			<result name="initial_entry">login.jsp</result>
 			<result name="success">ebayhome.jsp</result>
 			<result name="adminSuccess">EBayAdminHome.jsp</result>
 			<result name="item_details">ItemDetails.jsp</result>
 			<result name="error">login.jsp</result>
+			<!-- Ruchika's Code Starts here-->
+			<result name="buyItNow" type="redirectAction">  
+                <param name="actionName">${#session['lastAction']}</param>  
+                <param name="namespace">/</param>  
+            </result>  
+            <!-- Ruchika's Code Ends here -->
 			<result name="addToCart">ShoppingCart.jsp</result>
 </action>
 
-<action name="Register" class="ebay.action.RegisterUser">
-			<result name="initial">RegisterUser.jsp</result>
-			<result name="success">login.jsp</result>
-			</action>
  <action name="signout" class="ebay.action.Logout">
 			<result name="exit">ebayhome.jsp</result>
 			</action>
@@ -81,7 +97,9 @@
 <!-- ****************************************************************************************************** -->			
 
 <action name="buyitNow" class="ebay.action.Payment">
+<interceptor-ref name="loggingStack"></interceptor-ref>
 			<result name="success" type="tiles">/Payment.tiles</result>
+			<result name="login" >login.jsp</result>
 			</action>
 <action name="makePayment" class="ebay.action.MakePayment">
 			<result name="credit" type="tiles">/Credit.tiles</result>
@@ -92,8 +110,13 @@
 			<result name="success" type="tiles">/Ack.tiles</result>
 			<result name="error" type="tiles">/Fail.tiles</result>
 			</action>
+ <action name="bankPayment" class="ebay.action.BankPayment">
+			<result name="success" type="tiles">/Ack.tiles</result>
+			<result name="error" type="tiles">/Fail.tiles</result>
+			</action> 
+<!-- add type="tiles" in result -->
 <action name="homePage" class="ebay.action.SuccessHome">
-			<result name="success" type="tiles">ebayhome.jsp</result>
+			<result name="success" >ebayhome.jsp</result>
 			</action>
 <!-- ****************************************************************************************************** -->
 <!-- ********************************************Alpna code********************************************  -->
