@@ -30,6 +30,7 @@ public class ShowDeals extends ActionSupport{
 	private List<Item> mobileCategs;
 	private List<Item> cosmeticsCategs;
   	private List<List> list=new ArrayList<List>();
+  	private String username="";
   	//Map<String, ArrayList<Item>> deals = new HashMap<String, ArrayList<Item>>();
 	  
 	public String execute() throws Exception {
@@ -38,6 +39,7 @@ public class ShowDeals extends ActionSupport{
 		if (user == null) {
 			user = new User();
 		}
+		username=user.getUsername();
 		allCats = new ArrayList<Category>();
 		bookCategs=new ArrayList<Item>();
 		mobileCategs=new ArrayList<Item>();
@@ -68,21 +70,6 @@ public class ShowDeals extends ActionSupport{
         }
 		System.out.println("category"+bookCategs.get(0).getCategory_name());
 		System.out.println("category"+bookCategs.get(0).getCateg_id());
-		/*System.out.println("list size finally"+list.size());
-	
-		for (int i = 0; i < list.size(); i++){
-				ArrayList<Item> deals_list = new ArrayList<Item>();  
-				deals_list= (ArrayList<Item>) list.get(i);
-				System.out.println("deal_list size"+deals_list.size());
-				for (int k = 0; k < deals_list.size(); k++){
-					Item item= deals_list.get(k);
-					String itemname=item.getItem_name();
-					String image = item.getItem_image();
-					System.out.println("Item name"+itemname);
-					System.out.println("Item image"+image);
-				}
-        	}*/
-		
 		return "success";
 	}
 	
@@ -149,5 +136,14 @@ public class ShowDeals extends ActionSupport{
 	public void setCosmeticsCategs(List<Item> cosmeticsCategs) {
 		this.cosmeticsCategs = cosmeticsCategs;
 	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
 
 }
