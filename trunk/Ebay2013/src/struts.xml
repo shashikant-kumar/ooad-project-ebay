@@ -13,6 +13,7 @@
 <action name="Login" class="ebay.action.Login">
 			<result name="initial_entry">login.jsp</result>
 			<result name="success">ebayhome.jsp</result>
+			<result name="adminSuccess">EBayAdminHome.jsp</result>
 			<result name="error">login.jsp</result>
 			<result name="addToCart">ShoppingCart.jsp</result>
 </action>
@@ -33,6 +34,11 @@
 <action name="ItemDetails" class="ebay.action.ItemDetails">
 			<result name="success">ItemDetails.jsp</result>
 			</action>
+<action name="manageCategoriesSubcategories" class="ebay.action.ManageCategoriesSubCategories">
+			<result name="cats">managecategories.jsp</result>
+			<result name="subcats">managecategories.jsp</result>
+			</action>		
+
 <!-- ****************************************************************************************************** -->
 <!-- ********************************************Sravvani code********************************************  -->
 <!-- ****************************************************************************************************** -->			

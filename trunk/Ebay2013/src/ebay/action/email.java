@@ -1,6 +1,4 @@
 package ebay.action;
-import java.util.Map;
-import java.lang.Object;
 import javax.mail.Message.RecipientType;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
@@ -8,7 +6,10 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import com.util.MyLog;
-
+/**
+ * 
+ * @author Satya Deepthi Bhagi
+ */
 
 
 public class email {
