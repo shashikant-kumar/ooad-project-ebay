@@ -37,15 +37,39 @@ public class Login extends ActionSupport {
 	private String rollNo="";
 	private String mobile="";
 	private Timestamp lastLogin;
-	private int item_id;
+	private int item_id=0;
 	private int quantity;
 	private ArrayList<Item> items = new ArrayList<Item>();
 	private int cartTotal = 0;
 	private String cart;
-
-
+	//sravvani
+	Item item_detail=new Item();
+	private String listName="watchlist";
+	NewList listvalues=new NewList();
+	private String msg="";
+	public String getMsg() {
+		return msg;
+	}
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
 	
-	
+	public Item getItem_detail() {
+		return item_detail;
+	}
+
+	public void setItem_detail(Item item_detail) {
+		this.item_detail = item_detail;
+	}
+
+	public String getListName() {
+		return listName;
+	}
+
+	public void setListName(String listName) {
+		this.listName = listName;
+	}
+
 	public String getCart() {
 		return cart;
 	}
@@ -225,7 +249,20 @@ public class Login extends ActionSupport {
     		System.out.println("Cart Total Price = " + cartTotal);
         	return "addToCart";
         }
-		
+		//sravvani code to fetch the item details and insert item into watch list
+		if(item_id!=0){
+			System.out.println("item id"+item_detail.getItem_id());
+			item_detail=Item.fetchItem(" where item_id="+item_id);
+			listvalues=NewList.fetchOneFromList(" where userid='"+userid+"' and item_id="+item_id);
+			if(listvalues.getItemId()==0){
+				NewList.insert(listName,item_id,userid);
+				msg="saved";
+			}
+			else{
+				msg="alreadyAdded";
+			}
+			return "item_details";
+		}
 		System.out.println("Returning success");
 		return "success";
     }
