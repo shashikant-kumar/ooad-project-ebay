@@ -29,7 +29,7 @@ public class NewList {
 	private int selectedQuantity;
 	
 public  static ArrayList<NewList> fetchList(String param){
-		NewList list=new NewList();
+		
 		ArrayList<NewList> selection = new ArrayList<NewList>();
 		String sql="select * from list "+param;
 		System.out.println("Query is"+sql);
@@ -38,7 +38,7 @@ public  static ArrayList<NewList> fetchList(String param){
 		resultSet = DB.readFromDB(sql, connection);
 		try {
 			while (resultSet.next()) {
-				
+				NewList list=new NewList();		
 				list.listId=resultSet.getInt("list_id");
 				list.listName=resultSet.getString("list_name");
 				list.itemId=resultSet.getInt("item_id");
@@ -51,6 +51,28 @@ public  static ArrayList<NewList> fetchList(String param){
 		}
 		return selection;
 	}
+
+public  static NewList fetchOneFromList(String param){
+	NewList list=new NewList();
+	String sql="select * from list "+param;
+	System.out.println("Query is"+sql);
+	ResultSet resultSet = null;
+	Connection connection = DB.getConnection();
+	resultSet = DB.readFromDB(sql, connection);
+	try {
+		while (resultSet.next()) {
+			
+			list.listId=resultSet.getInt("list_id");
+			list.listName=resultSet.getString("list_name");
+			list.itemId=resultSet.getInt("item_id");
+			list.userId=resultSet.getString("userid");
+		}
+	} catch (SQLException e) {
+       System.out.println("Exception while reading from db"+ e);
+	}
+	return list;
+}
+
 
 public  static ArrayList<NewList> fetchWatchList(String userId){
 	
