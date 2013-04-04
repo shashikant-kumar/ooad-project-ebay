@@ -11,7 +11,7 @@ public class RuntimeSettings {
 	public static final String SERVER_IP = "localhost";
 	static String databaseName = "ebay";
 	static String dbUserID = "root";
-	static String dbPassword = "mysql"; 
+	static String dbPassword = "sravhari"; 
 	public static String RUN_MODE = "Test"; // "Production"; //
 	public static boolean IS_IN_DEBUG_MODE = true; // false; //
 	static int portNo = 3306;
@@ -66,7 +66,7 @@ public class RuntimeSettings {
 			"CREATE TABLE SELL_ITEM("
 			+"ITEM_ID INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,"
 			+"USER_ID VARCHAR(25) NOT NULL ,"
-			+"ITEM_NAME VARCHAR(50) NOT NULL,"
+			+"ITEM_NAME VARCHAR(50) UNIQUE NOT NULL,"
 			+"ITEM_PRICE INT(10) NOT NULL,"
 			+"ITEM_DISCOUNT INT(10),"
 			+"ITEM_CONDITION VARCHAR(25) NOT NULL,"
@@ -109,7 +109,7 @@ public class RuntimeSettings {
 			+"ITEM_ID INT(10) UNSIGNED NOT NULL,"
 			+"USERID VARCHAR(25) NOT NULL,"
 			+"FOREIGN KEY (ITEM_ID) REFERENCES SELL_ITEM(ITEM_ID),"
-			+"FOREIGN KEY (USER_ID) REFERENCES USER(USER_ID)"
+			+"FOREIGN KEY (USERID) REFERENCES USER(USER_ID)"
 			+");",
 
 			"DROP TABLE IF EXISTS BANK_ACCT;",
@@ -185,7 +185,6 @@ public class RuntimeSettings {
 			+"PAISAPAY_TRAN_DATE TIMESTAMP,"
 			+"PAISAPAY_AMOUT INT(10),"
 			+"SELLER_AMOUNT INT(10),"
-			+"PAISAPAY_TRAN_DATE TIMESTAMP,"
 			+"FOREIGN KEY (TRAN_ID) REFERENCES TRANSACTION(TRAN_ID)"
 			+");"
 			
