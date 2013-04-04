@@ -24,6 +24,7 @@ public class AddToList extends ActionSupport{
 	private int item_id;
 	User user =new User();
   	Item item_detail=new Item();
+  	NewList listvalues=new NewList();
 
   	//sravvani code for add to list
   	private String Addtolist = "";
@@ -55,8 +56,14 @@ public class AddToList extends ActionSupport{
 		System.out.println("item id "+item_id);
 		
 		if (this.Addtolist.startsWith("Add to List")) {
-				NewList.insert(listName,item_id,user.getUserid());
-				msg="saved";
+				listvalues=NewList.fetchOneFromList(" where userid='"+user.getUserid()+"' and item_id="+item_id);
+				if(listvalues.getItemId()==0){
+					NewList.insert(listName,item_id,user.getUserid());
+					msg="saved";
+				}
+				else{
+					msg="alreadyAdded";
+				}
 	        
 		}
 		return "success";
