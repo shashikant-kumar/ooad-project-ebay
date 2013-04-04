@@ -157,7 +157,7 @@ public class Trans{
 	 * */
 	public  static ArrayList<Trans> fetchOrderDetails(int param){
 		ArrayList<Trans> selection = new ArrayList<Trans>();
-		String sql="select item_name,item_price,item_image,tran_status,status_date from sell_item s,transaction t,status st where ";
+		String sql="select distinct(item_name),item_price,item_image,tran_status,status_date from sell_item s,transaction t,status st where ";
 	            sql+= "s.item_id=t.item_id and t.order_id="+param+" and st.tran_id in (select t.tran_id from transaction where order_id="+param+");";
 	            System.out.println(sql);
 		ResultSet resultSet = null;
