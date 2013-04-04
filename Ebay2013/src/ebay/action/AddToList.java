@@ -21,7 +21,7 @@ Author: Sravvani Peraka
 
 public class AddToList extends ActionSupport{
 
-	private int item;
+	private int item_id;
 	User user =new User();
   	Item item_detail=new Item();
 
@@ -30,7 +30,7 @@ public class AddToList extends ActionSupport{
 	private String listName="watchlist";
 	private int quantity;
 	private String userId="";
-	private String itemList="";
+	private String username="";
 	
 	private String msg="";
 	public String getMsg() {
@@ -42,66 +42,38 @@ public class AddToList extends ActionSupport{
 	
 	public String execute() throws Exception {
 		
-		item_detail = Item.fetchItem(" where item_id="+ item );
+		item_detail = Item.fetchItem(" where item_id="+ item_id );
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		User user = (User) session.get("user");
 		if (user == null) {
-			//user = new User();
-			/*item_detail.setQuantity(quantity);
-			item_detail.setItem_id(item);
-			
-			Map<String, Object> listSession = ActionContext.getContext().getSession();
-			
-			if(listSession.get("list") != null && listSession.get("list") != "")
-				item_detail = (Item) listSession.get("list");
-			if (item_detail == null) {
-				item_detail = new Item();
-			}
-			listSession.put("list", item_detail);
-			*/
-			item_detail.setQuantity(quantity);
-			item_detail.setItem_id(item);
-			
+			user = new User();
 			// first time login screen
 		    return "initial_entry";
         
 		}
-		System.out.println("item id "+item);
+		username=user.getUsername();
+		System.out.println("item id "+item_id);
 		
 		if (this.Addtolist.startsWith("Add to List")) {
-				NewList.insert(listName,item,user.getUserid(),quantity);
+				NewList.insert(listName,item_id,user.getUserid());
 				msg="saved";
 	        
 		}
 		return "success";
 	}
 	
-	
-
-	public int getItem() {
-		return item;
+	public int getItem_id() {
+		return item_id;
 	}
-
-
-
-	public void setItem(int item) {
-		this.item = item;
+	public void setItem_id(int item_id) {
+		this.item_id = item_id;
 	}
-
-
-
 	public Item getItem_detail() {
 		return item_detail;
 	}
-
-
-
 	public void setItem_detail(Item item_detail) {
 		this.item_detail = item_detail;
 	}
-
-
-
 	public User getUser() {
 		return user;
 	}
@@ -109,45 +81,24 @@ public class AddToList extends ActionSupport{
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-
-
 	public String getAddtolist() {
 		return Addtolist;
 	}
-
-
-
 	public void setAddtolist(String addtolist) {
 		Addtolist = addtolist;
 	}
-
-
-
 	public String getListName() {
 		return listName;
 	}
-
-
-
 	public void setListName(String listName) {
 		this.listName = listName;
 	}
-
-
-
 	public int getQuantity() {
 		return quantity;
 	}
-
-
-
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-
-
-
 	public String getUserId() {
 		return userId;
 	}
@@ -155,6 +106,10 @@ public class AddToList extends ActionSupport{
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	
-	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 }
