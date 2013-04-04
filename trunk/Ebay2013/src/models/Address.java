@@ -82,7 +82,7 @@ public class Address {
 		try {
 			
 			while (rs.next()) {
-				add.houseNo=rs.getString("HOUSE_NO");
+				//add.houseNo=rs.getString("HOUSE_NO");
 				add.addressType=rs.getString("ADDRESS_TYPE");
 				add.add1=rs.getString("ADD1");
 				add.add2=rs.getString("ADD2");
