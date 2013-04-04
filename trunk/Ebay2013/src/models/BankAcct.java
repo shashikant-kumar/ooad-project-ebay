@@ -42,6 +42,7 @@ public class BankAcct {
 				ba.cardNo=rs.getString("CARD_NO");
 				ba.branchName=rs.getString("BRANCH_NAME");
 				ba.cvvNo=rs.getInt("CVV_NO");
+				ba.userId= rs.getString("USER_ID");
 				
 			}
 		
@@ -71,6 +72,25 @@ public class BankAcct {
 		
 	}
 
+	public static int getAccountBalance(String sql){
+		int accBal=0;
+		String query = "SELECT ACC_BAL FROM BANK_ACCT WHERE "+sql+ ";";
+		System.out.println("query is "+query);
+		ResultSet rs = null;
+		Connection con = DB.getConnection();
+		rs=DB.readFromDB(query, con);
+		try {
+			
+			while (rs.next()) {
+				accBal = rs.getInt("ACC_BAL");
+			}
+		}
+		catch(SQLException e){
+			System.out.println("Error occurred "+e);
+		}
+		
+		return accBal;
+	}
 	/** @author Ruchika Sharma
 	 * This function deducts the total price from the balance in DB, when the payment is successful
 	 * Input: account Id,account Bal,totalPrice

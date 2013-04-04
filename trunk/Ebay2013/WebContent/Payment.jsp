@@ -1,17 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Author: Ruchika  -->
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Payment Mode</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
 <link rel="stylesheet" type="text/css"
 	href="buyitnow/44sahi3l3azqpahlonk2cetjj.css">
 <link rel="stylesheet" type="text/css"
 	href="buyitnow/43j513lpmi0mzpaok33s5y2u0.css">
+	<script src="http://code.jquery.com/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-var address;
+/* var address;
 function loadtextarea(a){
 	$('#shippingaddressbox').slideDown();
 	
@@ -36,7 +40,19 @@ function transaction(){
 	request.open("GET","ChangeShipping.action?temp="+address,true);
 	request.send();
 }
+ */</script>
+ <script language="JavaScript" type="text/javascript">
+function CheckingMode() {
+	 var paymentmode = document.getElementById("paymentmode").value;
+	 if (paymentmode=="")
+		{
+		alert("Payment mode should not be blank. Please enter appropriately!");
+		return false;
+		}
+	 return true;
+}
 </script>
+ 
 	<script type="text/javascript">var _GlobalNavHeaderUtf8Encoding=true;
 </script>
 </head>
@@ -190,7 +206,9 @@ function transaction(){
 																		<s:property value="itemPrice" />
 																	</div>
 																	<div class="single-item-summ-body-qty">
-																		<s:textfield name="quantity" value="%{quantity}" size="5"/>
+																	<div class="controls">
+																		<s:textfield name="quantity" value="%{quantity}" size="2" width="2" id="inputInfo"/>
+																		</div>
 																	</div>
 																	<div class="stDiv">
 																		<table class="amountTable">
@@ -365,7 +383,7 @@ function transaction(){
 																</div>
 																<div class="ps-ppButton">
 																	<s:radio label="paymentmode" name="paymentmode"
-																		list="#{'1':'Credit Card','2':'Debit Card'}" value="1" />&nbsp;
+																		list="#{'1':'Credit Card','2':'Debit Card','3':'Net Banking'}" value="1" />&nbsp;
 																	<s:select name="banks" label="Net Banking" headerKey="-1" headerValue="--Select Bank--" list = "listBanks"/>Net banking
 																	<!-- <input name="payment_method" value="29"
 																												id="29"> -->
@@ -451,7 +469,7 @@ function transaction(){
 														style="vertical-align: middle;"><b id="continue"
 														class="btn-w btn-m btn-p"><span
 															id="spn_continue" class="btn-b moz btn-b pbn-P"><s:submit
-																id="but_continue" name="continue" value="continue"/>
+																id="but_continue" name="continue" value="continue" class="btn btn-danger" onclick="return CheckingMode();"/>
 														</span>
 													</b>
 													</span>&nbsp;&nbsp;<span class="msg">You will confirm the

@@ -118,8 +118,11 @@ public class Payment extends ActionSupport{
 		String sellerId;
 		System.out.println("payment called");
 		Map<String, Object> session = ActionContext.getContext().getSession();
+		
+		
 		User user = (User) session.get("user");
-		if (user == null) {
+		if(user == null || session.get("user") == ""){
+			System.out.println("no session is maintained");
 			return "login";
 		}
 		Item item = (Item) session.get("item");
@@ -146,7 +149,7 @@ public class Payment extends ActionSupport{
 			System.out.println("user is "+user);
 			userName=user.getUsername();
 			Address add = Address.getUserAddressDetails(user.getUserid());
-			userHomeAddress = add.getHouseNo()+", "+add.getAdd1()+", "+add.getAdd2();
+			userHomeAddress = add.getAdd1()+", "+add.getAdd2();
 			userCity=add.getCity()+", "+add.getPin();
 			userState=add.getState(); 
 			userCountry= add.getCountry();

@@ -7,6 +7,9 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.mail.Session;
+
 import com.util.MyLog;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -37,7 +40,7 @@ public class Login extends ActionSupport {
 	private String rollNo="";
 	private String mobile="";
 	private Timestamp lastLogin;
-	private int item_id=0;
+	private int item_id;
 	private int quantity;
 	private ArrayList<Item> items = new ArrayList<Item>();
 	private int cartTotal = 0;
@@ -171,10 +174,6 @@ public class Login extends ActionSupport {
     	        this.commandButton);
 		System.out.println("In login action");
 		System.out.println("USer id coming is"+userid);
-		if(userid.equals("admin")){
-			return "adminSuccess";
-		}
-		
         if (this.userid.isEmpty()) {
 			// first time screen
 		    return "initial_entry";
@@ -214,7 +213,7 @@ public class Login extends ActionSupport {
 					user = new User();
 				}
 				session.put("user", user);
-				
+								
 			}
 			
 		// If the combination entered by the user does not exist in the user table, the ResultSet will be empty. Redirect the user back to the login page
@@ -262,6 +261,14 @@ public class Login extends ActionSupport {
 				msg="alreadyAdded";
 			}
 			return "item_details";
+		}
+		/*Ruchika's code*/
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		String action = (String) session.get("lastAction");
+		System.out.println("action i$$$$$$$$$$$$$$$4"+action);
+		if(action.equalsIgnoreCase("buyItNow")){
+			
+			return "buyItNow";
 		}
 		System.out.println("Returning success");
 		return "success";
