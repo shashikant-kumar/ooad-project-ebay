@@ -59,6 +59,11 @@ public class Category {
 		String insertSQL="insert into sub_category (categ_ID, SUB_CATEG_NAME) values("+categ_id+",'"+subcategoryName+"');";
 		return DB.update(insertSQL);
 	}
+	public static void deleteCategory(String categ_name){
+		String delSql="delete from category where categ_name='"+categ_name+"'";
+		DB.update(delSql);
+	}
+	
 	public String getCateg_name() {
 		return categ_name;
 	}
