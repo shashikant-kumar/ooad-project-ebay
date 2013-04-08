@@ -28,12 +28,22 @@
 <title>All Categories</title>
 </head>
 <body>
-
-<ul id="NOINTERFERE00_menu">
+<div id="ff_cr_outer" class="">
+<div id="ff_center_outer" class="">
+<div id="CentralArea" class="centerAreaLeftNav"><div><div class="rct"><div style="margin:0px" class="rct_hm hb">All Categories</div>
+					<div class="rct_cnb">
+					<div class="rct_cm"><div class="rcp-content"><table cellspacing="0" cellpadding="0"><tbody><tr><td width="25%" class="cell">
+					<div id="v4-0"><div class="hierarchylist-title"><div id="FontGradientLink1" class="gdlnk- gdlnk-1 hierarchylist-title-link">
+					
+					</td></tr></tbody></table>
+					</div></div></div></div></div>
+				</div>
+			</div></div>
+<!-- <ul id="NOINTERFERE00_menu">
 							
     <li><a href="#">All Categories &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</a></li>
-   </ul>			
+   </ul> -->			
 <table align="center" border="0" cellspacing="20" bgcolor=#EEEEEE>
 <tr><s:iterator var="itr" value="%{list}">
     <s:iterator var="itr" value="#itr" status="stat">
