@@ -85,6 +85,27 @@ public  static User findone(String sql){
 	return user;
 }
 
+//get seller ids  select distinct(user_id) from sell_item;
+	public static ArrayList<User> getSellerIDs(){
+		
+		ArrayList<User> selection = new ArrayList<User>();
+		ResultSet resultSet = null;
+		String query = "select distinct(user_id) from sell_item";
+		Connection connection = DB.getConnection();
+		resultSet = DB.readFromDB(query, connection);
+		try {
+			while (resultSet.next()) {
+				User user=new User();
+				user.userid=resultSet.getString("USER_ID");
+				selection.add(user);
+			}
+		} catch (SQLException e) {
+	       System.out.println("Exception while reading from db"+ e);
+		}
+		DB.close(connection);
+		return selection;
+	}
+
 
 public String getUsername() {
 	return username;
