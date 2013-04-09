@@ -12,6 +12,7 @@ import models.User;
 public class ViewAllDeals extends ActionSupport{
 	private int categ_id;
 	ArrayList<Item> itemDetails=new ArrayList<Item>();
+	private String username="";
 	
 	public String execute() throws Exception {
 		Map<String, Object> session = ActionContext.getContext().getSession();
@@ -19,7 +20,7 @@ public class ViewAllDeals extends ActionSupport{
 		if (user == null) {
 			user = new User();
 		}
-		
+		username=user.getUsername();
 		System.out.println("category is"+categ_id);
 				
 		itemDetails = Item.fetchDeals(" where categ_id = "+categ_id);
@@ -42,6 +43,14 @@ public class ViewAllDeals extends ActionSupport{
 
 	public void setItemDetails(ArrayList<Item> itemDetails) {
 		this.itemDetails = itemDetails;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 
