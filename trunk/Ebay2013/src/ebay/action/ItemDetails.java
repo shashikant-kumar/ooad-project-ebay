@@ -25,6 +25,7 @@ public class ItemDetails extends ActionSupport{
 
 	private int item;
 	User user =new User();
+	private String username="";
   	Item item_detail=new Item();
   	ArrayList<NewList> nlist = new ArrayList<NewList>();
 	
@@ -35,6 +36,7 @@ public class ItemDetails extends ActionSupport{
 		if (user == null) {
 			user = new User();
 		}
+		username=user.getUsername();
 		item_detail = Item.fetchItem(" where item_id="+ item );
 		
 		nlist=NewList.fetchList(" where item_id="+item+" and userid='"+user.getUserid()+"'");
@@ -60,13 +62,9 @@ public class ItemDetails extends ActionSupport{
 		return item_detail;
 	}
 
-
-
 	public void setItem_detail(Item item_detail) {
 		this.item_detail = item_detail;
 	}
-
-
 
 	public User getUser() {
 		return user;
@@ -76,7 +74,13 @@ public class ItemDetails extends ActionSupport{
 		this.user = user;
 	}
 
+	public String getUsername() {
+		return username;
+	}
 
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
 	public ArrayList<NewList> getNlist() {
 		return nlist;
