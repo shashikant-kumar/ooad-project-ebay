@@ -40,7 +40,7 @@ public class Login extends ActionSupport {
 	private String rollNo="";
 	private String mobile="";
 	private Timestamp lastLogin;
-	private int item_id;
+	private int item_id=0;
 	private int quantity;
 	private ArrayList<Item> items = new ArrayList<Item>();
 	private int cartTotal = 0;
@@ -265,7 +265,7 @@ public class Login extends ActionSupport {
 		/*Ruchika's code*/
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		String action = (String) session.get("lastAction");
-		System.out.println("action i$$$$$$$$$$$$$$$4"+action);
+		//System.out.println("action i$$$$$$$$$$$$$$$4"+action);
 		if(action.equalsIgnoreCase("buyItNow")){
 			
 			return "buyItNow";
