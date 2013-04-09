@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>EBay Admin</title>
+<title>View All Sellers List</title>
 <link href="css1.css" type="text/css" rel="stylesheet">
 <link href="css2.css" type="text/css" rel="stylesheet">
 <link href="css3.css" type="text/css" rel="stylesheet">
@@ -26,52 +26,26 @@
 					<div class="gh-clr"></div>
 				</div>
 
-	</br>
-<div style="margin:-15px 0 -9px 0;_margin:-15px 0 -10px 0;" class="pageHeader"><table cellpadding="0" cellspacing="0" border="0">
-<tbody><tr><td><b id="mainContent">
-<h1 class="regPgHeading">Welcome to Ebay Admin portal</h1> <b class="standardtitle">(<a href="signout">Sign out</a>)</b></td></tr>
-</tbody></table></div>														
-<s:set name="theme" value="'simple'" scope="page" />
-
-<h3><s:property value="msg"/> </h3>
-<ul> 
-					<ul id="NOINTERFERE00_menu">
-							
-      <li>
-    <s:url id="cats" action="manageCategoriesSubcategories">
-<s:param name="param" value="'categories'"/>
+	<br>
+</head>
+<body>
+<h1 align="center">Sellers Info</h1> 
+<table align="center" cellspacing="1" border="1">
+<tr> 
+    <th><h3>Choose Seller from list</h3></th>
+<s:iterator value="sellerIDs">
+<tr>
+<td><h4><s:url id="sellerInfoPage" action="sellerInfo">
+<s:param name="sellername" value="userid"/>
+<s:param name="admin" value="admin"/>
 </s:url>
-<s:a href="%{cats}">Manage Categories</s:a>
-    </li>
-   <li>
-    <s:url id="subcats" action="manageCategoriesSubcategories">
-<s:param name="param" value="'subcategories'"/>
-</s:url>
-<s:a href="%{subcats}">Manage Sub Categories</s:a>
-    </li>
-    <li><s:a href="manageusers">Manage Users</s:a></li>
-    <li>
-    <s:url id="seller" action="AdminViewSellerList">
-	</s:url>
-    <s:a href="%{seller}">View FeedBack</s:a></li>
-</ul>
-
-<br><br>
-
-</br>
-	 
-  <div>
-				<div class="pcontent">
-					<!--cacheStatus: false-->
-					<span class="ebay"> <%@include file="body.jsp"%>
-
-	</br>
-					</span>
-					</div>
-			</div>
-</br>
-
-</body>
+<s:a href="%{sellerInfoPage}">
+<s:property value="userid"/></s:a>
+</h4> </td>
+</tr>
+</s:iterator>
+</table>
+</body><br><br><br><br>
 <div class="pcontent">
 					<!--cacheStatus: false-->
 					<span class="ebay"> <%@include file="footer.jsp"%>
@@ -82,4 +56,5 @@
 
 					<!--vo{2d71f+}0nd{71hj,,RlogId p4kjkbsdabjkrk9%3Fvo%7B2d71f%2B%7D0nd%7F%7B71hj-1368e4f8187-0x153-->
 				</div>
+
 </html>

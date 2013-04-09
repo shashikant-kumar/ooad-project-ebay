@@ -29,6 +29,9 @@
 <title>Deals</title>
 </head>
 <body>
+<br>
+<br>
+<br>
 
 <ul id="NOINTERFERE00_menu">
 							
@@ -51,8 +54,8 @@
 						<td>
 							<table bordercolor="black" >
 								<tr>
-									<td class="main-head" colspan="4">
-									<b><s:property value="category"/></b>
+									<td class="main-head">
+									<b><s:property value="itemDetails.get(0).getCategory_name()"/></b>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -62,15 +65,6 @@
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<%-- <s:property value="bookCategs.size()"/> --%>
-									<%-- <s:if test = "itemDetails.size()<4">
-									</s:if>
-									<s:else>
-									<s:url id="seeMore" action="viewAllDeals">
-									<s:param name="category" value="bookCategs.get(0).getCategory_name()"/>
-									</s:url>
-									<div style="float: right;padding-right:5px;"><s:a href="%{seeMore}">See more>></s:a></div>
-									</s:else> --%>
 									</td>
 								</tr>
 								<s:iterator var="itr" value="itemDetails">
