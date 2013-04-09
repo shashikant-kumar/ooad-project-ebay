@@ -97,6 +97,10 @@
 	<result name="success">ShowList.jsp</result>
 </action>
 
+<action name="AdminViewSellerList" class="ebay.action.AdminViewSellerList">
+	<result name="success">AdminSellerList.jsp</result>
+</action>
+
 
 <!-- ****************************************************************************************************** -->
 <!-- ********************************************Ruchika's code********************************************  -->
@@ -129,6 +133,7 @@
 <!-- ****************************************************************************************************** -->						
 <action name="sellerInfo" class="ebay.action.SellerInfo">
 	<result name="initial">SellerInfo.jsp</result>
+	<result name="admin">AdminSellerFeedback.jsp</result>
 </action>	
 <!-- ****************************************************************************************************** -->
 <!-- ********************************************Suhani code********************************************  -->
