@@ -32,8 +32,29 @@ public class SellerInfo extends ActionSupport{
 	String location;
 	String sellername;
 	String userName;
+	String admin="";
 	ArrayList<Item> itemList= new ArrayList<Item>();
 	
+	//user session
+	User user =new User();
+	private String username="";
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	//getters and setters
 	public int getNoOfRating() {
 		return noOfRating;
@@ -94,7 +115,23 @@ public class SellerInfo extends ActionSupport{
 		this.itemList = itemList;
 	}
 
+	public String getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(String admin) {
+		this.admin = admin;
+	}
+
 	public String execute() throws Exception {
+
+		//user session
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		User user = (User) session.get("user");
+		if (user == null) {
+			user = new User();
+		}
+		username=user.getUsername();
 					
 		//fetches seller_rating from transaction table
 		ArrayList<Integer> sellerRatings = Transaction.getSellerRating(sellername);
@@ -117,16 +154,20 @@ public class SellerInfo extends ActionSupport{
 		//fetches location from location table and displays location of user.
 		Address addr =Address.getUserAddressDetails(sellername);
 		location = addr.getCountry();
+		System.out.println("location:"+location);
 		
 		//fetches memberSince from user table.
-		User user= User.findone("SELECT * FROM USER WHERE USER_ID='"+sellername+"';");
-		memberSince = (user.getMemberSince()).substring(0,10);
-		userName = (user.getUsername());
+		User selleruser= User.findone("SELECT * FROM USER WHERE USER_ID='"+sellername+"';");
+		memberSince = (selleruser.getMemberSince()).substring(0,10);
+		userName = (selleruser.getUsername());
 		
 		
 		//fetches sellers product listing
 		itemList = Item.fetchDeals(" WHERE USER_ID='"+sellername+"';");
 		
+		if(admin.equals("admin")){
+			return "admin";
+		}
 		
 		return "initial";
 	}
