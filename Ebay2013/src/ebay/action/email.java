@@ -14,7 +14,7 @@ import com.util.MyLog;
 
 public class email {
 	
-void sendmail(String username,String to,String role){
+public void sendmail(String username,String to,String role){
      
     
     /* Send e-mail*/
@@ -63,6 +63,11 @@ void sendmail(String username,String to,String role){
              String emailBody = "Dear "+ username + ", Congratulations. Your Registration to eBay has been completed Successfully. Please use your username and password to login to eBay";
              message.setText(emailBody); 
              }
+          else{
+        	  message.setSubject("Item is getting out of stock");
+              String emailBody = "Dear "+ username + ", Your item to sell '"+ role+ "' is becoming out of stock. Please improve the quantity for better sales.";
+              message.setText(emailBody);
+          }
          //SMTPSSLTransport transport =(SMTPSSLTransport)session.getTransport("smtps");
 
          Transport.send(message);

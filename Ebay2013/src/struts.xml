@@ -110,6 +110,7 @@
 <interceptor-ref name="loggingStack"></interceptor-ref>
 			<result name="success" type="tiles">/Payment.tiles</result>
 			<result name="login" >login.jsp</result>
+			<result name="cartPayment" type="tiles">/Payment.tiles</result>
 			</action>
 <action name="makePayment" class="ebay.action.MakePayment">
 			<result name="credit" type="tiles">/Credit.tiles</result>

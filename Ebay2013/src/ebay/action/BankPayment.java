@@ -121,6 +121,14 @@ public class BankPayment extends ActionSupport{
 						if(j.getItem_id()==itemId){
 						itemAmount = j.getSelectedQuantity()*j.getItem_price();
 						PaisaPay.insertPaisa(i,itemAmount);
+						//update seller
+						itemId= item.getItem_id();
+						 System.out.println("item id is"+itemId);
+						 int stock=item.getQuantity()-item.getSelectedQuantity();
+						 	if(stock<=1){
+						 		System.out.println("updATING the seller about stock");
+						 	Item.updateseller(itemId);
+						 	}
 						Item.reduceQty(j, j.getSelectedQuantity(), j.getQuantity());
 						}
 					}
@@ -130,7 +138,14 @@ public class BankPayment extends ActionSupport{
 				PaisaPay.insertPaisa(i,itemAmount);
 				}
 			}
-
+			//update seller
+			itemId= item.getItem_id();
+			 System.out.println("item id is"+itemId);
+			 int stock=item.getQuantity()-item.getSelectedQuantity();
+			 	if(stock<=1){
+			 		System.out.println("updATING the seller about stock");
+			 	Item.updateseller(itemId);
+			 	}
 			
 			//reduce quantity
 			Item.reduceQty(item, item.getSelectedQuantity(), item.getQuantity());

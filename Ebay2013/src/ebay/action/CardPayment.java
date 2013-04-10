@@ -115,6 +115,14 @@ public class CardPayment extends ActionSupport{
 							itemAmount = j.getSelectedQuantity()*j.getItem_price();
 							int rows = PaisaPay.insertPaisa(i,itemAmount);
 							if(rows!=0){
+								//update seller
+								itemId= item.getItem_id();
+								 System.out.println("item id is"+itemId);
+								 int stock=item.getQuantity()-item.getSelectedQuantity();
+								 	if(stock<=1){
+								 		System.out.println("updATING the seller about stock");
+								 	Item.updateseller(itemId);
+								 	}
 							Item.reduceQty(j, j.getSelectedQuantity(), j.getQuantity());
 							Cart.removeItem(user.getUserid(), j.getItem_id());
 							}
@@ -124,6 +132,15 @@ public class CardPayment extends ActionSupport{
 					else{
 					itemAmount = item.getSelectedQuantity()*item.getItem_price();
 					PaisaPay.insertPaisa(i,itemAmount);
+					//update seller
+					itemId= item.getItem_id();
+					 System.out.println("item id is"+itemId);
+					 int stock=item.getQuantity()-item.getSelectedQuantity();
+					 	if(stock<=1){
+					 		System.out.println("updATING the seller about stock");
+					 	Item.updateseller(itemId);
+					 	}
+					
 					//reduce quantity
 					Item.reduceQty(item, item.getSelectedQuantity(), item.getQuantity());
 					
