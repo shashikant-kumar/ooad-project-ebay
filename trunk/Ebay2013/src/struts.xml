@@ -54,6 +54,9 @@
 <action name="manageCategoriesSubcategories" class="ebay.action.ManageCategoriesSubCategories">
 			<result name="cats">managecategories.jsp</result>
 			<result name="subcats">managecategories.jsp</result>
+			<result name="adminhome">EBayAdminHome.jsp</result>
+			<result name="viewcats">AdminView.jsp</result>
+			<result name="viewsubcats">AdminView.jsp</result>
 			</action>		
 
 <!-- ****************************************************************************************************** -->
