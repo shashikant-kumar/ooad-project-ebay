@@ -66,9 +66,11 @@ public class BankPayment extends ActionSupport{
 		int orderId;
 		int itemId;
 		int itemAmount;
+		ArrayList<Item> items = new ArrayList<Item>();
 		ArrayList<Integer> transId = new ArrayList<Integer>();
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		User user = (User) session.get("user");
+		items = (ArrayList<Item>)session.get("items");
 		BankAcct ba = BankAcct.getUserBankDetails(user.getUserid());
 		System.out.println("userid is "+userid+" "+password+" "+ba.getUserId()+" "+ba.getAccPwd());
 		if (userid==null|userid=="") {
@@ -85,41 +87,65 @@ public class BankPayment extends ActionSupport{
 		Integer totalPrice = (Integer) session.get("itemTotal");
 		System.out.println("total price is in cardPayment "+totalPrice);
 		
-			prevBal=BankAcct.getAccountBalance("ACCOUNT_ID="+ba.getAccountId());
-			//deduct amount from balance
-			if(BankAcct.deductAmount(ba.getAccountId(), ba.getAccBal(), totalPrice)==0){
-				transBal=totalPrice;
-				availBal= BankAcct.getAccountBalance("ACCOUNT_ID="+ba.getAccountId());
-				//System.out.println("@@@@@@@@@@@prev avail total "+prevBal+" "+availBal+" "+totalPrice);
-				//insert in order table
-				OrderTrack.insertOrder(user.getUserid(),totalPrice);
-				//get order id from order table for buyer and max(timestamp)
-				orderId= OrderTrack.getLatestOrderId(user.getUserid());
-				//insert in transaction table with order id, if cart is there insert transaction for each item in cart with a loop for each item
-				if(orderId!=0)
-					OrderTrack.insertTransaction(orderId,item.getItem_id(),item.getSelectedQuantity(),item.getCourier(),item.getSeller_name());
-				//get all transaction ids for order id
-				transId = OrderTrack.getOrderTransactionIdList(orderId);
-
-				for(int i:transId ){
-					System.out.println("trans id is "+i);
-					//insert in status for each transaction.
-					OrderTrack.insertStatus(i);
-					//insert in ebay account paisapay, in paisapay acctbal
-//					itemId=OrderTrack.getTransactionItemId(i);
-//					Item item1 = Item.fetchItem("where item_id= "+itemId);
-					itemAmount = item.getSelectedQuantity()*item.getItem_price();
-					PaisaPay.insertPaisa(i,itemAmount);
+		prevBal=BankAcct.getAccountBalance("ACCOUNT_ID="+ba.getAccountId());
+		//deduct amount from balance
+		if(BankAcct.deductAmount(ba.getAccountId(), ba.getAccBal(), totalPrice)==0){
+			transBal=totalPrice;
+			availBal= BankAcct.getAccountBalance("ACCOUNT_ID="+ba.getAccountId());
+			//insert in order table
+			OrderTrack.insertOrder(user.getUserid(),totalPrice);
+			//get order id from order table for buyer and max(timestamp)
+			orderId= OrderTrack.getLatestOrderId(user.getUserid());
+			//insert in transaction table with order id, if cart is there insert transaction for each item in cart with a loop for each item
+			if(orderId!=0){
+				if(items.size()!=0){
+					for(Item i : items)
+					OrderTrack.insertTransaction(orderId,i.getItem_id(),i.getSelectedQuantity(),i.getCourier(),i.getSellerId());
 				}
- 
-				
-				//reduce quantity
-				Item.reduceQty(item, item.getSelectedQuantity(), item.getQuantity());
+				else{
+				OrderTrack.insertTransaction(orderId,item.getItem_id(),item.getSelectedQuantity(),item.getCourier(),item.getSellerId());
+				}
 			}
-			else{ 
-				addActionError("Not sufficient balance in your account");
-				return "error";
+			//get all transaction ids for order id
+			transId = OrderTrack.getOrderTransactionIdList(orderId);
+
+			for(int i:transId ){
+				System.out.println("trans id is "+i);
+				//insert in status for each transaction.
+				OrderTrack.insertStatus(i);
+				//insert in ebay account paisapay, in paisapay acctbal
+				itemId=OrderTrack.getTransactionItemId(i);
+//				Item item1 = Item.fetchItem("where item_id= "+itemId);
+				if(items.size()!=0){
+					for(Item j : items){
+						if(j.getItem_id()==itemId){
+						itemAmount = j.getSelectedQuantity()*j.getItem_price();
+						PaisaPay.insertPaisa(i,itemAmount);
+						Item.reduceQty(j, j.getSelectedQuantity(), j.getQuantity());
+						}
+					}
+				}
+				else{
+				itemAmount = item.getSelectedQuantity()*item.getItem_price();
+				PaisaPay.insertPaisa(i,itemAmount);
+				}
 			}
+
+			
+			//reduce quantity
+			Item.reduceQty(item, item.getSelectedQuantity(), item.getQuantity());
+			System.out.println("item is : "+session.get("item"));
+			session.remove("item");
+			session.remove("items");
+			session.remove("itemTotal");
+			if(session.get("item")!=null){
+				System.out.println("item is : "+session.get("item"));
+			}
+		}
+		else{ 
+			addActionError("Not sufficient balance in your account");
+			return "error";
+		}
 
 		return "success";
 	}
