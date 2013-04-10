@@ -10,11 +10,11 @@ public class PaisaPay {
 	private int sellerAmount;
 	private String paisapayTransactionDate;
 	
-	public static void insertPaisa(int transId, int amount){
+	public static int insertPaisa(int transId, int amount){
 		String query = "INSERT INTO PAISAPAY(TRAN_ID,AMOUNT) VALUES("+transId+", "+amount+");";
 		System.out.println("query is "+query);
-		DB.update(query);
-		
+		int rowsUpdated = DB.update(query);
+		return rowsUpdated;
 	}
 
 	public int getTransactionId() {
