@@ -110,7 +110,7 @@ public class Cart {
 		
 	//fetch all items into the cart, given user id
 	public static ArrayList<Item> fetchItems(String userId){
-		
+		String sellerId;
 		ArrayList<Item> items = new ArrayList<Item>();
 		int i;
 		int subTotal;
@@ -143,7 +143,6 @@ public class Cart {
 			try{
 				while(result.next()){
 					items.get(i).setItem_id(result.getInt("item_id"));
-					items.get(i).setSeller_name(result.getString("user_id"));
 					items.get(i).setItem_name(result.getString("item_name"));
 					items.get(i).setItem_price(result.getInt("item_price"));
 					items.get(i).setItem_discount(result.getInt("item_discount"));
@@ -152,6 +151,13 @@ public class Cart {
 					items.get(i).setItem_image(result.getString("item_image"));
 					subTotal = items.get(i).getItem_price() * items.get(i).getSelectedQuantity();
 					items.get(i).setItem_subTotal(subTotal);
+					/*Changes by Ruchika*/
+					sellerId = result.getString("user_id");
+					User user1 = User.userDetails("where user_id='"+sellerId+"';");
+					items.get(i).setSeller_name(user1.getUsername());
+					items.get(i).setCourier(result.getString("courier"));
+					items.get(i).setSellerId(sellerId);
+					
 				}
 			}
 			catch(Exception ex){
