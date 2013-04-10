@@ -38,7 +38,10 @@
             <!-- Ruchika's Code Ends here -->
 			<result name="addToCart">ShoppingCart.jsp</result>
 </action>
-
+<action name="Register" class="ebay.action.RegisterUser">
+			<result name="initial">RegisterUser.jsp</result>
+			<result name="success">login.jsp</result>
+			</action>
  <action name="signout" class="ebay.action.Logout">
 			<result name="exit">ebayhome.jsp</result>
 			</action>
@@ -94,6 +97,10 @@
 	<result name="success">ShowList.jsp</result>
 </action>
 
+<action name="AdminViewSellerList" class="ebay.action.AdminViewSellerList">
+	<result name="success">AdminSellerList.jsp</result>
+</action>
+
 
 <!-- ****************************************************************************************************** -->
 <!-- ********************************************Ruchika's code********************************************  -->
@@ -126,6 +133,7 @@
 <!-- ****************************************************************************************************** -->						
 <action name="sellerInfo" class="ebay.action.SellerInfo">
 	<result name="initial">SellerInfo.jsp</result>
+	<result name="admin">AdminSellerFeedback.jsp</result>
 </action>	
 <!-- ****************************************************************************************************** -->
 <!-- ********************************************Suhani code********************************************  -->
