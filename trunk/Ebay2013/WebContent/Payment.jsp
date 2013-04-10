@@ -7,13 +7,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Payment Mode</title>
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+<!-- <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"/> -->
 <link rel="stylesheet" type="text/css"
 	href="buyitnow/44sahi3l3azqpahlonk2cetjj.css">
 <link rel="stylesheet" type="text/css"
 	href="buyitnow/43j513lpmi0mzpaok33s5y2u0.css">
-	<script src="http://code.jquery.com/jquery.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+	<%-- <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script> --%>
 <script type="text/javascript">
 /* var address;
 function loadtextarea(a){
