@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Map;
 
 import models.BankAcct;
+import models.Cart;
 import models.Item;
 import models.OrderTrack;
 import models.PaisaPay;
@@ -66,11 +67,12 @@ public class CardPayment extends ActionSupport{
 		int orderId;
 		int itemId;
 		int itemAmount;
-		
+		ArrayList<Item> items = new ArrayList<Item>();
 		ArrayList<Integer> transId = new ArrayList<Integer>();
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		User user = (User) session.get("user");
 		Item item = (Item) session.get("item");
+		items = (ArrayList<Item>)session.get("items");
 		Integer totalPrice = (Integer) session.get("itemTotal");
 		System.out.println("total price is in cardPayment "+totalPrice);
 		BankAcct ba = BankAcct.getUserBankDetails(user.getUserid());
@@ -86,8 +88,17 @@ public class CardPayment extends ActionSupport{
 				//get order id from order table for buyer and max(timestamp)
 				orderId= OrderTrack.getLatestOrderId(user.getUserid());
 				//insert in transaction table with order id, if cart is there insert transaction for each item in cart with a loop for each item
-				if(orderId!=0)
-					OrderTrack.insertTransaction(orderId,item.getItem_id(),item.getSelectedQuantity(),item.getCourier(),item.getSeller_name());
+				if(orderId!=0){
+					if(items.size()!=0){
+						for(Item i : items){
+							System.out.println("OM OM OM OM OM OM OM"+i.getSellerId());
+						OrderTrack.insertTransaction(orderId,i.getItem_id(),i.getSelectedQuantity(),i.getCourier(),i.getSellerId());
+						}
+					}
+					else{
+					OrderTrack.insertTransaction(orderId,item.getItem_id(),item.getSelectedQuantity(),item.getCourier(),item.getSellerId());
+					}
+				}
 				//get all transaction ids for order id
 				transId = OrderTrack.getOrderTransactionIdList(orderId);
 
@@ -96,17 +107,34 @@ public class CardPayment extends ActionSupport{
 					//insert in status for each transaction.
 					OrderTrack.insertStatus(i);
 					//insert in ebay account paisapay, in paisapay acctbal
-//					itemId=OrderTrack.getTransactionItemId(i);
+					itemId=OrderTrack.getTransactionItemId(i);
 //					Item item1 = Item.fetchItem("where item_id= "+itemId);
+					if(items.size()!=0){
+						for(Item j : items){
+							if(j.getItem_id()==itemId){
+							itemAmount = j.getSelectedQuantity()*j.getItem_price();
+							int rows = PaisaPay.insertPaisa(i,itemAmount);
+							if(rows!=0){
+							Item.reduceQty(j, j.getSelectedQuantity(), j.getQuantity());
+							Cart.removeItem(user.getUserid(), j.getItem_id());
+							}
+							}
+						}
+					}
+					else{
 					itemAmount = item.getSelectedQuantity()*item.getItem_price();
 					PaisaPay.insertPaisa(i,itemAmount);
+					//reduce quantity
+					Item.reduceQty(item, item.getSelectedQuantity(), item.getQuantity());
+					
+					}
 				}
  
 				
-				//reduce quantity
-				Item.reduceQty(item, item.getSelectedQuantity(), item.getQuantity());
 				System.out.println("item is : "+session.get("item"));
 				session.remove("item");
+				session.remove("items");
+				session.remove("itemTotal");
 				if(session.get("item")!=null){
 					System.out.println("item is : "+session.get("item"));
 				}
