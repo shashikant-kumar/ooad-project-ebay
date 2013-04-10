@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import com.util.DB;
 
+import ebay.action.email;
+
 
 
 
@@ -339,6 +341,41 @@ public static int reduceQty(Item item, int qty,int stock){
 	return status;
 	
 }
+/*
+ *@author: Satya Deepthi Bhagi
+ *Description: To update the seller if his item is getting out of stock
+ *input: itemid
+ *output:NA 
+ * 
+ */
+
+public static void updateseller(int itemid){
+	
+	String username = new String();
+	String email =new String();
+	String itemname=new String();
+	String sql="select item_name, user_name, email_id from user u, sell_item s where item_id="+ itemid +" and u.user_id=s.user_id;";
+	System.out.println("MY sql is "+sql);
+	ResultSet resultSet = null;
+	Connection connection = DB.getConnection();
+	resultSet = DB.readFromDB(sql, connection);
+	try {
+		while (resultSet.next()) {
+			username=resultSet.getString("user_name");
+			email = resultSet.getString("email_id");
+			itemname=resultSet.getString("item_name");
+				}
+	} catch (SQLException e) {
+       System.out.println("Exception while reading from db"+ e);
+	}
+	
+	
+	email mail=new email();
+	System.out.println("sending mail");
+	mail.sendmail(username, email, itemname);
+	
+}
+
 
 public int getItem_id() {
 	return item_id;
