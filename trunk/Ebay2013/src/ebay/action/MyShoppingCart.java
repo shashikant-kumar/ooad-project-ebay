@@ -14,7 +14,7 @@ Author: Sruti Davis
 
 public class MyShoppingCart extends ActionSupport {
 	
-	private ArrayList<Item> items = new ArrayList<Item>();
+	private ArrayList<Item> items ;
 	private String userId;
 	private int item_id;
 	private String AddToCart = "";
@@ -76,7 +76,8 @@ public class MyShoppingCart extends ActionSupport {
 		this.quantity = quantity;
 	}
 	public String execute() throws Exception {
-		
+		System.out.println("---------------------------------------------------");
+		items = new ArrayList<Item>();
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		User user = (User) session.get("user");
 		
@@ -103,7 +104,7 @@ public class MyShoppingCart extends ActionSupport {
 		
 		session.put("items", items);
 		session.put("cartTotal", cartTotal);
-		
+		//System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&sesion.get(items) "+session.get("items"));
 		System.out.println("Cart Total Price = " + cartTotal);
 		
 		System.out.println("Size of items arraylist = " + items.size());
