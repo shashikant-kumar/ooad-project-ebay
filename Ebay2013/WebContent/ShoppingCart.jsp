@@ -45,13 +45,14 @@ div.important {color:green;}
 <div>
 	<table width="100%" cellpadding="10" cellspacing="10" border="0">
 	<body>
+	<s:form name="buy" action="buyitNow">
 	<tr>
 		<th></th><th></th>
 		<th width="75%" align="right"><div style="padding-right:60px"><b><h3>Price</h3></b></div></th>
 	    <th width="15%"><b><h3>Quantity</h3></b></th>
 	    <th width="10%"><b><h3>Sub-total</h3></b></th>
 	</tr>
-	<s:iterator value="items">
+	<s:iterator value="items" status="stats">
 	<tr>
 	<td width="25%">
 	<ul id="NOINTERFERE00_menu">
@@ -65,17 +66,30 @@ div.important {color:green;}
 	<s:url id="itemDetails" action="ItemDetails">
      <s:param name="item" value="item_id"/>
     </s:url>
-	<td><s:a href="%{itemDetails}"><s:property value="item_name"/></s:a></td>
+	<td><s:a href="%{itemDetails}"><s:property value="items[%{#stats.index}].item_name"/></s:a></td>
 	<td width="30%" align="right"><div style="padding-right:60px"><s:property value="item_price"/></div></td>
-	<td width="15%"><s:textfield name="selectedQuantity"  size="10"/></td>
+	<td width="15%"><s:textfield name="items[%{#stats.index}].selectedQuantity"  size="10"/></td>
 	<td width="10%"><s:property value="item_subTotal"/></td>
+	<%-- <s:hidden value="items[%{#stats.index}].item_discount"/>
+	<s:hidden value="items[%{#stats.index}].item_condition"/>
+	<s:hidden value="items[%{#stats.index}].quantity"/>
+	<s:hidden value="items[%{#stats.index}].categ_id"/>
+	<s:hidden value="items[%{#stats.index}].subcategory_id"/>
+	<s:hidden value="items[%{#stats.index}].courier"/>
+	<s:hidden value="items[%{#stats.index}].category_name"/>
+	<s:hidden value="items[%{#stats.index}].subcategory_name"/>
+	<s:hidden value="items[%{#stats.index}].other"/>
+	<s:hidden value="items[%{#stats.index}].discount_price"/>
+	<s:hidden value="items[%{#stats.index}].save_price"/>
+	<s:hidden value="items[%{#stats.index}].sellerId"/> --%>
+	
 	<s:url id="remove" action="removeFromCart">
      <s:param name="item_id" value="item_id"/>
     </s:url>
     <td><s:a href="%{remove}">Remove</s:a></td>
-	<td><s:form name="buy" action="buyitNow">
-	<td><s:submit name="commandButton" label="Buy it Now" value="Buy It Now"/></td>
-	</s:form></td>
+	<%-- <td><s:form name="buy" action="buyitNow">
+	<td><s:submit name="items[%{#stats.index}].item_id" label="Buy it Now" value="Buy It Now"/></td>
+	</s:form></td> --%>
 	</tr>
 	</s:iterator>
 	</body>
@@ -85,9 +99,11 @@ div.important {color:green;}
 <br />
 <s:label name="Total" value="Cart Total:" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <s:property value="cartTotal"/>
 </div>
-<br />
+<br/>
 <div style="padding-top:20px" align="center">
+
 <s:submit name = "ProceedToPay" value="Proceed To Pay"/>
+</s:form>
 </div>
 
 </body>
