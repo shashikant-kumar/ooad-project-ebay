@@ -17,25 +17,57 @@ import com.util.DB;
  */
 public class Item {
 
-	private int item_id;
-	private String seller_name;
-	private String item_name;
-	private int item_price;
+	private int item_id; //
+	private String seller_name; //
+	private String item_name; //
+	private int item_price; //
 	private int item_discount;
 	private String item_condition;
 	private int quantity;
 	/*quantity Selected  while buying the item*/
-	private int selectedQuantity;
+	private int selectedQuantity;//
 	private int subcategory_id;
 	private int categ_id;
 	private String courier;
-	private String item_image;
+	private String item_image;//
 	private String category_name;
 	private String subcategory_name;
 	private String other;
 	private int discount_price;
 	private int save_price;
-	private int item_subTotal;
+	public Item(int item_id, String seller_name, String item_name,
+			int item_price, int item_discount, String item_condition,
+			int quantity, int selectedQuantity, int subcategory_id,
+			int categ_id, String courier, String item_image,
+			String category_name, String subcategory_name, String other,
+			int discount_price, int save_price, int item_subTotal,
+			String sellerId) {
+		super();
+		this.item_id = item_id;
+		this.seller_name = seller_name;
+		this.item_name = item_name;
+		this.item_price = item_price;
+		this.item_discount = item_discount;
+		this.item_condition = item_condition;
+		this.quantity = quantity;
+		this.selectedQuantity = selectedQuantity;
+		this.subcategory_id = subcategory_id;
+		this.categ_id = categ_id;
+		this.courier = courier;
+		this.item_image = item_image;
+		this.category_name = category_name;
+		this.subcategory_name = subcategory_name;
+		this.other = other;
+		this.discount_price = discount_price;
+		this.save_price = save_price;
+		this.item_subTotal = item_subTotal;
+		this.sellerId = sellerId;
+	}
+
+
+
+	private int item_subTotal;//
+	private String sellerId;
 
 
 public  static Item fetchItem(String param){
@@ -50,7 +82,6 @@ public  static Item fetchItem(String param){
 				
 				item.item_id=resultSet.getInt("item_id");
 				item.item_name= resultSet.getString("item_name");
-				item.seller_name=resultSet.getString("user_id");
 				item.item_price=resultSet.getInt("item_price");
 				item.item_discount=resultSet.getInt("item_discount");
 				item.item_condition=resultSet.getString("item_condition");
@@ -62,6 +93,11 @@ public  static Item fetchItem(String param){
 				//item.other=resultSet.getString("other");			
 				item.category_name=Item.findCategoryName(item.categ_id);
 				item.subcategory_name=Item.findSubCategoryName(item.subcategory_id);
+				/*Changes by Ruchika*/
+				item.sellerId = resultSet.getString("user_id");
+				User user1 = User.userDetails("where user_id='"+item.sellerId+"';");
+				item.seller_name=user1.getUsername();
+				
 				
 			}
 		} catch (SQLException e) {
@@ -72,6 +108,24 @@ public  static Item fetchItem(String param){
 	
 	
 	
+public String getSellerId() {
+	return sellerId;
+}
+
+
+
+public void setSellerId(String sellerId) {
+	this.sellerId = sellerId;
+}
+
+
+
+public Item() {
+	super();
+}
+
+
+
 public static ArrayList<Item> fetchItemDetails(String param){
 		ArrayList<Item> selection = new ArrayList<Item>();
 		String sql="select * from sell_item where sub_categ_id=(select sub_categ_id from sub_category "+param;
@@ -84,7 +138,9 @@ public static ArrayList<Item> fetchItemDetails(String param){
 				Item item=new Item();
 				item.item_id=resultSet.getInt("item_id");
 				item.item_name= resultSet.getString("item_name");
-				item.seller_name=resultSet.getString("user_id");
+				item.sellerId = resultSet.getString("user_id");
+				User user1 = User.userDetails("where user_id='"+item.sellerId+"';");
+				item.seller_name=user1.getUsername();
 				item.item_price=resultSet.getInt("item_price");
 				item.item_discount=resultSet.getInt("item_discount");
 				item.item_condition=resultSet.getString("item_condition");
