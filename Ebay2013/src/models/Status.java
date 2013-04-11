@@ -76,7 +76,7 @@ public class Status {
 		}
 	
 	public static void cancelStatus(Integer selectionModifier) {
-		String query = "insert into status values(" + selectionModifier +",'C',curdate())";
+		String query = "insert into status values(" + selectionModifier +",'C',sysdate())";
 		System.out.println("query"+query);
 		Connection connection = DB.getConnection();
 		 try{

@@ -91,7 +91,7 @@ public class CancelOrder {
 			System.out.println("transaction status is "+transStatus.get(i));
 			System.out.println("size******* "+transStatus.size());
 			//String transStatusTemp=transStatus.
-				if(transStatus.get(i).equals("S")){
+				if(transStatus.get(i).equals("S")||transStatus.get(i).equals("C")){
 					System.out.println("inside if condition******");
 					System.out.println("value of status is"+transStatus.get(i));
 					msg="The order can't be cancelled";
