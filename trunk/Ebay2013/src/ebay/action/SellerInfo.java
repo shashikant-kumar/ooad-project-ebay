@@ -132,9 +132,10 @@ public class SellerInfo extends ActionSupport{
 			user = new User();
 		}
 		username=user.getUsername();
-					
+		//fetches sellerid for the sellername
+		String sellerid = User.getUserId(sellername);
 		//fetches seller_rating from transaction table
-		ArrayList<Integer> sellerRatings = Transaction.getSellerRating(sellername);
+		ArrayList<Integer> sellerRatings = Transaction.getSellerRating(sellerid);
 		int count1=0,count2=0,count3=0,count4=0,count5=0;
 		
 		//for each rating 1,2,3,4,5 count the tranid.
@@ -152,18 +153,18 @@ public class SellerInfo extends ActionSupport{
 		noOfRating = count1 + count2 + count3 + count4 + count5;
 		
 		//fetches location from location table and displays location of user.
-		Address addr =Address.getUserAddressDetails(sellername);
+		Address addr =Address.getUserAddressDetails(sellerid);
 		location = addr.getCountry();
 		System.out.println("location:"+location);
 		
 		//fetches memberSince from user table.
-		User selleruser= User.findone("SELECT * FROM USER WHERE USER_ID='"+sellername+"';");
+		User selleruser= User.findone("SELECT * FROM USER WHERE USER_ID='"+sellerid+"';");
 		memberSince = (selleruser.getMemberSince()).substring(0,10);
 		userName = (selleruser.getUsername());
 		
 		
 		//fetches sellers product listing
-		itemList = Item.fetchDeals(" WHERE USER_ID='"+sellername+"';");
+		itemList = Item.fetchDeals(" WHERE USER_ID='"+sellerid+"';");
 		
 		if(admin.equals("admin")){
 			return "admin";

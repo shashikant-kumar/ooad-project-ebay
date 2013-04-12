@@ -105,7 +105,28 @@ public  static User findone(String sql){
 		DB.close(connection);
 		return selection;
 	}
-
+/*
+ * code added by alpna
+ * function to get sellerid from sellername
+ * */
+public static String getUserId(String sellername) {
+	ResultSet resultSet = null;
+	String tempUserId="";
+	String query = "select user_id from user where user_name=" +"'"+sellername+"'" ;
+	Connection connection = DB.getConnection();
+	resultSet = DB.readFromDB(query, connection);
+	try {
+		if (resultSet.next()){
+			tempUserId =resultSet.getString("user_id");
+			/*fetch the value of semester name for the id*/
+			
+		}
+	} catch (SQLException e) {
+       System.out.println("Exception while reading from db"+ e);
+	}
+	DB.close(connection);
+	return tempUserId;
+}
 
 public String getUsername() {
 	return username;
