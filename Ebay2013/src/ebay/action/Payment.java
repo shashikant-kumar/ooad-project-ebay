@@ -18,7 +18,7 @@ import com.opensymphony.xwork2.ActionSupport;
  */
 public class Payment extends ActionSupport{
 	private int itemId;
-	private int quantity;  
+	private int quantity=1;  
 	private String itemName; 
 	private String sellerName;
 	private int itemPrice;
@@ -30,6 +30,20 @@ public class Payment extends ActionSupport{
 	private String userState;
 	private String courier;
 	private String ProceedToPay;
+	private String commandButton;
+	private ArrayList<Item> itemlist = new ArrayList<Item>();
+	public ArrayList<Item> getItemlist() {
+		return itemlist;
+	}
+	public void setItemlist(ArrayList<Item> itemlist) {
+		this.itemlist = itemlist;
+	}
+	public String getCommandButton() {
+		return commandButton;
+	}
+	public void setCommandButton(String commandButton) {
+		this.commandButton = commandButton;
+	}
 	private int subTotal;
 	private int cartTotal=0;
 	private ArrayList<Integer> selectedQuantity = new ArrayList<Integer>();
@@ -163,31 +177,7 @@ public class Payment extends ActionSupport{
 		}
 		//System.out.println("**************lets c if item has value "+items.size());
 		
-		for(Item i : items){
-			selectedQuantity.add(i.getSelectedQuantity());
-		}
 		Item item = (Item) session.get("item");
-		//items = new ArrayList<Item>();
-		items = Cart.fetchItems(user.getUserid());
-		//System.out.println("selectedQuantity is (((((((((("+selectedQuantity);
-		int index=0;
-		if(selectedQuantity!=null){
-		for(int i: selectedQuantity){
-			//System.out.println("---------------------------------"+i);
-		items.get(index).setSelectedQuantity(i);
-		items.get(index).setItem_subTotal(items.get(index).getItem_price() * items.get(index).getSelectedQuantity());
-		//System.out.println("courier and seeler id :-----------------------------------------"+items.get(index).getCourier()+"+++++"+items.get(index).getSellerId());
-		index++;
-		}}
-		
-		session.put("items", items);
-		for(int i=0; i<items.size(); i++){
-			//System.out.println("cart and items.get(i).getItem_subTotal() "+cartTotal+" "+items.get(i).getItem_subTotal()+";;;;;;;;;;;;;;;;;;;;;;;");
-			cartTotal = cartTotal + items.get(i).getItem_subTotal();
-		}
-		//System.out.println("cart and items.get(i).getItem_subTotal() "+cartTotal+";;;;;;;;;;;;;;;;;;;;;;;");
-		itemTotal = cartTotal;
-		session.put("itemTotal", cartTotal);
 		if(user!=null){
 			System.out.println("user is "+user);
 			userName=user.getUsername();
@@ -198,24 +188,60 @@ public class Payment extends ActionSupport{
 			userCountry= add.getCountry();
 			listBanks = BankAcct.getAllBankNames();
 		}
-		System.out.println("Proceed to may come");
+		//System.out.println("Proceed to may come");
 		if(ProceedToPay!=null && ProceedToPay.startsWith("Proceed")){
-			System.out.println("Proceed to is coming");
-			
-			//System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&sesion.get(items) "+session.get("items"));
-			//System.out.println("#################"+session.get("cartTotal"));
-			//items = (ArrayList<Item>)session.get("items");
+			System.out.println("In procees payment..............................and item size is"+ProceedToPay);
 			for(Item i : items){
-				//System.out.println("%%%%%%%%items in list"+i);
-				itemSetter(i);
+				selectedQuantity.add(i.getSelectedQuantity());
 			}
+			items = Cart.fetchItems(user.getUserid());
+			//System.out.println("selectedQuantity is (((((((((("+selectedQuantity);
+			int index=0;
+			if(selectedQuantity!=null){
+			for(int i: selectedQuantity){
+				System.out.println("---------------------------------"+i);
+			items.get(index).setSelectedQuantity(i);
+			items.get(index).setItem_subTotal(items.get(index).getItem_price() * items.get(index).getSelectedQuantity());
+			//System.out.println("courier and seeler id :-----------------------------------------"+items.get(index).getCourier()+"+++++"+items.get(index).getSellerId());
+			index++;
+			}}
+			
+			session.put("items", items);
+			for(int i=0; i<items.size(); i++){
+				//System.out.println("cart and items.get(i).getItem_subTotal() "+cartTotal+" "+items.get(i).getItem_subTotal()+";;;;;;;;;;;;;;;;;;;;;;;");
+				cartTotal = cartTotal + items.get(i).getItem_subTotal();
+				//System.out.println("QWERTJJHGNGBGfbklfdnvksdlnklsdncklsdncindlkcnadklcnklanckldnclkndclksdnclk");
+				//System.out.println("item image: and seller "+items.get(i).getItem_image()+"  "+items.get(i).getSeller_name());
+			}
+			//System.out.println("cart and items.get(i).getItem_subTotal() "+cartTotal+";;;;;;;;;;;;;;;;;;;;;;;");
+			if(items.size()!=0){
+				//System.out.println("QWERTJJHGNGBGfbklfdnvksdlnklsdncklsdncindlkcnadklcnklanckldnclkndclksdnclk");
+				
+			itemTotal = cartTotal;}
+			System.out.println(itemTotal);
+			session.put("itemTotal", itemTotal);
+			session.put("cartTotal", cartTotal);
+		
 			return "cartPayment";
 		}
-		if(item!=null){
-			//Item.fetchItem("where item_id="+item.getItem_id());
-			itemSetter(item);
-			session.put("item", item);
-			session.put("itemTotal", itemTotal);
+		else{
+			if(item!=null){
+				System.out.println("QWERTJJHGNGBGfbklfdnvksdlnklsdncklsdncindlkcnadklcnklanckldnclkndclksdnclk item list "+ itemlist.size());
+				System.out.println("In buy it now Command button is +++++++++++++++++++++++++++++ "+commandButton);
+				//Item.fetchItem("where item_id="+item.getItem_id());
+				itemSetter(item);
+				//item.setQuantity(quantity);
+				item.setSelectedQuantity(quantity);
+				//System.out.println("itemPrice is **********"+item.getSelectedQuantity()+"******************"+quantity);
+				itemTotal=item.getItem_price()*item.getSelectedQuantity();
+				session.put("item", item);
+				session.put("itemTotal", itemTotal);
+				
+			}else{
+				System.out.println("setting item as null\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"+item.getItem_name()+" "+commandButton);
+				
+				//item=null;
+			}
 			
 		}
 				
@@ -229,10 +255,8 @@ public class Payment extends ActionSupport{
 		itemName=item.getItem_name();
 		itemPrice=item.getItem_price();
 		//quantity = 1;
+		//item.setQuantity(quantity);
 		courier = item.getCourier();
-		//item.setSelectedQuantity(selectedQuantity);
-		//System.out.println("itemPrice is **********"+itemPrice);
-		itemTotal=item.getItem_price()*item.getSelectedQuantity();
 		itemImage=item.getItem_image();
 		sellerId=item.getSeller_name();
 		User user1 = User.userDetails("where user_id='"+sellerId+"';");
