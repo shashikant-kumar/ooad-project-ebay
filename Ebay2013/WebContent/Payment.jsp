@@ -115,7 +115,7 @@ function CheckingMode() {
 								<tr>
 									<td><s:form name="makePayment" autocomplete="OFF"
 											action="makePayment"
-											method="post" id="SSPMformID" theme="simple">
+											method="post" id="SSPMformID" theme="simple" validate="true">
 											
 	<div class="mainHeader">
 												<div>
