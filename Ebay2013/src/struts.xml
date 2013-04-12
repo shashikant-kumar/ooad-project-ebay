@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+
  <struts>
 <constant name="struts.enable.DynamicMethodInvocation" value="false" />
 <constant name="struts.devMode" value="false" />
 <constant name="struts.custom.i18n.resources" value="ApplicationResources" />
  
 <package name="default" extends="struts-default" namespace="/">
+
  <result-types>
             <result-type name="tiles"
                 class="org.apache.struts2.views.tiles.TilesResult" />
         </result-types>
+        
         <!-- Ruchika's Code Starts here--> 
  <interceptors>
     <interceptor name="mylogging"
@@ -111,10 +114,12 @@
 <action name="buyitNow" class="ebay.action.Payment">
 <interceptor-ref name="loggingStack"></interceptor-ref>
 			<result name="success" type="tiles">/Payment.tiles</result>
+			<result name="cartPayment" type="tiles">/CartPayment.tiles</result>
 			<result name="login" >login.jsp</result>
-			<result name="cartPayment" type="tiles">/Payment.tiles</result>
+			<result name="input" type="tiles">/Payment.tiles</result>
 			</action>
 <action name="makePayment" class="ebay.action.MakePayment">
+			<result name="input" type="tiles">/Payment.tiles</result>
 			<result name="credit" type="tiles">/Credit.tiles</result>
 			<result name="debit" type="tiles">/Debit.tiles</result>
 			<result name="bank" type="tiles">/Bank.tiles</result>
