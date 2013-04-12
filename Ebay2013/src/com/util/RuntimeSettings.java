@@ -11,7 +11,7 @@ public class RuntimeSettings {
 	public static final String SERVER_IP = "localhost";
 	static String databaseName = "ebay";
 	static String dbUserID = "root";
-	static String dbPassword = "mysql"; 
+	static String dbPassword = ""; 
 	public static String RUN_MODE = "Test"; // "Production"; //
 	public static boolean IS_IN_DEBUG_MODE = true; // false; //
 	static int portNo = 3306;
@@ -76,6 +76,7 @@ public class RuntimeSettings {
 			+"SUB_CATEG_ID INT(10) UNSIGNED NOT NULL,"
 			+"COURIER VARCHAR(50) NOT NULL,"
 			+"SLA INT(5) NOT NULL,"
+			+"LISTING_TIME TIMESTAMP ,"
 			+"FOREIGN KEY (CATEG_ID) REFERENCES CATEGORY(CATEG_ID),"
 			+"FOREIGN KEY (SUB_CATEG_ID) REFERENCES SUB_CATEGORY(SUB_CATEG_ID),"
 			+"FOREIGN KEY (USER_ID) REFERENCES USER(USER_ID)"
@@ -85,8 +86,8 @@ public class RuntimeSettings {
 			"CREATE TABLE ITEM_DESCRIPTION("
 			+"ITEM_ID INT(10) UNSIGNED NOT NULL ,"
 			+"ATTRIBUTE VARCHAR(50) NOT NULL ,"
-			+"PRIMARY KEY(ITEM_ID,ATTRIBUTE),"
-			+"VALUE VARCHAR(50) NOT NULL,"
+			+"VALUE VARCHAR(200) NOT NULL,"
+			+"PRIMARY KEY(ITEM_ID,ATTRIBUTE,VALUE),"
 			+"FOREIGN KEY (ITEM_ID) REFERENCES SELL_ITEM(ITEM_ID)"
 			+");",
 

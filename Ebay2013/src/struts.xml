@@ -37,6 +37,8 @@
             </result>  
             <!-- Ruchika's Code Ends here -->
 			<result name="addToCart">ShoppingCart.jsp</result>
+			<!-- ** added by alpna ** -->
+			<result name="sellItem">SellItem.jsp</result>
 </action>
 <action name="Register" class="ebay.action.RegisterUser">
 			<result name="initial">RegisterUser.jsp</result>
@@ -136,6 +138,29 @@
 	<result name="initial">SellerInfo.jsp</result>
 	<result name="admin">AdminSellerFeedback.jsp</result>
 </action>	
+<action name="sellItem" class="ebay.action.SellItem">
+	<result name="login">login.jsp</result>
+	<result name="sellItem">SellItem.jsp</result>
+	<result name="selectCategory">ListSellItemCateg.jsp</result>
+</action>
+<action name="listSellItemCateg" class="ebay.action.ListSellItemCateg">
+	<result name="listSellItemCateg">ListSellItemCateg.jsp</result>
+	<result name="createListing">CreateListing.jsp</result>
+	<result name="error">ListSellItemCateg.jsp</result>
+</action>
+<action name="listSellItemCateg1" class="ebay.action.ListSellItemCateg1">
+	<result name="listSellItemCateg1">ListSellItemCateg1.jsp</result>
+	<result name="createListing">CreateListing.jsp</result>
+	<result name="error">SellItem.jsp</result>
+</action>
+<action name="createListing" class="ebay.action.CreateListing">
+	<result name="listing">CreateListing.jsp</result>
+	<result name="review">ReviewListing.jsp</result>
+	<result name="completedListing">SellItem.jsp</result>
+	<result name="error">CreateListing.jsp</result>
+	<result name="modify">CreateListing.jsp</result>
+	<result name="cancel">SellItem.jsp</result>
+</action>
 <!-- ****************************************************************************************************** -->
 <!-- ********************************************Suhani code********************************************  -->
 <!-- ****************************************************************************************************** -->			

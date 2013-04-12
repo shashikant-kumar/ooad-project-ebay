@@ -50,6 +50,7 @@ public class Login extends ActionSupport {
 	private String listName="watchlist";
 	NewList listvalues=new NewList();
 	private String msg="";
+	private String prevUrl="";
 	public String getMsg() {
 		return msg;
 	}
@@ -168,6 +169,14 @@ public class Login extends ActionSupport {
 	private String password="";
    
 
+	public String getPrevUrl() {
+		return prevUrl;
+	}
+
+	public void setPrevUrl(String prevUrl) {
+		this.prevUrl = prevUrl;
+	}
+
 	public String execute() {
 		
 		MyLog.log("in Login.execute() with commandButton = " + 
@@ -224,7 +233,9 @@ public class Login extends ActionSupport {
 			}		
 		
 			
-
+		//alpna's code
+			if(prevUrl.equals("SellItem.jsp")) return "sellItem"; 
+			
 		} catch (SQLException e) {
 			MyLog.log("Error while checking credentials from database"+e);
 		}

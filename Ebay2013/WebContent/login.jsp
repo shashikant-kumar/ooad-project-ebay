@@ -155,6 +155,7 @@
 																					</div>
 																					
 																				</div>
+																				<s:hidden name="prevUrl" value="%{prevUrl}"/>
 																				<s:hidden name="item_id" value="%{item_id}"/>
 																				<s:hidden name="cart" value="%{cart}"/>
 																				<s:hidden name="quantity" value="%{quantity}"/>

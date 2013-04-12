@@ -63,6 +63,7 @@
     <li><a href="#">FASHION</a></li>
     <li><a href="#">HOLIDAYS</a></li>
 <li><a href="#">INSURANCE</a></li>
+<li><a href="sellItem">Sell</a></li>
 <li><a href="purchasehistory">PURCHASE HISTORY </a></li><li></li><li></li>
 <li><a href="viewdeals">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DEALS</a></li>
 </ul>			

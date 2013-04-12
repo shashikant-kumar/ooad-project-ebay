@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
+import java.sql.PreparedStatement;
 import com.util.DB;
 
 import ebay.action.email;
@@ -560,6 +560,112 @@ public void setItem_subTotal(int item_subTotal) {
 	this.item_subTotal = item_subTotal;
 }
 
+/** 
+ * @author Alpna
+ * Function inserts item details added by seller in sell_item table
+ * Input: item
+ * Output: ret
+ */
+public static int InsertIntoSellItem(String userId,String itemName,int itemPrice,int itemDiscount,String itemCondition,int stock,String itemImage,int categId,int subCategId,String courier,int sla){
+	int ret=0;
+	String InsertQuery="insert into sell_item(user_Id,item_name,item_price,item_discount,item_condition,stock,item_image,categ_id,sub_categ_id,courier,sla) " +
+			"values(?,?,?,?,?,?,?,?,?,?,?)";
+	try{
+		Connection con = DB.getConnection();
+		try{
+			   PreparedStatement ps = con.prepareStatement(InsertQuery);
+	    	   ps.setString(1,userId);
+	    	   ps.setString(2,itemName);
+	    	   ps.setInt(3,itemPrice);
+	    	   ps.setInt(4,itemDiscount);
+	    	   ps.setString(5,itemCondition);
+	    	   ps.setInt(6,stock);
+	    	   ps.setString(7,itemImage);
+	    	   ps.setInt(8,categId);
+	    	   ps.setInt(9,subCategId);
+	    	   ps.setString(10,courier);
+	    	   ps.setInt(11,sla);
+	    	   ret=ps.executeUpdate();
+	    }
+		finally{
+			DB.close(con);
+		}
+	}
+	catch(Exception e){
+		System.out.println(e);
+	}
+	return ret;
+}
+/*
+ * author:Alpna
+ * function for fetching item id for the seller(latest timestamp
+ * to insert item desc in item_description table
+ * */
+public static int getItemIdForSellerListing(String sellerId) {
+		ResultSet resultSet = null;
+		int itemId=0;
+		String query = "select item_id from sell_item where listing_time=(select max(listing_time) from sell_item where user_id=" +"'"+sellerId+"')" ;
+		Connection connection = DB.getConnection();
+		resultSet = DB.readFromDB(query, connection);
+		try {
+			if (resultSet.next()){
+				itemId =resultSet.getInt("item_id");
+				/*fetch the value of semester name for the id*/
+				
+			}
+		} catch (SQLException e) {
+	       System.out.println("Exception while reading from db"+ e);
+		}
+		DB.close(connection);
+		return itemId;
+}
+/*
+ * author:Alpna
+ * function for inserting single row values in item_description table
+ * */
+public static int InsertIntoItemDesc(int itemId,String attribute,String value){
+	int ret=0;
+	String InsertQuery="insert into item_description(item_Id,attribute,value) values(?,?,?)";
+	try{
+		Connection con = DB.getConnection();
+		try{
+			   PreparedStatement ps = con.prepareStatement(InsertQuery);
+	    	   ps.setInt(1,itemId);
+	    	   ps.setString(2,attribute);
+	    	   ps.setString(3,value);
+	    	   ret=ps.executeUpdate();
+	    }
+		finally{
+			DB.close(con);
+		}
+	}
+	catch(Exception e){
+		System.out.println(e);
+	}
+	return ret;
+}
+/*
+ * author:Alpna
+ * function for getting item-category name based on itemid
+ * */
+public static String getItemCategoryName(int itemId) {
+	ResultSet resultSet = null;
+	String categoryName="";
+	String query = "select categ_name from category where categ_id=(select categ_id from sell_item where item_id=" +"'"+itemId+"')" ;
+	Connection connection = DB.getConnection();
+	resultSet = DB.readFromDB(query, connection);
+	try {
+		if (resultSet.next()){
+			categoryName =resultSet.getString("categ_name");
+			/*fetch the value of semester name for the id*/
+			
+		}
+	} catch (SQLException e) {
+       System.out.println("Exception while reading from db"+ e);
+	}
+	DB.close(connection);
+	return categoryName;
+}
 
 	
 }
