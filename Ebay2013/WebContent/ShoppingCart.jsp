@@ -66,7 +66,7 @@ div.important {color:green;}
 	<s:url id="itemDetails" action="ItemDetails">
      <s:param name="item" value="item_id"/>
     </s:url>
-	<td><s:a href="%{itemDetails}"><s:property value="items[%{#stats.index}].item_name"/></s:a></td>
+	<td><s:a href="%{itemDetails}"><s:property value="item_name"/></s:a></td>
 	<td width="30%" align="right"><div style="padding-right:60px"><s:property value="item_price"/></div></td>
 	<td width="15%"><s:textfield name="items[%{#stats.index}].selectedQuantity"  size="10"/></td>
 	<td width="10%"><s:property value="item_subTotal"/></td>
