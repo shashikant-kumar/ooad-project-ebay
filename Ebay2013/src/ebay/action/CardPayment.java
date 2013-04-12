@@ -23,6 +23,15 @@ public class CardPayment extends ActionSupport{
 	private int prevBal;
 	private int availBal;
 	private int transBal;
+	ArrayList<Item> items = new ArrayList<Item>();
+	public ArrayList<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(ArrayList<Item> items) {
+		this.items = items;
+	}
+
 	public String getCardNo() {
 		return cardNo;
 	}
@@ -67,7 +76,7 @@ public class CardPayment extends ActionSupport{
 		int orderId;
 		int itemId;
 		int itemAmount;
-		ArrayList<Item> items = new ArrayList<Item>();
+		
 		ArrayList<Integer> transId = new ArrayList<Integer>();
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		User user = (User) session.get("user");
@@ -89,7 +98,7 @@ public class CardPayment extends ActionSupport{
 				orderId= OrderTrack.getLatestOrderId(user.getUserid());
 				//insert in transaction table with order id, if cart is there insert transaction for each item in cart with a loop for each item
 				if(orderId!=0){
-					if(items.size()!=0){
+					if(items!=null && items.size()!=0){
 						for(Item i : items){
 							System.out.println("OM OM OM OM OM OM OM"+i.getSellerId());
 						OrderTrack.insertTransaction(orderId,i.getItem_id(),i.getSelectedQuantity(),i.getCourier(),i.getSellerId());
@@ -109,7 +118,7 @@ public class CardPayment extends ActionSupport{
 					//insert in ebay account paisapay, in paisapay acctbal
 					itemId=OrderTrack.getTransactionItemId(i);
 //					Item item1 = Item.fetchItem("where item_id= "+itemId);
-					if(items.size()!=0){
+					if(items!=null && items.size()!=0){
 						for(Item j : items){
 							if(j.getItem_id()==itemId){
 							itemAmount = j.getSelectedQuantity()*j.getItem_price();
@@ -123,8 +132,9 @@ public class CardPayment extends ActionSupport{
 								 		System.out.println("updATING the seller about stock");
 								 	Item.updateseller(itemId);
 								 	}
-							Item.reduceQty(j, j.getSelectedQuantity(), j.getQuantity());
+							Item.reduceQty(j, j.getSelectedQuantity(), Item.fetchItem("where item_id = "+j.getItem_id()).getQuantity());
 							Cart.removeItem(user.getUserid(), j.getItem_id());
+							session.remove("items");
 							}
 							}
 						}
@@ -140,17 +150,16 @@ public class CardPayment extends ActionSupport{
 					 		System.out.println("updATING the seller about stock");
 					 	Item.updateseller(itemId);
 					 	}
-					
 					//reduce quantity
-					Item.reduceQty(item, item.getSelectedQuantity(), item.getQuantity());
-					
+					System.out.println("[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[["+item.getSelectedQuantity());
+					Item.reduceQty(item, item.getSelectedQuantity(), Item.fetchItem("where item_id = "+item.getItem_id()).getQuantity());
+						
 					}
 				}
  
 				
 				System.out.println("item is : "+session.get("item"));
 				session.remove("item");
-				session.remove("items");
 				session.remove("itemTotal");
 				if(session.get("item")!=null){
 					System.out.println("item is : "+session.get("item"));
