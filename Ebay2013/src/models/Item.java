@@ -1,5 +1,6 @@
 package models;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +18,7 @@ import ebay.action.email;
  * 
  * @author Satya Deepthi Bhagi
  */
-public class Item {
+public class Item implements Serializable{
 
 	private int item_id; //
 	private String seller_name; //
@@ -37,6 +38,20 @@ public class Item {
 	private String other;
 	private int discount_price;
 	private int save_price;
+	private String commandButton;
+	
+	public String getCommandButton() {
+		return commandButton;
+	}
+
+
+
+	public void setCommandButton(String commandButton) {
+		this.commandButton = commandButton;
+	}
+
+
+
 	public Item(int item_id, String seller_name, String item_name,
 			int item_price, int item_discount, String item_condition,
 			int quantity, int selectedQuantity, int subcategory_id,
@@ -322,6 +337,7 @@ public static ArrayList<Item> fetchDeals(String param){
 public static int reduceQty(Item item, int qty,int stock){
 	int status=1;
 	if(item.getQuantity()>0){
+		System.out.println("qty and stock are 762567578213721672163721"+qty+"     "+stock);
 		stock=stock-qty;
 		status=0;
 	}
@@ -337,7 +353,7 @@ public static int reduceQty(Item item, int qty,int stock){
 		System.out.println("error occured");
 	}
 
-	
+	item.setQuantity(stock);
 	return status;
 	
 }
