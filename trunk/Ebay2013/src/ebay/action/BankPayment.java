@@ -7,6 +7,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import models.BankAcct;
+import models.Cart;
 import models.Item;
 import models.OrderTrack;
 import models.PaisaPay;
@@ -99,8 +100,9 @@ public class BankPayment extends ActionSupport{
 			//insert in transaction table with order id, if cart is there insert transaction for each item in cart with a loop for each item
 			if(orderId!=0){
 				if(items.size()!=0){
-					for(Item i : items)
+					for(Item i : items){
 					OrderTrack.insertTransaction(orderId,i.getItem_id(),i.getSelectedQuantity(),i.getCourier(),i.getSellerId());
+					}
 				}
 				else{
 				OrderTrack.insertTransaction(orderId,item.getItem_id(),item.getSelectedQuantity(),item.getCourier(),item.getSellerId());
@@ -120,7 +122,7 @@ public class BankPayment extends ActionSupport{
 					for(Item j : items){
 						if(j.getItem_id()==itemId){
 						itemAmount = j.getSelectedQuantity()*j.getItem_price();
-						PaisaPay.insertPaisa(i,itemAmount);
+						int rows = PaisaPay.insertPaisa(i,itemAmount);
 						//update seller
 						itemId= item.getItem_id();
 						 System.out.println("item id is"+itemId);
@@ -129,15 +131,22 @@ public class BankPayment extends ActionSupport{
 						 		System.out.println("updATING the seller about stock");
 						 	Item.updateseller(itemId);
 						 	}
+						if(rows!=0){
 						Item.reduceQty(j, j.getSelectedQuantity(), j.getQuantity());
+						Cart.removeItem(user.getUserid(), j.getItem_id());
+						}
 						}
 					}
 				}
 				else{
 				itemAmount = item.getSelectedQuantity()*item.getItem_price();
 				PaisaPay.insertPaisa(i,itemAmount);
+				//reduce quantity
+				Item.reduceQty(item, item.getSelectedQuantity(), item.getQuantity());
+				session.remove("items");	
 				}
 			}
+
 			//update seller
 			itemId= item.getItem_id();
 			 System.out.println("item id is"+itemId);
@@ -146,12 +155,8 @@ public class BankPayment extends ActionSupport{
 			 		System.out.println("updATING the seller about stock");
 			 	Item.updateseller(itemId);
 			 	}
-			
-			//reduce quantity
-			Item.reduceQty(item, item.getSelectedQuantity(), item.getQuantity());
 			System.out.println("item is : "+session.get("item"));
 			session.remove("item");
-			session.remove("items");
 			session.remove("itemTotal");
 			if(session.get("item")!=null){
 				System.out.println("item is : "+session.get("item"));
@@ -161,6 +166,7 @@ public class BankPayment extends ActionSupport{
 			addActionError("Not sufficient balance in your account");
 			return "error";
 		}
+
 
 		return "success";
 	}
