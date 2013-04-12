@@ -168,7 +168,7 @@ function CheckingMode() {
 														<div
 														
 															style="color: #333333; border-bottom: 1px solid #cccccc">
-															<s:iterator value="items" status="stat">
+															<s:iterator value="items" status="stats">
 															
 															<tr><td><div id="270950260152">
 																<div class="item-summ-body-c">
@@ -210,7 +210,7 @@ function CheckingMode() {
 																	</div>
 																	<div class="single-item-summ-body-qty">
 																	<div class="controls">
-																		<s:textfield name="selectedQuantity" value="%{selectedQuantity}" size="2" width="2" />
+																		<s:textfield name="items[%{#stats.index}].selectedQuantity" value="%{selectedQuantity}" size="2" width="2" />
 																		</div>
 																	</div>
 																	<div class="stDiv">
