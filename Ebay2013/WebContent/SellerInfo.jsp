@@ -28,10 +28,7 @@
 <title>show all items</title>
 </head>
 <body>
-<ul id="NOINTERFERE00_menu">
-<li><a href="#">Ebay My World seller name &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</a></li>
-   </ul>
+
    <br>
    <br>
  <table>
@@ -39,6 +36,7 @@
  <table align="center">
 
 <tr></tr>
+   <tr> <td>Seller Name:</td><td><s:property value="sellername"/></td></tr>
    <tr> <td>Seller Rating:</td><td><s:property value="avgRating"/></td></tr>
    <tr><td>Number Of Ratings:</td><td><s:property value="noOfRating"/></td></tr>
   <tr><td>Location:</td><td><s:property value="location"/></td></tr>
