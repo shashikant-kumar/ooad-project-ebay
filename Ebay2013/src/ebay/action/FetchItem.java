@@ -25,7 +25,7 @@ public class FetchItem extends ActionSupport{
 
 	private String subcategory;
 	User user =new User();
-  	private List<Item> itemlist;
+  	private ArrayList<Item> itemlist = new ArrayList<Item>();
 	
 	  
 	public String execute() throws Exception {
@@ -61,13 +61,14 @@ public class FetchItem extends ActionSupport{
 		this.user = user;
 	}
 
-	public List<Item> getItemlist() {
+
+	public ArrayList<Item> getItemlist() {
 		return itemlist;
 	}
 
-	public void setItemlist(List<Item> itemlist) {
+
+	public void setItemlist(ArrayList<Item> itemlist) {
 		this.itemlist = itemlist;
 	}
-
 	
 }
