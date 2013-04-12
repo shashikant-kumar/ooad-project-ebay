@@ -40,23 +40,29 @@
 <h2>This Subcategory has no items under this</h2>
 </s:if>
 <s:else>
+
 <table align="center" cellspacing="60">
-<s:iterator value="itemlist">
+<s:form name="buy" action="buyitNow">
+<td>
+<s:iterator value="itemlist" status="stats">
 <tr>
 <td><img src="./images/<s:property value = "item_image" />" alt="image text" width="150" height="175"/></td>
 <s:url id="ItemName" action="ItemDetails">
 <s:param name="item" value="item_id"/>
 </s:url>
 <td><s:a href="%{ItemName}"><s:property value="item_name"/></s:a></td>
-<td><s:form name="buy" action="buyitNow">
-<td><s:submit name="commandButton" label="Buy it Now" value="Buy It Now"/></td>
-</s:form></td>
+
+<td><s:submit name="items[%{#stats.index}].commandButton" label="Buy it Now" value="Buy It Now"/></td>
+
 <td>Bid or Buying</td>
 <td>Rs. <s:property value="item_price"/></td>
 <td></td>
 <td><img src="./images/pay.jpg" alt="image text" width="70" height="55"/></td></tr>
 </s:iterator>
-</table> 
+</td>
+</s:form>
+</table>
+ 
 </s:else>
 </table>
 </body>
