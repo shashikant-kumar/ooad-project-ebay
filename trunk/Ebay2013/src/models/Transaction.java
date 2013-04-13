@@ -66,4 +66,38 @@ public class Transaction {
 		String query ="INSERT INTO STATUS VALUES("+tranId+",'S',sysdate())";
 		DB.update(connection, query);
 	}
+	//function to get seller_rating for a particular tranid
+		public static int getSellerRatingForTransaction(int tranId) {
+			ResultSet resultSet = null;
+			int sellerRating=0;
+			String query = "select seller_rating from transaction where tran_id=" +"'"+tranId+"'" ;
+			Connection connection = DB.getConnection();
+			resultSet = DB.readFromDB(query, connection);
+			try {
+				if (resultSet.next()){
+					sellerRating =resultSet.getInt("seller_rating");
+					/*fetch the value of semester name for the id*/
+					
+				}
+			} catch (SQLException e) {
+		       System.out.println("Exception while reading from db"+ e);
+			}
+			DB.close(connection);
+			return sellerRating;
+		}
+		//function to update seller_rating in transaction table
+		public static int updateSellerRating(int tranId,int feedback){
+			String query = "update TRANSACTION set SELLER_RATING="+feedback+" where TRAN_ID="+tranId;
+			System.out.println("query is "+query);
+			int i=0;
+			try{
+				i =DB.update(query);
+				System.out.println("i is "+i);
+			}
+			catch(Exception e){
+				System.out.println("error occured");
+			}
+			return i;
+			
+		}
 }
