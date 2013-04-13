@@ -1,5 +1,8 @@
 package models;
 
+import java.util.ArrayList;
+import java.sql.Connection;
+
 import com.util.DB;
 
 public class PaisaPay {
@@ -16,7 +19,22 @@ public class PaisaPay {
 		int rowsUpdated = DB.update(query);
 		return rowsUpdated;
 	}
-
+	public static ArrayList<Integer> sendMoneyToPaisaPay(int transactionId,int SLA,int cumPrice,String userId){
+		System.out.println("cumPrice"+ cumPrice);
+		System.out.println("SLA"+SLA);
+		ArrayList<Integer> acc_bal=new ArrayList<Integer>();
+		
+	  int paisapayAmount = ((SLA*cumPrice)/100);
+	  int sellerAmount = cumPrice-paisapayAmount;
+	  System.out.println("paisapayAmount"+paisapayAmount);
+	  System.out.println("sellerAmount"+sellerAmount);
+	  Connection connection = DB.getConnection();
+		String query ="update paisapay set paisapay_amout="+paisapayAmount+" ,seller_amount="+sellerAmount+" where tran_id="+transactionId;
+		DB.update(connection, query);
+		acc_bal=BankAcct.updateSellerBalance(userId,sellerAmount);
+		return acc_bal;
+	}
+	
 	public int getTransactionId() {
 		return transactionId;
 	}

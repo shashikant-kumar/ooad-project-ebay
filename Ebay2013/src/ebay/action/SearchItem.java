@@ -9,10 +9,46 @@ import models.User;
 import com.opensymphony.xwork2.ActionContext;
 
 public class SearchItem {
- private String commandButton;
+ private String commandButton="";
  private String searchValue;
  private List<Item> itemlist1;
  private List<Item> itemlist2;
+ int price1;
+ public int getPrice1() {
+	return price1;
+}
+
+
+
+
+
+
+public void setPrice1(int price1) {
+	this.price1 = price1;
+}
+
+
+
+
+
+
+public int getPrice2() {
+	return price2;
+}
+
+
+
+
+
+
+public void setPrice2(int price2) {
+	this.price2 = price2;
+}
+
+
+
+int price2;
+ 
  
  
  
@@ -27,8 +63,11 @@ public class SearchItem {
 		if (user == null) {
 			user = new User();
 		}
-		itemlist1 = Item.fetchItemByCategory(searchValue);
-		itemlist2 = Item.fetchItemByName(searchValue);
+		System.out.println("price1"+price1+"price2"+price2);
+			itemlist1 = Item.fetchItemByCategory(searchValue,price1,price2);
+			itemlist2 = Item.fetchItemByName(searchValue,price1,price2);
+			
+		
 		//for(int i=0;i<itemlist.size();i++){
 			//Item item=itemlist.get(i);
 			//session.put("item", item);

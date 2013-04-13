@@ -123,6 +123,7 @@
 																								for="userid"><font size="2">User
 																										ID&nbsp;&nbsp;</font>
 																							</label> </span> 
+																							<s:hidden name="url" value="%{url}"/>
 																						
 																							<span> <input id="userid" class="txtBxF"
 																								name="userid" value="" maxlength="64" size="27">

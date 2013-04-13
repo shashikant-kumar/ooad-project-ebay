@@ -32,6 +32,7 @@
 			<result name="success">ebayhome.jsp</result>
 			<result name="adminSuccess">EBayAdminHome.jsp</result>
 			<result name="item_details">ItemDetails.jsp</result>
+			<result name="sellingHistory">SellingHistory.jsp</result>
 			<result name="error">login.jsp</result>
 			<!-- Ruchika's Code Starts here-->
 			<result name="buyItNow" type="redirectAction">  
@@ -191,6 +192,11 @@
 <action name="searchItem" class="ebay.action.SearchItem">
 	<result name="success">ShowSearchItem.jsp</result>
 </action>
+<action name="sellingHistory" class="ebay.action.SellingHistory">
+	<result name="sellingHistory">SellingHistory.jsp</result>
+	<result name="initialEntry">login.jsp</result>
+</action>				
+
 
 <!-- ****************************************************************************************************** -->
 <!-- ********************************************Sruti's code********************************************  -->
