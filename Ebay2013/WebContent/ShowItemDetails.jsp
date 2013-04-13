@@ -45,13 +45,19 @@
     <th><h4>Item Price</h4></th>
     <th><h4>Order Status</h4></th>
     <th><h4>Order Date</h4></th>
+    <th><h4>Give Feedback</h4></th>
         </tr>
 <s:iterator value="orderItemList">
 <tr><td><img src="./images/<s:property value = "item_image" />" alt="image text" width="150" height="175"/></td>
 <td><s:property value="item_name"/></td>
 <td><s:property value="item_price"/></td>
 <td><s:property value="tran_status"/></td>
-<td><s:property value="trans_date"/></td></tr>
+<s:hidden name="tran_status" value="%{tran_status}"/>
+<td><s:property value="trans_date"/></td>
+<s:if test="%{tran_status == \"S\"}" >
+<td><a href="giveFeedback?tranId=<s:property value = "tran_id" />" >Give Feedback</a></td>
+</s:if>
+</tr>
 </s:iterator>
 </table> 
 </s:else>

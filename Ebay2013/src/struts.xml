@@ -167,6 +167,11 @@
 	<result name="modify">CreateListing.jsp</result>
 	<result name="cancel">SellItem.jsp</result>
 </action>
+<action name="giveFeedback" class="ebay.action.GiveFeedback">
+	<result name="feedbackSuccess">GiveFeedback.jsp</result>
+	<result name="feedbackError">GiveFeedback.jsp</result>
+	<result name="feedbackInitial">GiveFeedback.jsp</result>
+</action>
 <!-- ****************************************************************************************************** -->
 <!-- ********************************************Suhani code********************************************  -->
 <!-- ****************************************************************************************************** -->			
