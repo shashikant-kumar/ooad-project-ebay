@@ -29,6 +29,54 @@ public class Login extends ActionSupport {
 		return commandButton;
 	}
 
+	public ArrayList<Item> getOrderItemList() {
+		return orderItemList;
+	}
+
+	public void setOrderItemList(ArrayList<Item> orderItemList) {
+		this.orderItemList = orderItemList;
+	}
+
+	public ArrayList<Item> getSoldItemList() {
+		return soldItemList;
+	}
+
+	public void setSoldItemList(ArrayList<Item> soldItemList) {
+		this.soldItemList = soldItemList;
+	}
+
+	public ArrayList<Item> getActiveItemList() {
+		return activeItemList;
+	}
+
+	public void setActiveItemList(ArrayList<Item> activeItemList) {
+		this.activeItemList = activeItemList;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public int getPrev_acc_bal() {
+		return prev_acc_bal;
+	}
+
+	public void setPrev_acc_bal(int prev_acc_bal) {
+		this.prev_acc_bal = prev_acc_bal;
+	}
+
+	public int getNew_acc_bal() {
+		return new_acc_bal;
+	}
+
+	public void setNew_acc_bal(int new_acc_bal) {
+		this.new_acc_bal = new_acc_bal;
+	}
+
 	public void setCommandButton(String commandButton) {
 		this.commandButton = commandButton;
 	}
@@ -45,6 +93,13 @@ public class Login extends ActionSupport {
 	private ArrayList<Item> items = new ArrayList<Item>();
 	private int cartTotal = 0;
 	private String cart;
+	private ArrayList<Item> orderItemList;
+	private ArrayList<Item> soldItemList;
+	private ArrayList<Item> activeItemList;
+	private String url="";
+	int prev_acc_bal=0;
+	int new_acc_bal=0;
+
 	//sravvani
 	Item item_detail=new Item();
 	private String listName="watchlist";
@@ -271,6 +326,23 @@ public class Login extends ActionSupport {
 			
 			return "buyItNow";
 		}
+		if(url.equalsIgnoreCase("SellingHistory.jsp"))
+		{   System.out.println("mmmmmmURL IS"+ url);
+		
+		 session = ActionContext.getContext().getSession();
+		
+		if(session.get("user") != null && session.get("user") != "")
+		{
+			user = (User) session.get("user");
+		setUserid(user.getUserid());
+		
+		orderItemList = Item.fetchOrderItem(userid);
+		soldItemList=Item.fetchSoldItem(userid);
+		activeItemList=Item.fetchActiveItem(userid);
+			return "sellingHistory";
+		}
+		}
+		System.out.println("mmmmmmURL IS"+ url);
 		System.out.println("Returning success");
 		return "success";
     }

@@ -61,4 +61,9 @@ public class Transaction {
 		DB.close(connection);
 		return selection;
 	}
+	public static void updateTransactionStatus(int tranId){
+		Connection connection = DB.getConnection();
+		String query ="INSERT INTO STATUS VALUES("+tranId+",'S',sysdate())";
+		DB.update(connection, query);
+	}
 }

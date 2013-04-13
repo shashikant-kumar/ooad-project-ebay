@@ -115,7 +115,32 @@ public class BankAcct {
 		}
 		return transStatus;
 	}
-
+	public static ArrayList<Integer> updateSellerBalance(String userId,int sellerAmount){
+		Connection connection;
+		ArrayList<Integer> acc_bal=new ArrayList<Integer>();
+		ResultSet resultSet = null;
+		int previous_acc_bal=0;
+		int new_acc_bal=0;
+		connection=DB.getConnection();
+		String query= "select acc_bal from bank_acct where user_id='"+userId+"';";
+		resultSet = DB.readFromDB(query, connection);
+		try{
+			while(resultSet.next()){
+				previous_acc_bal=resultSet.getInt("acc_bal");
+				
+			}
+		}catch (SQLException e) {
+	 	       System.out.println("Exception while reading from db"+ e);
+		}
+		
+		new_acc_bal=previous_acc_bal+sellerAmount;
+		acc_bal.add(previous_acc_bal);
+		acc_bal.add(new_acc_bal);
+		
+		String query1="update bank_acct set acc_bal="+new_acc_bal+" where user_id='"+userId+"';";
+		DB.update(connection, query1);
+		return acc_bal;
+	}
 	public int getAccountId() {
 		return accountId;
 	}

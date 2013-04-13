@@ -23,9 +23,42 @@ Author: Satya Deepthi Bhagi
 
 public class FetchItem extends ActionSupport{
 
+	public int getPrice1() {
+		return price1;
+	}
+
+
+	public void setPrice1(int price1) {
+		this.price1 = price1;
+	}
+
+
+	public int getPrice2() {
+		return price2;
+	}
+
+
+	public void setPrice2(int price2) {
+		this.price2 = price2;
+	}
+
+
+	public String getCommandButton() {
+		return commandButton;
+	}
+
+
+	public void setCommandButton(String commandButton) {
+		this.commandButton = commandButton;
+	}
+
+
 	private String subcategory;
 	User user =new User();
   	private ArrayList<Item> itemlist = new ArrayList<Item>();
+  	int price1;
+  	int price2;
+  	String commandButton="";
 	
 	  
 	public String execute() throws Exception {
@@ -34,12 +67,18 @@ public class FetchItem extends ActionSupport{
 		if (user == null) {
 			user = new User();
 		}
+		if(commandButton.startsWith("search")){
+			itemlist = Item.fetchItemDetails(" where sub_categ_name='"+ subcategory +"' and item_price between "+price1+" and "+price2 +")");	
+		}
+		else{
+
 		itemlist = Item.fetchItemDetails(" where sub_categ_name='"+ subcategory +"')");
 		for(int i=0;i<itemlist.size();i++){
 			Item item=itemlist.get(i);
 			session.put("item", item);
 			System.out.println("sesion item in fetch item @@@@@@@"+session.get("item"));
 			System.out.println("Item name is"+item.getItem_name());
+		}
 		}
 		return "success";
 	}

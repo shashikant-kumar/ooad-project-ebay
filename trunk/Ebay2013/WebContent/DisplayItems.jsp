@@ -25,10 +25,26 @@
 			</div>
 
 	</br>
+	<br/>
+	<br/>
+	<s:set name="theme" value="'simple'" scope="page" />
+                            <table align="right">
+                            <tr>
+                            
+	<s:form action="fetchitems"> 
+	<s:hidden name="subcategory" value="%{subcategory}"></s:hidden>
+<td>
+Rs<s:textfield name="price1" value="" size="10" placeholder="enter price" /> &nbsp; &nbsp; &nbsp;Rs<s:textfield name="price2" value="" size="10" placeholder="enter price" /></td>
+ <td><s:submit name="commandButton" value="search" ></s:submit></td>
+                            </s:form>
+                            </tr>
+                            </table>
+    
 <title>show all items</title>
 </head>
 <body>
 <ul id="NOINTERFERE00_menu">
+<br/>
 							
     <li><a href="#">All Items &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</a></li>

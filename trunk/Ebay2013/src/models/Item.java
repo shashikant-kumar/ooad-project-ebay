@@ -39,7 +39,73 @@ public class Item implements Serializable{
 	private int discount_price;
 	private int save_price;
 	private String commandButton;
+	private String tran_status;
+	private String tran_date;
+	private int sla;
+    private int cum_price;
+    private int tranId;
+
 	
+	public String getTran_status() {
+		return tran_status;
+	}
+
+
+
+	public void setTran_status(String tran_status) {
+		this.tran_status = tran_status;
+	}
+
+
+
+	public String getTran_date() {
+		return tran_date;
+	}
+
+
+
+	public void setTran_date(String tran_date) {
+		this.tran_date = tran_date;
+	}
+
+
+
+	public int getSla() {
+		return sla;
+	}
+
+
+
+	public void setSla(int sla) {
+		this.sla = sla;
+	}
+
+
+
+	public int getCum_price() {
+		return cum_price;
+	}
+
+
+
+	public void setCum_price(int cum_price) {
+		this.cum_price = cum_price;
+	}
+
+
+
+	public int getTranId() {
+		return tranId;
+	}
+
+
+
+	public void setTranId(int tranId) {
+		this.tranId = tranId;
+	}
+
+
+
 	public String getCommandButton() {
 		return commandButton;
 	}
@@ -213,10 +279,15 @@ public  static String findSubCategoryName(int id){
  * For searching item by category name or item name
  */
 
- public static ArrayList<Item> fetchItemByCategory(String categoryName)
+public static ArrayList<Item> fetchItemByCategory(String categoryName,int price1,int price2)
 {
 	 ArrayList<Item> selection = new ArrayList<Item>();
-		String sql="select * from sell_item , category where sell_item.categ_id = category.categ_id and category.categ_name like '%"+categoryName+"%';" ;
+	 String sql="";
+	 if(price1==0 && price2==0){
+		 System.out.println("price1"+price1+"price2"+price2);
+		 sql="select * from sell_item , category where sell_item.categ_id = category.categ_id and category.categ_name like '%"+categoryName+"%';" ;
+	 }
+	 else sql="select * from sell_item , category where sell_item.categ_id = category.categ_id and category.categ_name like '%"+categoryName+"%' and item_price between "+price1+" and "+price2 ;
 		ResultSet resultSet = null;
 		Connection connection = DB.getConnection();
 		resultSet = DB.readFromDB(sql, connection);
@@ -235,7 +306,7 @@ public  static String findSubCategoryName(int id){
 				item.categ_id=resultSet.getInt("categ_id");
 				item.subcategory_id=resultSet.getInt("sub_categ_id");
 				item.courier=resultSet.getString("courier");
-				//item.other=resultSet.getString("other");			
+			//	item.other=resultSet.getString("other");			
 				item.category_name=categoryName;
 				item.subcategory_name=Item.findSubCategoryName(item.subcategory_id);
 				selection.add(item);
@@ -247,41 +318,180 @@ public  static String findSubCategoryName(int id){
 		
 
 }
- public static ArrayList<Item> fetchItemByName(String itemName)
- {
- 	 ArrayList<Item> selection = new ArrayList<Item>();
- 		String sql="select * from sell_item  where item_name like'%"+itemName+"%';" ;
- 		ResultSet resultSet = null;
- 		Connection connection = DB.getConnection();
- 		resultSet = DB.readFromDB(sql, connection);
- 		try {
- 			
- 			while (resultSet.next()) {
- 				Item item=new Item();
- 				item.item_id=resultSet.getInt("item_id");
- 				item.item_name= resultSet.getString("item_name");
- 				item.seller_name=resultSet.getString("user_id");
- 				item.item_price=resultSet.getInt("item_price");
- 				item.item_discount=resultSet.getInt("item_discount");
- 				item.item_condition=resultSet.getString("item_condition");
- 				item.quantity=resultSet.getInt("Stock");
- 				item.item_image=resultSet.getString("item_image");
- 				item.categ_id=resultSet.getInt("categ_id");
- 				item.subcategory_id=resultSet.getInt("sub_categ_id");
- 				item.courier=resultSet.getString("courier");
- 				//item.other=resultSet.getString("other");			
- 				item.category_name=Item.findCategoryName(item.categ_id);;
- 				item.subcategory_name=Item.findSubCategoryName(item.subcategory_id);
- 				selection.add(item);
- 			}
- 		} catch (SQLException e) {
- 	       System.out.println("Exception while reading from db"+ e);
- 		}
- 		return selection;
- 		
+public static ArrayList<Item> fetchItemByName(String itemName,int price1,int price2)
+{
+	 String sql="";
+	 ArrayList<Item> selection = new ArrayList<Item>();
+	if(price1==0 && price2==0){
+	 sql="select * from sell_item  where item_name like'%"+itemName+"%';" ;
+	}
+	else sql="select * from sell_item  where item_name like'%"+itemName+"%' and item_price between "+price1+" and "+price2 ;
+		ResultSet resultSet = null;
+		Connection connection = DB.getConnection();
+		resultSet = DB.readFromDB(sql, connection);
+		try {
+			
+			while (resultSet.next()) {
+				Item item=new Item();
+				item.item_id=resultSet.getInt("item_id");
+				item.item_name= resultSet.getString("item_name");
+				item.seller_name=resultSet.getString("user_id");
+				item.item_price=resultSet.getInt("item_price");
+				item.item_discount=resultSet.getInt("item_discount");
+				item.item_condition=resultSet.getString("item_condition");
+				item.quantity=resultSet.getInt("Stock");
+				item.item_image=resultSet.getString("item_image");
+				item.categ_id=resultSet.getInt("categ_id");
+				item.subcategory_id=resultSet.getInt("sub_categ_id");
+				item.courier=resultSet.getString("courier");
+			//	item.other=resultSet.getString("other");			
+				item.category_name=Item.findCategoryName(item.categ_id);;
+				item.subcategory_name=Item.findSubCategoryName(item.subcategory_id);
+				selection.add(item);
+			}
+		} catch (SQLException e) {
+	       System.out.println("Exception while reading from db"+ e);
+		}
+		return selection;
+		
 
- }
+}
+public static ArrayList<Item> fetchOrderItem(String userId){
+	 ArrayList<Item> selection = new ArrayList<Item>();
+	 ResultSet resultSet = null;
+	 int totalPrice;
+	 Connection connection = DB.getConnection();
+	 String sql1="DROP VIEW IF EXISTS NEW ;";
+	 DB.update(connection, sql1);
+	 connection = DB.getConnection();
+	 String sql2="CREATE VIEW NEW AS select DISTINCT T1.TRAN_ID,max(t1.status_date) AS MAX_DATE from status t1,status t2 where t1.tran_id=t2.tran_id group by t1.tran_id;";
+	 DB.update(connection, sql2);
+	 connection = DB.getConnection();
+	 String sql3=" SELECT DISTINCT STATUS.TRAN_ID,STATUS.TRAN_STATUS,MAX_DATE,SELL_ITEM.ITEM_NAME,SELL_ITEM.ITEM_ID,SELL_ITEM.USER_ID,SELL_ITEM.ITEM_DISCOUNT,TRANSACTION.ITEM_QUANTITY,SELL_ITEM.ITEM_PRICE,SELL_ITEM.ITEM_IMAGE,SELL_ITEM.SLA FROM STATUS,TRANSACTION,SELL_ITEM,NEW WHERE STATUS.TRAN_ID=NEW.TRAN_ID AND STATUS.STATUS_DATE = NEW.MAX_DATE AND NEW.TRAN_ID= TRANSACTION.TRAN_ID AND TRANSACTION.ITEM_ID=SELL_ITEM.ITEM_ID AND STATUS.TRAN_STATUS='O'AND TRANSACTION.SELLER_ID=SELL_ITEM.USER_ID AND  TRANSACTION.SELLER_ID='"+userId+"';";	 
+		resultSet = DB.readFromDB(sql3, connection);
+try {
+			
+			while (resultSet.next()) {
+				Item item=new Item();
+				item.item_id=resultSet.getInt("item_id");
+				
+				item.item_name= resultSet.getString("item_name");
+				
+				item.item_price=resultSet.getInt("item_price");
+				item.item_discount=resultSet.getInt("item_discount");
+				item.selectedQuantity= resultSet.getInt("item_quantity");
+				
+				item.item_image=resultSet.getString("item_image");
+				item.sla=resultSet.getInt("sla");
+				item.tran_date=resultSet.getString("max_date");
+				
+				item.tran_status=resultSet.getString("tran_status");
+				if(item.tran_status.equalsIgnoreCase("O"))
+					item.tran_status="ORDERED";
+				item.tranId=resultSet.getInt("tran_id");
+				totalPrice=item.item_price*item.selectedQuantity;
+				if(item.item_discount!=0){
+				item.cum_price=totalPrice-((item.item_discount*totalPrice)/100);
+				System.out.println("total price"+ item.cum_price);
+				}
+				else item.cum_price=totalPrice;
+				
+				selection.add(item);
+			}
+		} catch (SQLException e) {
+	       System.out.println("Exception while reading from db"+ e);
+		}
+return selection;
+}
+public static ArrayList<Item> fetchSoldItem(String userId){
+	 ArrayList<Item> selection = new ArrayList<Item>();
+	 ResultSet resultSet = null;
+	 int totalPrice;
+	 Connection connection;
+	 //Connection connection = DB.getConnection();
+	// String sql1="DROP VIEW IF EXISTS NEW ;";
+	 //DB.update(connection, sql1);
+	 //connection = DB.getConnection();
+	 //String sql2="CREATE VIEW NEW AS select DISTINCT T1.TRAN_ID,max(t1.status_date) AS MAX_DATE from status t1,status t2 where t1.tran_id=t2.tran_id group by t1.tran_id;";
+	 //DB.update(connection, sql2);
+	 connection = DB.getConnection();
+	 String sql3=" SELECT DISTINCT STATUS.TRAN_ID,STATUS.TRAN_STATUS,MAX_DATE,SELL_ITEM.ITEM_NAME,SELL_ITEM.ITEM_ID,SELL_ITEM.USER_ID,SELL_ITEM.ITEM_DISCOUNT,TRANSACTION.ITEM_QUANTITY,SELL_ITEM.ITEM_PRICE,SELL_ITEM.ITEM_IMAGE,SELL_ITEM.SLA FROM STATUS,TRANSACTION,SELL_ITEM,NEW WHERE STATUS.TRAN_ID=NEW.TRAN_ID AND STATUS.STATUS_DATE = NEW.MAX_DATE AND NEW.TRAN_ID= TRANSACTION.TRAN_ID AND TRANSACTION.ITEM_ID=SELL_ITEM.ITEM_ID AND STATUS.TRAN_STATUS='S'AND TRANSACTION.SELLER_ID=SELL_ITEM.USER_ID AND  TRANSACTION.SELLER_ID='"+userId+"';";	 
+		resultSet = DB.readFromDB(sql3, connection);
+try {
+			
+			while (resultSet.next()) {
+				Item item=new Item();
+				item.item_id=resultSet.getInt("item_id");
+				
+				item.item_name= resultSet.getString("item_name");
+				
+				item.item_price=resultSet.getInt("item_price");
+				item.item_discount=resultSet.getInt("item_discount");
+				item.selectedQuantity= resultSet.getInt("item_quantity");
+				
+				item.item_image=resultSet.getString("item_image");
+				item.sla=resultSet.getInt("sla");
+				item.tran_date=resultSet.getString("max_date");
+				item.tran_status=resultSet.getString("tran_status");
+				if(item.tran_status.equalsIgnoreCase("S"))
+					item.tran_status="SHIPPED";
+				
+				item.tranId=resultSet.getInt("tran_id");
+				totalPrice=item.item_price*item.selectedQuantity;
+				if(item.item_discount!=0){
+				item.cum_price=totalPrice-((item.item_discount*totalPrice)/100);
+				System.out.println("total price"+ item.cum_price);
+				}
+				else item.cum_price=totalPrice;
+				
+				selection.add(item);
+			}
+		} catch (SQLException e) {
+	       System.out.println("Exception while reading from db"+ e);
+		}
+return selection;
 
+}
+public static ArrayList<Item>fetchActiveItem(String userId){
+	 ArrayList<Item> selection = new ArrayList<Item>();
+	 ResultSet resultSet = null;
+	 int totalPrice;
+	 Connection connection;
+	 connection = DB.getConnection();
+	String sql="select item_id,item_name,item_price,stock,item_discount,item_image,sla from sell_item where user_id='"+userId+"' and item_id not in (select item_id from transaction where seller_id='"+userId+"')";
+	resultSet = DB.readFromDB(sql, connection);
+	try {
+			
+			while (resultSet.next()) {
+				Item item=new Item();
+				item.item_id=resultSet.getInt("item_id");
+				
+				item.item_name= resultSet.getString("item_name");
+				
+				item.item_price=resultSet.getInt("item_price");
+				item.item_discount=resultSet.getInt("item_discount");
+				item.selectedQuantity= resultSet.getInt("stock");
+				
+				item.item_image=resultSet.getString("item_image");
+				item.sla=resultSet.getInt("sla");
+				if(item.item_discount!=0){
+					item.save_price=(item.item_discount*item.item_price)/100;
+					item.discount_price=item.item_price-item.save_price;
+				}
+				else{
+					item.discount_price=item.item_price;
+					item.save_price=0;
+				}
+	 				
+	 				selection.add(item);
+	 			}
+	 		} catch (SQLException e) {
+	 	       System.out.println("Exception while reading from db"+ e);
+	 		}
+	return selection;
+
+
+}
 
 /**
  * @author Sravvani
