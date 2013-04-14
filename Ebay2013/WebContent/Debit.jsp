@@ -11,18 +11,54 @@
 </head>
 <script src="http://code.jquery.com/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    
+function fnNumeric(fieldname)
+{ 
+	if (/[^0-9]/gi.test(fieldname.value))
+	{
+		alert ("Only numeric values are valid in this field");
+		fieldname.value = "";
+		fieldname.focus();
+		return false;
+	}
+}
+
+/* function fnNumericRange(fieldname)
+{ 
+	if (fieldname.value.length<1 || fieldname.value.length>16))
+	{
+		alert ("Range of card no. is 16 digits");
+		fieldname.value = "";
+		fieldname.focus();
+		return false;
+	}
+} */
+function validateForm(fieldname)
+{
+	var j=document.forms["credit"]["cardNo"].value;
+	var c=document.forms["credit"]["accHoldername"].value;
+	var b = document.forms["credit"]["cvv"].value;
+	if (b==""||b==null || j==""||j==null || c==""||c==null)
+	  {
+		  alert("Enter All the fields");
+		  return false;
+	  }
+}
+</script>
 <body>
 <body>
 <h1>Debit Card Details</h1>
 <s:if test="hasActionErrors()">
 			<span style="color:red;text-align:center;"><s:actionerror /></span>
 		</s:if>
-<s:form id="debit" name="debit" method="post" action="cardPayment" theme="simple">
+<s:form id="debit" name="debit" method="post" action="cardPayment" theme="simple" onsubmit="return validateForm()">
 <table width="968" height="239" border="0">
   <tr>
     <td>&nbsp;
     Debit Card Number
-    <s:textfield name="cardNo" />
+    <s:textfield name="cardNo" placeholder="Enter card No."
+									onblur="fnNumeric(this)" onsubmit="fnNumeric(this)"/>
     <th></th>
     
     <!-- <td>&nbsp;Valid Till</td> -->
@@ -41,7 +77,8 @@
     <td colspan="2">&nbsp;
      <table>
     <tr><td>CVV (3-digit card verification number)</td>
-    <td><s:password size="5" name="cvv" value=""/></td><td><img alt="" src="images/icon_card_back.gif" height="30" width="100"></td></tr>
+    <td><s:password size="5" name="cvv" value="" placeholder="Enter cvv, which you will find at the back of your card"
+									onblur="fnNumeric(this)" onsubmit="fnNumeric(this)" /></td><td><img alt="" src="images/icon_card_back.gif" height="30" width="100"></td></tr>
     </table>
     </td>
   </tr>
