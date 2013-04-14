@@ -59,8 +59,18 @@ public class FetchItem extends ActionSupport{
   	int price1;
   	int price2;
   	String commandButton="";
-	
+	private int itemId;
 	  
+	public int getItemId() {
+		return itemId;
+	}
+
+
+	public void setItemId(int itemId) {
+		this.itemId = itemId;
+	}
+
+
 	public String execute() throws Exception {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		User user = (User) session.get("user");
