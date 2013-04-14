@@ -14,6 +14,39 @@
 	href="buyitnow/43j513lpmi0mzpaok33s5y2u0.css">
 	<%-- <script src="http://code.jquery.com/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script> --%>
+        <script type = "text/javascript">
+function fnNumeric(fieldname)
+{
+	validateForm(fieldname)
+	
+	if (/[^0-9]/gi.test(fieldname.value))
+	{
+		alert ("Only numeric values are valid in this field");
+		fieldname.value = "";
+		fieldname.focus();
+		return false;
+	}
+}
+function validateForm(fieldname)
+{
+	var j=document.forms["makePayment"]["banks"].value;
+	var c=document.getElementsByName('paymentmode');
+	var b = fieldname.value;
+	if (b==""||b==null)
+	  {
+		  alert("Enter Quantity");
+		  return false;
+	  }
+	for(var i=0; i< c.length; i++){
+		if(c[i].checked && c[i].value=="3" && j=="-1"){
+			
+			alert("Select the bank");
+			  return false;
+	  
+	}
+	}
+}
+</script>
 <script type="text/javascript">
 /* var address;
 function loadtextarea(a){
@@ -115,7 +148,7 @@ function CheckingMode() {
 								<tr>
 									<td><s:form name="makePayment" autocomplete="OFF"
 											action="makePayment"
-											method="post" id="SSPMformID" theme="simple">
+											method="post" id="SSPMformID" theme="simple" onsubmit="return validateForm()">
 											
 	<div class="mainHeader">
 												<div>
@@ -210,7 +243,7 @@ function CheckingMode() {
 																	</div>
 																	<div class="single-item-summ-body-qty">
 																	<div class="controls">
-																		<s:textfield name="items[%{#stats.index}].selectedQuantity" value="%{selectedQuantity}" size="2" width="2" />
+																		<s:textfield name="items[%{#stats.index}].selectedQuantity" value="%{selectedQuantity}" size="2" width="2" placeholder="Enter quantity of product, you would like to purchase" onblur="fnNumeric(this)" onsubmit="fnNumeric(this)"/>
 																		</div>
 																	</div>
 																	<div class="stDiv">
