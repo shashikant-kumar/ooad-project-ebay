@@ -106,6 +106,16 @@ public class Login extends ActionSupport {
 	NewList listvalues=new NewList();
 	private String msg="";
 	private String prevUrl="";
+	private int itemId;
+	
+	public int getItemId() {
+		return itemId;
+	}
+
+	public void setItemId(int itemId) {
+		this.itemId = itemId;
+	}
+
 	public String getMsg() {
 		return msg;
 	}
@@ -225,7 +235,7 @@ public class Login extends ActionSupport {
    
 
 	public String execute() {
-		
+		//System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$itemId in login:"+itemId);
 		MyLog.log("in Login.execute() with commandButton = " + 
     	        this.commandButton);
 		System.out.println("In login action");
@@ -262,7 +272,7 @@ public class Login extends ActionSupport {
 				user.setMobile(mobile);
 				user.setUsername(username);
 				Map<String, Object> session = ActionContext.getContext().getSession();
-				
+				//System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$itemId in login:"+session.get("item"));
 				if(session.get("user") != null && session.get("user") != "")
 					user = (User) session.get("user");
 				if (user == null) {
@@ -319,6 +329,7 @@ public class Login extends ActionSupport {
 			return "item_details";
 		}
 		/*Ruchika's code*/
+		//System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$itemId in login:"+itemId);
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		String action = (String) session.get("lastAction");
 		//System.out.println("action i$$$$$$$$$$$$$$$4"+action);
