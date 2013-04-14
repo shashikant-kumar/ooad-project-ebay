@@ -37,7 +37,7 @@
 <s:iterator value="sellerIDs">
 <tr>
 <td><h4><s:url id="sellerInfoPage" action="sellerInfo">
-<s:param name="sellername" value="userid"/>
+<s:param name="sellername" value="username"/>
 <s:param name="admin" value="admin"/>
 </s:url>
 <s:a href="%{sellerInfoPage}">
@@ -46,6 +46,12 @@
 </tr>
 </s:iterator>
 </table>
+<center>
+<s:form action="manageCategoriesSubcategories" align="center">
+<s:submit name = "commandButton" value="Back to Admin Home" id = "mysubmit" style="height: 30px; width: 200px">
+</s:submit>
+</s:form>
+</center>
 </body><br><br><br><br>
 <div class="pcontent">
 					<!--cacheStatus: false-->
