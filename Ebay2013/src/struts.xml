@@ -42,7 +42,7 @@
             <!-- Ruchika's Code Ends here -->
 			<!-- Sruti's Code Starts here-->
 			<result name="addToCart">ShoppingCart.jsp</result>
-			<!-- Sruti's Code Starts here-->
+			<!-- Sruti's Code Ends here-->
 			<!-- ** added by alpna ** -->
 			<result name="sellItem">SellItem.jsp</result>
 </action>
