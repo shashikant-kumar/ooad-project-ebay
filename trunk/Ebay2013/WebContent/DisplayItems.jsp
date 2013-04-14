@@ -25,6 +25,17 @@
 			</div>
 
 	</br>
+<script src="jquery-1.9.1.min.js"></script>
+<script>
+$(document).ready(function(){
+  $(".button").click(function(){
+	 // alert("button clicked");
+    //alert("Value: " + $(".itemId").length);
+    //alert("Value again: " + $(".itemId.items").val());
+    $("#item").val($(".itemId").val());
+  });
+});
+</script>
 	<br/>
 	<br/>
 	<s:set name="theme" value="'simple'" scope="page" />
@@ -60,15 +71,16 @@ Rs<s:textfield name="price1" value="" size="10" placeholder="enter price" /> &nb
 <table align="center" cellspacing="60">
 <s:form name="buy" action="buyitNow">
 <td>
-<s:iterator value="itemlist" status="stats">
+<s:iterator value="itemlist" status="stats" id="list">
 <tr>
 <td><img src="./images/<s:property value = "item_image" />" alt="image text" width="150" height="175"/></td>
 <s:url id="ItemName" action="ItemDetails">
 <s:param name="item" value="item_id"/>
 </s:url>
 <td><s:a href="%{ItemName}"><s:property value="item_name"/></s:a></td>
+<td  class="itemId"><s:hidden name="itemID" id="items" value="%{item_id}"/></td>
 
-<td><s:submit name="items[%{#stats.index}].commandButton" label="Buy it Now" value="Buy It Now"/></td>
+<td class="button"><s:submit name="commandButton" label="Buy it Now" value="Buy It Now"/></td>
 
 <td>Bid or Buying</td>
 <td>Rs. <s:property value="item_price"/></td>
@@ -76,6 +88,7 @@ Rs<s:textfield name="price1" value="" size="10" placeholder="enter price" /> &nb
 <td><img src="./images/pay.jpg" alt="image text" width="70" height="55"/></td></tr>
 </s:iterator>
 </td>
+<s:hidden name="itemId" id="item"/>
 </s:form>
 </table>
  
