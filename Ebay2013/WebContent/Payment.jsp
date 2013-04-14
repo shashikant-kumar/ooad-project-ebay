@@ -14,6 +14,72 @@
 	href="buyitnow/43j513lpmi0mzpaok33s5y2u0.css">
 	<%-- <script src="http://code.jquery.com/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script> --%>
+<script src="jquery-1.9.1.min.js"></script>
+<script src="jquery.validate.js"></script>
+<script src="jquery.validate.min.js"></script>
+<script>
+$(document).ready(function() {
+	  $("#SSPMformID").validate({
+	        rules: {
+	          quantity: {// compound rule
+	          required: true,
+	          Integer: true
+	          }
+	        }
+	  messages: {
+		  quantity: "Please enter a comment."
+        }
+
+	      });
+	 });
+
+/* $(document).keypress(function(e) {
+    if(e.which == 13) {
+        if (/[^0-9]/gi.test(fieldname.value))
+    	{
+    		alert ("Only numeric values are valid in this field");
+    		fieldname.value = "";
+    		fieldname.focus();
+    		document.getElementById("makePayment").onSubmit= false;
+    		return false;
+    	}
+    }
+});
+ */</script>
+    <script type = "text/javascript">
+function fnNumeric(fieldname)
+{
+	if (/[^0-9]/gi.test(fieldname.value))
+	{
+		alert ("Only numeric values are valid in this field");
+		fieldname.value = "";
+		fieldname.focus();
+		document.getElementById("makePayment").onSubmit= false;
+		return false;
+	}
+}
+function validateForm()
+{
+	var b=document.forms["makePayment"]["quantity"].value;
+	var j=document.forms["makePayment"]["banks"].value;
+	var c=document.getElementsByName('paymentmode');
+	
+	if (b==""||b==null)
+	  {
+		  alert("Enter Quantity");
+		  return false;
+	  }
+	for(var i=0; i< c.length; i++){
+		if(c[i].checked && c[i].value=="3" && j=="-1"){
+			
+			alert("Select the bank");
+			  return false;
+	  
+	}
+	}
+}
+</script>
+<script src="jquery-1.9.1.min.js"></script>
 <script type="text/javascript">
 /* var address;
 function loadtextarea(a){
@@ -23,6 +89,11 @@ function loadtextarea(a){
 	$('#change').remove();
 	$('#shippingaddressbox').html('<textarea id="t1" cols="20" rows="4"/><input type="button" value="submit" id="b1" onclick="changeaddress()"/>');
 }
+$(document).ready(function(){
+	  $("button").click(function(){
+	    $("#test").hide(); //id =test and .test for class="test"
+	  });
+	});
 function changeaddress(){
 	//alert("hello");
 	var a=document.getElementById('t1').value;
@@ -115,7 +186,7 @@ function CheckingMode() {
 								<tr>
 									<td><s:form name="makePayment" autocomplete="OFF"
 											action="makePayment"
-											method="post" id="SSPMformID" theme="simple" validate="true">
+											method="post" id="SSPMformID" theme="simple" onsubmit="return validateForm()">
 											
 	<div class="mainHeader">
 												<div>
@@ -207,7 +278,7 @@ function CheckingMode() {
 																	</div>
 																	<div class="single-item-summ-body-qty">
 																	<div class="controls">
-																		<s:textfield name="quantity" value="%{quantity}" size="2" width="2" id="inputInfo"/>
+																		<s:textfield name="quantity" value="%{quantity}" size="2" width="2" id="inputInfo" placeholder="Enter quantity of product, you would like to purchase" onblur="return fnNumeric(this)" onSubmit="return fnNumeric(this)"/>
 																		</div>
 																	</div>
 																	<div class="stDiv">
