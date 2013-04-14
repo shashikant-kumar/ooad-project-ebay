@@ -58,11 +58,11 @@ public class ShowDeals extends ActionSupport{
         			list.add(bookCategs);		
          		}
         		if(cat_list.getCateg_name().equals("Cosmetics")){
-        			cosmeticsCategs=Item.fetchDeals(" where categ_id = "+categ_id+" limit 2");
+        			cosmeticsCategs=Item.fetchDeals(" where categ_id = "+categ_id+" limit 4");
         			list.add(cosmeticsCategs);		
          		}
          		if(cat_list.getCateg_name().equals("Mobile Phones")){
-         			mobileCategs=Item.fetchDeals(" where categ_id = "+categ_id+" limit 2");
+         			mobileCategs=Item.fetchDeals(" where categ_id = "+categ_id+" limit 4");
         			list.add(mobileCategs);		
          		}
         	System.out.println("size of item details"+itemDetails.size());
