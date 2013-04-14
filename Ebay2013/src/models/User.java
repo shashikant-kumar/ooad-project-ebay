@@ -128,13 +128,14 @@ public  static User findone(String sql){
 		
 		ArrayList<User> selection = new ArrayList<User>();
 		ResultSet resultSet = null;
-		String query = "select distinct(user_id) from sell_item";
+		String query = "select distinct(s.user_id),u.user_name from sell_item s, user u where u.user_id=s.user_id";
 		Connection connection = DB.getConnection();
 		resultSet = DB.readFromDB(query, connection);
 		try {
 			while (resultSet.next()) {
 				User user=new User();
 				user.userid=resultSet.getString("USER_ID");
+				user.username=resultSet.getString("USER_NAME");
 				selection.add(user);
 			}
 		} catch (SQLException e) {
