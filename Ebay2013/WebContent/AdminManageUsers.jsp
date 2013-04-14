@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>EBay Admin</title>
+<title>Admin Manage Users</title>
 <link href="css1.css" type="text/css" rel="stylesheet">
 <link href="css2.css" type="text/css" rel="stylesheet">
 <link href="css3.css" type="text/css" rel="stylesheet">
@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="register2.css" >
 </head>
 <body>
-	<div>
+<div>
 					<a rel="nofollow" href="home.jsp"> <img border="0"
 						alt="From collectables to cars, buy and sell all kinds of items on eBay"
 						src="images/ebay-logo-01.jpg"> </a>
@@ -26,55 +26,37 @@
 					<div class="gh-clr"></div>
 				</div>
 
-	</br>
-<div style="margin:-15px 0 -9px 0;_margin:-15px 0 -10px 0;" class="pageHeader"><table cellpadding="0" cellspacing="0" border="0">
-<tbody><tr><td><b id="mainContent">
-<h1 class="regPgHeading">Welcome to Ebay Admin portal</h1> <b class="standardtitle">(<a href="signout">Sign out</a>)</b></td></tr>
-</tbody></table></div>														
-<s:set name="theme" value="'simple'" scope="page" />
+	<br>
+<body>
 
-<h3><s:property value="msg"/> </h3>
-<ul> 
-					<ul id="NOINTERFERE00_menu">
-							
-      <li>
-    <s:url id="cats" action="manageCategoriesSubcategories">
-<s:param name="param" value="'categories'"/>
+<br />
+<br />
+<center><div style="margin:-15px 0 -9px 0;_margin:-15px 0 -10px 0;" class="pageHeader"><table cellpadding="0" cellspacing="0" border="0"><tbody><tr><td><b id="mainContent"><h1 class="regPgHeading">Sellers with Low Rating</h1></b></td></tr></tbody></table></div></center>
+<s:form action="AdminManageUsers">
+<table align="center" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<th><h3>Seller ID</h3></th>
+<th><h3>Seller Rating</h3></th>
+<th><h3>Block Seller?</h3></th>
+</tr>
+<s:iterator value="sellersToBeBlocked">
+<tr>
+<td><h4><s:property value="userId" /></h4></td>
+<td><h4><s:property value="sellerRating" /></h4></td>
+<s:url id="block" action="AdminManageUsers">
+<s:param name="blockSeller" value="true"/>
+<s:param name="sellerId" value="userId"/>
 </s:url>
-<s:a href="%{cats}">Manage Categories</s:a>
-    </li>
-   <li>
-    <s:url id="subcats" action="manageCategoriesSubcategories">
-<s:param name="param" value="'subcategories'"/>
-</s:url>
-<s:a href="%{subcats}">Manage Sub Categories</s:a>
-    </li>
-    <li>
-    <s:url id="manageUsers" action="AdminManageUsers"/>
-    <s:a href="%{manageUsers}">Manage Users</s:a>
-    </li>
-    <li>
-    <s:url id="seller" action="AdminViewSellerList">
-	</s:url>
-    <s:a href="%{seller}">View FeedBack</s:a></li>
-</ul>
-
-<br><br>
-
-</br>
-	 
-  <div>
-				<div class="pcontent">
-					<!--cacheStatus: false-->
-					<span class="ebay"> <%@include file="body.jsp"%>
-
-	</br>
-					</span>
-					</div>
-			</div>
-</br>
-
-</body>
+<td><h4><s:a href="%{block}">Block Seller</s:a></h4></td>
+</tr>
+</s:iterator>
+<tr><td><center>
+<s:submit name = "commandButton" value="Back to Admin Home" id = "mysubmit" style="height: 30px; width: 200px">
+</s:submit>
+</center></td></tr>
+</table>
+</s:form>
+</body><br><br><br><br>
 <div class="pcontent">
 					<!--cacheStatus: false-->
 					<span class="ebay"> <%@include file="footer.jsp"%>
@@ -85,4 +67,5 @@
 
 					<!--vo{2d71f+}0nd{71hj,,RlogId p4kjkbsdabjkrk9%3Fvo%7B2d71f%2B%7D0nd%7F%7B71hj-1368e4f8187-0x153-->
 				</div>
+
 </html>

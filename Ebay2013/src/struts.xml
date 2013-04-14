@@ -40,7 +40,9 @@
                 <param name="namespace">/</param>  
             </result>  
             <!-- Ruchika's Code Ends here -->
+			<!-- Sruti's Code Starts here-->
 			<result name="addToCart">ShoppingCart.jsp</result>
+			<!-- Sruti's Code Starts here-->
 			<!-- ** added by alpna ** -->
 			<result name="sellItem">SellItem.jsp</result>
 </action>
@@ -148,6 +150,9 @@
 	<result name="login">login.jsp</result>
 	<result name="sellItem">SellItem.jsp</result>
 	<result name="selectCategory">ListSellItemCateg.jsp</result>
+	<!-- Sruti's Code Starts here-->
+	<result name="blockedStatus">StatusBlockedMessageDisplay.jsp</result>
+	<!-- Sruti's Code Ends here-->
 </action>
 <action name="listSellItemCateg" class="ebay.action.ListSellItemCateg">
 	<result name="listSellItemCateg">ListSellItemCateg.jsp</result>
@@ -166,11 +171,6 @@
 	<result name="error">CreateListing.jsp</result>
 	<result name="modify">CreateListing.jsp</result>
 	<result name="cancel">SellItem.jsp</result>
-</action>
-<action name="giveFeedback" class="ebay.action.GiveFeedback">
-	<result name="feedbackSuccess">GiveFeedback.jsp</result>
-	<result name="feedbackError">GiveFeedback.jsp</result>
-	<result name="feedbackInitial">GiveFeedback.jsp</result>
 </action>
 <!-- ****************************************************************************************************** -->
 <!-- ********************************************Suhani code********************************************  -->
@@ -213,6 +213,10 @@
 </action>
 <action name="removeFromCart" class="ebay.action.RemoveFromCart">
 	<result name="success">ShoppingCart.jsp</result>
+</action>
+<action name="AdminManageUsers" class="ebay.action.AdminManageUsers">
+	<result name="success">AdminManageUsers.jsp</result>
+	<result name="adminhome">EBayAdminHome.jsp</result>
 </action>
 
 				

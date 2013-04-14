@@ -28,6 +28,38 @@ public class SellItem extends ActionSupport{
 	private String username="";
 	private String commandButton = "";
 	
+	/* Sruti's code starts here */
+	
+	private String userId = "";
+	private String userStatus = "";
+	private String password = "";
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getUserStatus() {
+		return userStatus;
+	}
+
+	public void setUserStatus(String userStatus) {
+		this.userStatus = userStatus;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	
+	/* Sruti's code ends here */
+
 	public String getPrevUrl() {
 		return prevUrl;
 	}
@@ -80,6 +112,19 @@ public class SellItem extends ActionSupport{
 			return "login";
 		}
 		username=user.getUsername();
+		
+		/* Sruti's code starts here */
+		
+		userId = user.getUserid();
+		userStatus = User.findUserStatus(userId);
+		password = user.getPassword();
+		
+		if(userStatus.equalsIgnoreCase("B")){
+			System.out.println("User is in blocked state!!!");
+			return "blockedStatus";
+		}
+		
+		/* Sruti's code ends here */
 		
 		if(this.commandButton.startsWith("Start")) {
 			if(!shortDesc.equals(null)){

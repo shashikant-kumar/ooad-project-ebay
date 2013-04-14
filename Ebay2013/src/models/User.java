@@ -26,6 +26,44 @@ private String secQuestion="";
 private String secAnswer="";
 private Date dob;
 private String memberSince="";
+
+/* Sruti's code starts here */
+
+private String userStatus = "";
+
+public String getUserStatus() {
+	return userStatus;
+}
+public void setUserStatus(String userStatus) {
+	this.userStatus = userStatus;
+}
+
+//Fetch user_status given user_id
+public static String findUserStatus(String userId){
+	
+	System.out.println("Inside User.findUserStatus method...");
+	String status = "";
+	Connection con = DB.getConnection();
+	ResultSet result = null;
+	String sql = "select user_status from user where user_id = '" + userId + "' ";
+	System.out.println(sql);
+	result = DB.readFromDB(sql, con);
+	
+	try{
+		while(result.next()){
+			status = result.getString("user_status");
+		}
+	}
+	catch(Exception ex){
+		ex.printStackTrace();
+	}
+	
+	return status;
+}
+
+/* Sruti's code ends here */
+
+
 public static User userDetails(String selectionModifier) {
 	User user = new User();
 	ResultSet resultSet = null;
