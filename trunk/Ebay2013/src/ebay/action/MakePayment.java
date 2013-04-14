@@ -1,10 +1,12 @@
 package ebay.action;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.mail.Session;
 
+import models.Category;
 import models.Item;
 import models.User;
 
@@ -16,6 +18,7 @@ import com.opensymphony.xwork2.ActionSupport;
  * @author Ruchika Sharma
  */
 public class MakePayment extends ActionSupport{
+	private List<Category> allcats=new ArrayList<Category>();
 	private String paymentmode;
 	private String banks;
 	private int quantity;
@@ -67,7 +70,7 @@ public class MakePayment extends ActionSupport{
 		this.commandButton = commandButton;
 	}
 	public String execute(){
-		
+		allcats = Category.findallcategory();
 		System.out.println("12346542676289790809-99-908907make payment called "+paymentmode+"Integer.parseInt(paymentmode)==1 "+paymentmode.equals("1"));
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		Item item = (Item)session.get("item");
@@ -118,4 +121,11 @@ public class MakePayment extends ActionSupport{
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	public List<Category> getAllcats() {
+		return allcats;
+	}
+	public void setAllcats(List<Category> allcats) {
+		this.allcats = allcats;
+	}
+	
 }

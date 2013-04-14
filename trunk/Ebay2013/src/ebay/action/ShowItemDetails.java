@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import models.Category;
 import models.Item;
 import models.Status;
 import models.Trans;
@@ -18,8 +19,15 @@ public class ShowItemDetails {
 	private int order;
 	private User sellerName;
 	private static ArrayList<Trans> orderItemList = new ArrayList<Trans>();
+	private List<Category> allcats=new ArrayList<Category>();
 	
 	
+	public List<Category> getAllcats() {
+		return allcats;
+	}
+	public void setAllcats(List<Category> allcats) {
+		this.allcats = allcats;
+	}
 	public ArrayList<Trans> getOrderItemList() {
 		return orderItemList;
 	}
@@ -54,7 +62,7 @@ public class ShowItemDetails {
 	
 	
 	public String execute() throws Exception {
-		
+		allcats = Category.findallcategory();
 		User user=new User();
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		user = (User) session.get("user");

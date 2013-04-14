@@ -46,6 +46,11 @@
 			<!-- ** added by alpna ** -->
 			<result name="sellItem">SellItem.jsp</result>
 </action>
+
+<action name="dummy" class="ebay.action.Index">
+			<result name="initial">index.jsp</result>
+			<result name="success">ebayhome.jsp</result>
+			</action>
 <action name="Register" class="ebay.action.RegisterUser">
 			<result name="initial">RegisterUser.jsp</result>
 			<result name="success">login.jsp</result>
@@ -53,8 +58,8 @@
  <action name="signout" class="ebay.action.Logout">
 			<result name="exit">ebayhome.jsp</result>
 			</action>
- <action name="categories" class="ebay.action.ShowCategories">
-			<result name="success">Showcategories.jsp</result>
+ <action name="categories" class="ebay.action.ShowSubCategories">
+			<result name="success">Showsubcategories.jsp</result>
 			</action>
 <action name="fetchitems" class="ebay.action.FetchItem">
 			<result name="success">DisplayItems.jsp</result>

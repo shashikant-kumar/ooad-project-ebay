@@ -56,6 +56,7 @@ public class FetchItem extends ActionSupport{
 	private String subcategory;
 	User user =new User();
   	private ArrayList<Item> itemlist = new ArrayList<Item>();
+  	private List<Category> allcats=new ArrayList<Category>();
   	int price1;
   	int price2;
   	String commandButton="";
@@ -72,6 +73,7 @@ public class FetchItem extends ActionSupport{
 
 
 	public String execute() throws Exception {
+		allcats = Category.findallcategory();
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		User user = (User) session.get("user");
 		if (user == null) {
@@ -119,5 +121,16 @@ public class FetchItem extends ActionSupport{
 	public void setItemlist(ArrayList<Item> itemlist) {
 		this.itemlist = itemlist;
 	}
+
+
+	public List<Category> getAllcats() {
+		return allcats;
+	}
+
+
+	public void setAllcats(List<Category> allcats) {
+		this.allcats = allcats;
+	}
+	
 	
 }

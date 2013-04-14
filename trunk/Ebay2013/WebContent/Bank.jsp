@@ -1,5 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+   pageEncoding="ISO-8859-1"%>
+
 <!-- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd"> -->
    <!--Author: Ruchika  -->
@@ -7,7 +9,6 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
 <title>Bank Transfer</title>
 <script src="http://code.jquery.com/jquery.js"></script>

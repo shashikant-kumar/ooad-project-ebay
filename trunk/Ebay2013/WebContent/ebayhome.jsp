@@ -1,17 +1,19 @@
-<%@page contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+   pageEncoding="ISO-8859-1"%>
 
 <%@taglib prefix="s" uri="/struts-tags"%>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<link href="hover.css" type="text/css" rel="stylesheet">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Ebay Home</title>
-<link href="css1.css" type="text/css" rel="stylesheet">
+ <title>Ebay Home</title>
+
+<!-- <link href="css1.css" type="text/css" rel="stylesheet">
 <link href="css2.css" type="text/css" rel="stylesheet">
 <link href="css3.css" type="text/css" rel="stylesheet">
-</head>
+ --></head> 
 <body>
-	<div>
+	 <div>
 		<br />
 	</div>
 <div>
@@ -19,23 +21,23 @@
 					<!--cacheStatus: false-->
 					<span class="ebay"> <%@include file="header.jsp"%>
 
-	</br>
+	<br>
 					</span>
 					</div>
 			</div>
 
-	</br>
+	<br> <br><br><br>
 	 
-  <div>
+   <div>
 				<div class="pcontent">
 					<!--cacheStatus: false-->
 					<span class="ebay"> <%@include file="body.jsp"%>
 
-	</br>
+	<br>
 					</span>
 					</div>
 			</div>
-</br>
+<br>
  
 					</div>
 				</div></td>
@@ -258,5 +260,5 @@
 	border-bottom: 1px solid #ccc !important
 }
 </style></center>
-</body>
+ </body>
 </html>

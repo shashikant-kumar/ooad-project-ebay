@@ -5,7 +5,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 
@@ -25,7 +27,17 @@ public class RegisterUser extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 	private String commandButton = "";
 	private User user;
+	private List<Category> allcats=new ArrayList<Category>();
 	
+	
+	public List<Category> getAllcats() {
+		return allcats;
+	}
+
+	public void setAllcats(List<Category> allcats) {
+		this.allcats = allcats;
+	}
+
 	public String getCommandButton() {
 		return commandButton;
 	}
@@ -176,7 +188,7 @@ public class RegisterUser extends ActionSupport {
 	}
 
 	public String execute() {
-		
+		allcats = Category.findallcategory();
 		System.out.println("first name is"+firstName);
 		System.out.println("User name coming is"+ username);
 		System.out.println("user id"+userid);

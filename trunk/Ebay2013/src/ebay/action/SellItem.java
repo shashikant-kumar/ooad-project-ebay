@@ -22,6 +22,7 @@ Description:It creates product listing for the seller
 **/
 
 public class SellItem extends ActionSupport{
+	private List<Category> allcats=new ArrayList<Category>();
 	private String prevUrl="";
 	private String shortDesc="";
 	private ArrayList<String> suggestedCategList= new ArrayList<String>();
@@ -34,6 +35,15 @@ public class SellItem extends ActionSupport{
 	private String userStatus = "";
 	private String password = "";
 	
+	
+	public List<Category> getAllcats() {
+		return allcats;
+	}
+
+	public void setAllcats(List<Category> allcats) {
+		this.allcats = allcats;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -105,6 +115,7 @@ public class SellItem extends ActionSupport{
 	}
 
 	public String execute() throws Exception {
+		allcats = Category.findallcategory();
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		User user = (User) session.get("user");
 		if (user == null) {

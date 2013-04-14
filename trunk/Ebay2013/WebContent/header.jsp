@@ -1,21 +1,19 @@
-<%@page contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+   pageEncoding="ISO-8859-1"%>
 
 <%@taglib prefix="s" uri="/struts-tags"%>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Ebay Home</title>
+<link href="hover.css" type="text/css" rel="stylesheet">
 <link href="css1.css" type="text/css" rel="stylesheet">
 <link href="css2.css" type="text/css" rel="stylesheet">
 <link href="css3.css" type="text/css" rel="stylesheet">
+<head>
 </head>
 <body>
-	<div>
+    <div>
 		<br />
 	</div>
-
-
 	<table>
 		<tr>
 			<td width="190"></td>
@@ -58,7 +56,19 @@
                             </table>
 							<ul id="NOINTERFERE00_menu">
 							
-    <li><a href="categories">CATEGORIES</a></li>
+    <!-- <li><a href="categories">CATEGORIES</a></li> -->
+ <ul class="cssMenu">
+	<li>
+		<a href="#">Categories</a>  
+		        
+		<ul>
+		<s:iterator value="allcats"> 
+	    	<li><a href="categories?categoryName=<s:property value="categ_name"/>"><s:property value="categ_name"/></a></li>
+			</s:iterator>
+		</ul>
+		
+	</li>
+	</ul>
     <li><a href="#">GLOBAL EASYBUYs</a></li>
     <li><a href="#">FASHION</a></li>
     <li><a href="#">HOLIDAYS</a></li>

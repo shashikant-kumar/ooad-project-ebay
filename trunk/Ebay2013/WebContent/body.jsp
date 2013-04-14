@@ -1,10 +1,11 @@
-<%@page contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+   pageEncoding="ISO-8859-1"%>
 
 <%@taglib prefix="s" uri="/struts-tags"%>
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
 <title>Ebay Home</title>
 <link href="css1.css" type="text/css" rel="stylesheet">
 <link href="css2.css" type="text/css" rel="stylesheet">

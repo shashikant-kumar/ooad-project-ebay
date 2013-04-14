@@ -22,6 +22,7 @@ Author: Sravvani Peraka
 
 public class DeleteFromList extends ActionSupport{
 
+	private List<Category> allcats=new ArrayList<Category>();
 	private int item_id;
 	User user =new User();
   	ArrayList<NewList> listDetails=new ArrayList<NewList>();
@@ -41,6 +42,7 @@ public class DeleteFromList extends ActionSupport{
 
 
 	public String execute() throws Exception {
+		allcats = Category.findallcategory();
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		User user = (User) session.get("user");
 		if (user == null) {
@@ -87,6 +89,16 @@ public class DeleteFromList extends ActionSupport{
 
 	public void setListDetails(ArrayList<NewList> listDetails) {
 		this.listDetails = listDetails;
+	}
+
+
+	public List<Category> getAllcats() {
+		return allcats;
+	}
+
+
+	public void setAllcats(List<Category> allcats) {
+		this.allcats = allcats;
 	}
 
 

@@ -23,6 +23,7 @@ and based on that fetches the rating from transaction table.
 **/
 
 public class SellerInfo extends ActionSupport{
+	private List<Category> allcats=new ArrayList<Category>();
 	int sellerId;
 	int orderId;
 	String criteria;
@@ -53,6 +54,15 @@ public class SellerInfo extends ActionSupport{
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	
+
+	public List<Category> getAllcats() {
+		return allcats;
+	}
+
+	public void setAllcats(List<Category> allcats) {
+		this.allcats = allcats;
 	}
 
 	//getters and setters
@@ -124,7 +134,7 @@ public class SellerInfo extends ActionSupport{
 	}
 
 	public String execute() throws Exception {
-
+		allcats = Category.findallcategory();
 		//user session
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		User user = (User) session.get("user");

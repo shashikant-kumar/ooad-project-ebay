@@ -1,10 +1,12 @@
 package ebay.action;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import com.opensymphony.xwork2.ActionContext;
 
+import models.Category;
 import models.Status;
 import models.Trans;
 import models.Transaction;
@@ -15,6 +17,7 @@ public class CancelOrder {
 	private String userid=" ";
 	String username="";
 	private static ArrayList<String> transStatus = new ArrayList<String>();	
+	private List<Category> allcats=new ArrayList<Category>();
 	private int order;
 	private String msg;
 
@@ -69,7 +72,7 @@ public class CancelOrder {
 
 
 	public String execute() throws Exception{
-		
+		allcats = Category.findallcategory();
 		User user=new User();
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		user = (User) session.get("user");
@@ -117,6 +120,16 @@ public class CancelOrder {
 			}
 			*/
 		return "success";
+	}
+
+
+	public List<Category> getAllcats() {
+		return allcats;
+	}
+
+
+	public void setAllcats(List<Category> allcats) {
+		this.allcats = allcats;
 	}
 	
 

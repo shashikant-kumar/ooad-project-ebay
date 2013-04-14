@@ -21,7 +21,7 @@ import models.*;
  */
 
 public class Login extends ActionSupport {
-    
+	private List<Category> allcats=new ArrayList<Category>();
 	private static final long serialVersionUID = 1L;
 	private String commandButton = "";
 	private User user;
@@ -235,6 +235,7 @@ public class Login extends ActionSupport {
    
 
 	public String execute() {
+		allcats = Category.findallcategory();
 		//System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$itemId in login:"+itemId);
 		MyLog.log("in Login.execute() with commandButton = " + 
     	        this.commandButton);
@@ -374,6 +375,14 @@ public class Login extends ActionSupport {
     public void setPassword(String password) {
         this.password = password;
     }
+
+	public List<Category> getAllcats() {
+		return allcats;
+	}
+
+	public void setAllcats(List<Category> allcats) {
+		this.allcats = allcats;
+	}
     
    
 }

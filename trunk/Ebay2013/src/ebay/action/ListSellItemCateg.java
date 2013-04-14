@@ -18,6 +18,7 @@ import models.*;
  */
 
 public class ListSellItemCateg extends ActionSupport {
+	private List<Category> allcats=new ArrayList<Category>();
 	private String shortDesc="";
 	private String commandButton = "";
 	private ArrayList<String> suggestedCategList= new ArrayList<String>();
@@ -82,6 +83,14 @@ public class ListSellItemCateg extends ActionSupport {
 	}
 	
 	
+	public List<Category> getAllcats() {
+		return allcats;
+	}
+
+	public void setAllcats(List<Category> allcats) {
+		this.allcats = allcats;
+	}
+
 	public Address getAddress() {
 		return address;
 	}
@@ -140,6 +149,7 @@ public class ListSellItemCateg extends ActionSupport {
 	}
 
 	public String execute() {
+		allcats = Category.findallcategory();
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		User user = (User) session.get("user");
 		username = user.getUsername();

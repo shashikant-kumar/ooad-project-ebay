@@ -25,7 +25,7 @@ public class AddToList extends ActionSupport{
 	User user =new User();
   	Item item_detail=new Item();
   	NewList listvalues=new NewList();
-
+  	private List<Category> allcats=new ArrayList<Category>();
   	//sravvani code for add to list
   	private String Addtolist = "";
 	private String listName="watchlist";
@@ -42,7 +42,7 @@ public class AddToList extends ActionSupport{
 	}
 	
 	public String execute() throws Exception {
-		
+		allcats = Category.findallcategory();
 		item_detail = Item.fetchItem(" where item_id="+ item_id );
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		User user = (User) session.get("user");
@@ -119,4 +119,11 @@ public class AddToList extends ActionSupport{
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	public List<Category> getAllcats() {
+		return allcats;
+	}
+	public void setAllcats(List<Category> allcats) {
+		this.allcats = allcats;
+	}
+	
 }

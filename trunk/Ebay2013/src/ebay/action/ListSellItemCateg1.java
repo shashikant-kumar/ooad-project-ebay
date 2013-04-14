@@ -17,7 +17,7 @@ import models.*;
  * @author Alpna
  */
 public class ListSellItemCateg1 extends ActionSupport{
-	
+	private List<Category> allcats=new ArrayList<Category>();
 	private String shortDesc="";
 	private String commandButton = "";
 	private ArrayList<String> categList= new ArrayList<String>();
@@ -33,6 +33,7 @@ public class ListSellItemCateg1 extends ActionSupport{
 	private String msg="";
 	
 	public String execute() {
+		allcats = Category.findallcategory();
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		User user = (User) session.get("user");
 		username = user.getUsername();
@@ -63,6 +64,16 @@ public class ListSellItemCateg1 extends ActionSupport{
 			}
 		}
 		return "listSellItemCateg1";
+	}
+
+
+	public List<Category> getAllcats() {
+		return allcats;
+	}
+
+
+	public void setAllcats(List<Category> allcats) {
+		this.allcats = allcats;
 	}
 
 

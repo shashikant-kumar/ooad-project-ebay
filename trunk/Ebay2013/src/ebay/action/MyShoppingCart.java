@@ -1,6 +1,7 @@
 package ebay.action;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import models.*;
@@ -22,9 +23,15 @@ public class MyShoppingCart extends ActionSupport {
 	private int cartTotal = 0;
 	private String cart;
 	private String username = "";
+	private List<Category> allcats=new ArrayList<Category>();
 	
 	
-	
+	public List<Category> getAllcats() {
+		return allcats;
+	}
+	public void setAllcats(List<Category> allcats) {
+		this.allcats = allcats;
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -76,6 +83,7 @@ public class MyShoppingCart extends ActionSupport {
 		this.quantity = quantity;
 	}
 	public String execute() throws Exception {
+		allcats = Category.findallcategory();
 		System.out.println("---------------------------------------------------");
 		items = new ArrayList<Item>();
 		Map<String, Object> session = ActionContext.getContext().getSession();

@@ -1,7 +1,7 @@
 
 			<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 		<html><head>
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
    <title>Creating an eBay Password</title><script language="JavaScript"><!--
 includeHost='http://include.ebaystatic.com/';
 //--></script><script src="http://include.ebaystatic.com/js/v/in/ebaybase.js"></script><script src="http://include.ebaystatic.com/js/v/in/ebaysup.js"></script><script type="text/javascript" language="JavaScript1.1">ebay.oDocument._getControl("headerCommon")._exec("writeStyleSheet");</script><script src="http://include.ebaystatic.com/js/v/in/features/help/contextual.js"></script><!--#en-IN#prod#ebay.com###help/new/contextual/create_password.html#STANDARD###Help.Contextual.create-password###ebay#UTF-8#--><script language="javascript" type="text/javascript">				
