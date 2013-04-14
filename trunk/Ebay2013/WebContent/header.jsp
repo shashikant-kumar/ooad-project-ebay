@@ -69,10 +69,10 @@
 		
 	</li>
 	</ul>
-    <li><a href="#">GLOBAL EASYBUYs</a></li>
+    <!-- <li><a href="#">GLOBAL EASYBUYs</a></li>
     <li><a href="#">FASHION</a></li>
     <li><a href="#">HOLIDAYS</a></li>
-<li><a href="#">INSURANCE</a></li>
+<li><a href="#">INSURANCE</a></li> -->
 <li><a href="sellItem">Sell</a></li>
 <li><a href="purchasehistory">PURCHASE HISTORY </a></li>
 <li><a href="sellingHistory">SELLING HISTORY</a></li>
