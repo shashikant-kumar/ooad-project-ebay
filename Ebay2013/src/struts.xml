@@ -58,8 +58,8 @@
  <action name="signout" class="ebay.action.Logout">
 			<result name="exit">ebayhome.jsp</result>
 			</action>
- <action name="categories" class="ebay.action.ShowSubCategories">
-			<result name="success">Showsubcategories.jsp</result>
+ <action name="categories" class="ebay.action.ShowCategories">
+			<result name="success">Showcategories.jsp</result>
 			</action>
 <action name="fetchitems" class="ebay.action.FetchItem">
 			<result name="success">DisplayItems.jsp</result>
@@ -176,6 +176,11 @@
 	<result name="error">CreateListing.jsp</result>
 	<result name="modify">CreateListing.jsp</result>
 	<result name="cancel">SellItem.jsp</result>
+</action>
+<action name="giveFeedback" class="ebay.action.GiveFeedback">
+<result name="feedbackSuccess">GiveFeedback.jsp</result>
+<result name="feedbackError">GiveFeedback.jsp</result>
+<result name="feedbackInitial">GiveFeedback.jsp</result>
 </action>
 <!-- ****************************************************************************************************** -->
 <!-- ********************************************Suhani code********************************************  -->
