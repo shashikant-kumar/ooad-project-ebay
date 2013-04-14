@@ -172,6 +172,10 @@ public class Payment extends ActionSupport{
 				
 		User user = (User) session.get("user");
 		if(user == null || session.get("user") == ""){
+			System.out.println("item.getItem_id() in payment **************************************"+itemId);
+			if(itemId!=0){
+			Item item = Item.fetchItem("where item_id="+itemId);
+			session.put("item", item);}
 			System.out.println("no session is maintained");
 			return "login";
 		}
@@ -228,8 +232,24 @@ public class Payment extends ActionSupport{
 			if(item!=null){
 				System.out.println("QWERTJJHGNGBGfbklfdnvksdlnklsdncklsdncindlkcnadklcnklanckldnclkndclksdnclk item list "+ itemlist.size());
 				System.out.println("In buy it now Command button is +++++++++++++++++++++++++++++ "+commandButton);
+				System.out.println("item.getItem_id() in payment **************************************"+itemId);
 				//Item.fetchItem("where item_id="+item.getItem_id());
-				itemSetter(item);
+				if(itemId!=0)
+				item=Item.fetchItem("where item_id= "+itemId);
+				String sellerId;
+				System.out.println("item.getItem_id() in payment **************************************"+itemId);
+				//itemId=item.getItem_id();
+				
+				itemName=item.getItem_name();
+				itemPrice=item.getItem_price();
+				//quantity = 1;
+				//item.setQuantity(quantity);
+				courier = item.getCourier();
+				itemImage=item.getItem_image();
+				sellerId=item.getSeller_name();
+				User user1 = User.userDetails("where user_id='"+sellerId+"';");
+				sellerName = user1.getUsername();
+				//itemSetter(item);
 				//item.setQuantity(quantity);
 				item.setSelectedQuantity(quantity);
 				//System.out.println("itemPrice is **********"+item.getSelectedQuantity()+"******************"+quantity);
@@ -248,18 +268,7 @@ public class Payment extends ActionSupport{
 		return "success";
 	}
 	
-	public void itemSetter(Item item){
-		String sellerId;
-		System.out.println("item.getItem_id() in payment"+item.getItem_id());
-		itemId=item.getItem_id();
-		itemName=item.getItem_name();
-		itemPrice=item.getItem_price();
-		//quantity = 1;
-		//item.setQuantity(quantity);
-		courier = item.getCourier();
-		itemImage=item.getItem_image();
-		sellerId=item.getSeller_name();
-		User user1 = User.userDetails("where user_id='"+sellerId+"';");
-		sellerName = user1.getUsername();
-	}
+	/*public void itemSetter(Item item){
+		
+	}*/
 }
