@@ -16,7 +16,7 @@ public class Category {
 			
 	public static ArrayList<Category> findallcategory() {
 		ArrayList<Category> selection = new ArrayList<Category>();
-		String query = "select categ_id,categ_name from category ";
+		String query = "select categ_id,categ_name from category order by categ_name ";
 		Connection connection = DB.getConnection();
 		ResultSet resultSet = DB.readFromDB(query, connection);
 		try {

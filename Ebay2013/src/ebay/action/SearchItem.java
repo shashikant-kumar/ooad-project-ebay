@@ -1,8 +1,10 @@
 package ebay.action;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import models.Category;
 import models.Item;
 import models.User;
 
@@ -14,14 +16,19 @@ public class SearchItem {
  private List<Item> itemlist1;
  private List<Item> itemlist2;
  int price1;
- public int getPrice1() {
-	return price1;
+ private List<Category> allcats=new ArrayList<Category>();
+ 
+ public List<Category> getAllcats() {
+	return allcats;
 }
 
+public void setAllcats(List<Category> allcats) {
+	this.allcats = allcats;
+}
 
-
-
-
+public int getPrice1() {
+	return price1;
+}
 
 public void setPrice1(int price1) {
 	this.price1 = price1;
@@ -58,6 +65,7 @@ int price2;
 	
 	  
 	public String execute() throws Exception {
+		allcats = Category.findallcategory();
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		User user = (User) session.get("user");
 		if (user == null) {

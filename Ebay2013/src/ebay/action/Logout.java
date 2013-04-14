@@ -1,11 +1,14 @@
 package ebay.action;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.util.MyLog;
 
+import models.Category;
 import models.User;
 /**
  * 
@@ -17,7 +20,7 @@ private static final long serialVersionUID = 1L;
 private String username="";
 private String user_id="";
 private String email_id="";
-
+private List<Category> allcats=new ArrayList<Category>();
 
 public String getUsername() {
 	return username;
@@ -39,7 +42,7 @@ public void setEmail_id(String email_id) {
 }
 
 	public String execute() throws Exception {
-		
+		allcats = Category.findallcategory();
 			MyLog.log("In logout");
 			System.out.println("IN logout");
 			Map<String, Object> session = ActionContext.getContext().getSession();
@@ -54,5 +57,12 @@ public void setEmail_id(String email_id) {
 		
 		return "exit";
 	}
+	public List<Category> getAllcats() {
+		return allcats;
+	}
+	public void setAllcats(List<Category> allcats) {
+		this.allcats = allcats;
+	}
+	
 
 }

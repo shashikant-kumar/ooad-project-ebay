@@ -18,6 +18,7 @@ public class SellingHistory extends ActionSupport {
 	/**
 	 * 
 	 */
+	private List<Category> allcats=new ArrayList<Category>();
 	private static final long serialVersionUID = 1L;
 	private String url = "SellingHistory.jsp";
 	private User user;
@@ -39,6 +40,19 @@ public class SellingHistory extends ActionSupport {
 
 	
 	
+
+	public List<Category> getAllcats() {
+		return allcats;
+	}
+
+
+	public void setAllcats(List<Category> allcats) {
+		this.allcats = allcats;
+	}
+
+
+
+
 
 	private ArrayList<Item> orderItemList;
 	private ArrayList<Item> soldItemList;
@@ -67,6 +81,7 @@ public class SellingHistory extends ActionSupport {
 
 
 	public String execute() {
+		allcats = Category.findallcategory();
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		System.out.println("xxxxxxxxxxxx"+transactionId);
 		System.out.println("CCCCCCCCCCC"+ commandButton);

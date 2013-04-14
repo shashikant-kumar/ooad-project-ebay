@@ -68,9 +68,9 @@ public class ShowDeals extends ActionSupport{
         	System.out.println("size of item details"+itemDetails.size());
         	}
         }
-		System.out.println("category"+bookCategs.get(0).getCategory_name());
+		/*System.out.println("category"+bookCategs.get(0).getCategory_name());
 		System.out.println("category"+bookCategs.get(0).getCateg_id());
-		return "success";
+		*/return "success";
 	}
 	
 	public int getItem() {

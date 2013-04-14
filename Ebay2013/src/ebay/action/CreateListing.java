@@ -32,6 +32,7 @@ public class CreateListing extends ActionSupport{
 	private String courier;
 	private int sla;
 	private int discount;
+	private List<Category> allcats=new ArrayList<Category>();
 	
 	//values in others table
 	private String subTitle="";
@@ -72,6 +73,7 @@ public class CreateListing extends ActionSupport{
 	
 
 	public String execute() {
+		allcats = Category.findallcategory();
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		User user = (User) session.get("user");
 		username = user.getUsername();
@@ -633,6 +635,17 @@ public class CreateListing extends ActionSupport{
 
 	public void setPin(String pin) {
 		this.pin = pin;
+	}
+
+	
+
+	public List<Category> getAllcats() {
+		return allcats;
+	}
+
+
+	public void setAllcats(List<Category> allcats) {
+		this.allcats = allcats;
 	}
 
 

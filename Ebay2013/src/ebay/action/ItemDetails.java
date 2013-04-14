@@ -28,7 +28,7 @@ public class ItemDetails extends ActionSupport{
 	private String username="";
   	Item item_detail=new Item();
   	ArrayList<NewList> nlist = new ArrayList<NewList>();
-	
+  	private List<Category> allcats=new ArrayList<Category>();
 	  
 	public String execute() throws Exception {
 		Map<String, Object> session = ActionContext.getContext().getSession();
@@ -38,7 +38,7 @@ public class ItemDetails extends ActionSupport{
 		}
 		username=user.getUsername();
 		item_detail = Item.fetchItem(" where item_id="+ item );
-		
+		allcats = Category.findallcategory();
 		nlist=NewList.fetchList(" where item_id="+item+" and userid='"+user.getUserid()+"'");
 		
 		return "success";
@@ -46,17 +46,19 @@ public class ItemDetails extends ActionSupport{
 	
 	
 
+	public List<Category> getAllcats() {
+		return allcats;
+	}
+
+	public void setAllcats(List<Category> allcats) {
+		this.allcats = allcats;
+	}
 	public int getItem() {
 		return item;
 	}
-
-
-
 	public void setItem(int item) {
 		this.item = item;
 	}
-
-
 
 	public Item getItem_detail() {
 		return item_detail;

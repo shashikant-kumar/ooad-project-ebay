@@ -1,6 +1,7 @@
 package ebay.action;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -13,8 +14,10 @@ public class ViewAllDeals extends ActionSupport{
 	private int categ_id;
 	ArrayList<Item> itemDetails=new ArrayList<Item>();
 	private String username="";
+	private List<Category> allcats=new ArrayList<Category>();
 	
 	public String execute() throws Exception {
+		allcats = Category.findallcategory();
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		User user = (User) session.get("user");
 		if (user == null) {
@@ -29,6 +32,14 @@ public class ViewAllDeals extends ActionSupport{
 		return "success";
 	}
 	
+	public List<Category> getAllcats() {
+		return allcats;
+	}
+
+	public void setAllcats(List<Category> allcats) {
+		this.allcats = allcats;
+	}
+
 	public int getCateg_id() {
 		return categ_id;
 	}

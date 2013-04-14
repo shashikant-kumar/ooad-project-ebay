@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import models.Category;
 import models.Item;
 import models.Order;
 import models.User;
@@ -21,9 +22,16 @@ public class ShowOrderDetails {
 	private String userid=" ";
 	String username="";
 	private List<Order> orderlist;
-	
+	private List<Category> allcats=new ArrayList<Category>();
 
 	
+	
+	public List<Category> getAllcats() {
+		return allcats;
+	}
+	public void setAllcats(List<Category> allcats) {
+		this.allcats = allcats;
+	}
 	public String getUserid() {
 		return userid;
 	}
@@ -46,7 +54,7 @@ public class ShowOrderDetails {
 	
 	public String execute() throws Exception {
 		
-		
+		allcats = Category.findallcategory();
 		
 		User user=new User();
 		Map<String, Object> session = ActionContext.getContext().getSession();

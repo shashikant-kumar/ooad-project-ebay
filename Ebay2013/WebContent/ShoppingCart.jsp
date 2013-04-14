@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+   pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!-- Author: Sruti Davis -->
 <html>
@@ -9,7 +10,6 @@ h4.intro {color:blue;font-family: Arial, Verdana;
    font-size: 16px; }
 div.important {color:green;}
 </style>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>My Shopping Cart</title>
 <link href="css1.css" type="text/css" rel="stylesheet">
 <link href="css2.css" type="text/css" rel="stylesheet">
