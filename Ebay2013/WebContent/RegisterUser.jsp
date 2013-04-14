@@ -289,7 +289,7 @@ We will contact you if we have questions about your account.
 				<td><s:select label="secretQuestion"
 						headerKey="Select your secret question"
 						headerValue="Select your secret question"
-						list="{'Who is your favourite cricket player?', 'What is your mother`s maiden name?', 'Who is your favourite film star?', 'What is the name of your first school', 'What is your pet`s name'}"
+						list="{'Who is your favourite cricket player?', 'What is your mother`s maiden name?', 'Who is your favourite film star?', 'What is the name of your first school', 'What is your pet name'}"
 						name="secQuestion">
 					</s:select>
 				</td>
