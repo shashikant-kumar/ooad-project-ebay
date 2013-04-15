@@ -61,6 +61,9 @@
  <action name="categories" class="ebay.action.ShowSubCategories">
 			<result name="success">Showsubcategories.jsp</result>
 			</action>
+<action name="allcategories" class="ebay.action.ShowCategories">
+			<result name="success">Showcategories.jsp</result>
+			</action>
 <action name="fetchitems" class="ebay.action.FetchItem">
 			<result name="success">DisplayItems.jsp</result>
 			</action>
