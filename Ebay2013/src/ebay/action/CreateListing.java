@@ -105,8 +105,7 @@ public class CreateListing extends ActionSupport{
 			System.out.println("sub category is "+subCateg);
 			int categId= Category.getCategoryId(categ);
 			int subCategId = Category.getSubCategoryId(subCateg);
-			//insert into sell_iem table.
-			image="abcd";
+			
 			int ret = Item.InsertIntoSellItem(userId, title, buyItNowPrice, discount, condition, buyItNowQuantity, image, categId, subCategId, courier,sla);
 			
 			if(ret != 0){
