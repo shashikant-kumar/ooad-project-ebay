@@ -90,6 +90,10 @@ function CheckingMode() {
 </script>
 </head>
 <body>
+<s:if test="hasActionErrors()">
+		<span style="color: red; text-align: center;"><s:property value="error"/><s:actionerror />
+		</span>
+	</s:if>
 						<div>
 								<!-- headerType=MIN:DEFAULT:BUY-->
 								<script type="text/javascript">var svrGMT = 1333797554828;</script>
