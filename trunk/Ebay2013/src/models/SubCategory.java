@@ -13,7 +13,28 @@ public class SubCategory {
 	private String categ_name;
 	private String subcateg_name;
 	private List<SubCategory> allsubcats;
+	
+	public static ArrayList<SubCategory> fetchSubCategory(int param){
+		ArrayList<SubCategory> selection = new ArrayList<SubCategory>();
+		String sql="select sub_categ_name from sub_category where categ_id="+param;
+		ResultSet resultSet = null;
+		Connection connection = DB.getConnection();
+		resultSet = DB.readFromDB(sql, connection);
+		try {
 			
+			while (resultSet.next()) {
+				SubCategory sub=new SubCategory();
+				sub.subcateg_name=resultSet.getString("sub_categ_name");
+				selection.add(sub);
+			}
+		} catch (SQLException e) {
+	       System.out.println("Exception while reading from db"+ e);
+		}
+		return selection;
+		
+	}
+
+	
 	public static ArrayList<SubCategory> findsubcategories(String param) {
 		ArrayList<SubCategory> selection = new ArrayList<SubCategory>();
 		String query = "select sub_categ_name,categ_name from sub_category s,category c where s.categ_id=c.categ_id and c.categ_name= '"+param+"';";

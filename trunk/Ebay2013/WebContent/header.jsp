@@ -59,7 +59,7 @@
     <!-- <li><a href="categories">CATEGORIES</a></li> -->
  <ul class="cssMenu">
 	<li>
-		<a href="#">Categories</a>  
+		<a href="allcategories">Categories</a>  
 		        
 		<ul>
 		<s:iterator value="allcats"> 
