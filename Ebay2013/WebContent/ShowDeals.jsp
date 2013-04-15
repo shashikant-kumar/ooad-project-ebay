@@ -49,15 +49,16 @@
 					</tr>
 					<!-- ITERATE -->
 					<tr><td>
-					<br></br>
 					</td></tr>
-					<!-- start of books and magazine category -->
+					<!-- start of each category -->
 					<tr>
 						<td>
-							<table bordercolor="black" >
+							<table bordercolor="black" border="0">
+								<s:iterator var="itr" value="allCats">
 								<tr>
-									<td class="main-head" colspan="4">
-									<b><s:property value="bookCategs.get(0).getCategory_name()"/></b>
+								<s:if test = "allItems.size()>0">
+									<td class="main-head" colspan="4" align="left">
+									<br><b><s:property value="%{#itr.categ_name}"/></b>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -68,17 +69,18 @@
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									<%-- <s:property value="bookCategs.size()"/> --%>
-									<s:if test = "bookCategs.size()<4">
+									<s:if test = "allItems.size()<4">
 									</s:if>
 									<s:else>
 									<s:url id="seeMore" action="viewAllDeals">
-									<s:param name="categ_id" value="bookCategs.get(0).getCateg_id()"/>
+									<s:param name="categ_id" value="categ_id"/>
 									</s:url>
 									<div style="float: right;padding-right:5px;"><s:a href="%{seeMore}">See more>></s:a></div>
 									</s:else>
 									</td>
 								</tr>
-								<s:iterator var="itr" value="bookCategs">
+								
+								<s:iterator var="itr" value="allItems">
 									<td>
 				<!--						 PRODUCTS ROW 1,1-->
 										<table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -115,139 +117,14 @@
 										</table>
 									</td>
 								</s:iterator>
-							</table>
-						</td>
-					</tr>
-					<!-- end of books and magazine category -->
-
-					<!-- END ITERATE -->
-
-					<!-- start of mobiles category -->
-					<tr>
-						<td>
-							<table bordercolor="black" >
-								<tr>
-									<td class="main-head" colspan="4">
-									<br>
-									<br>
-									<b><s:property value="mobileCategs.get(0).getCategory_name()"/></b>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<%-- <s:property value="mobileCategs.size()"/> --%>
-									<s:if test = "mobileCategs.size()<4">
-									</s:if>
-									<s:else>
-									<s:url id="seeMore" action="viewAllDeals">
-									<s:param name="categ_id" value="mobileCategs.get(0).getCateg_id()"/>
-									</s:url>
-									<div style="float: right;padding-right:5px;"><s:a href="%{seeMore}">See more>></s:a></div>
-									</s:else>
-									</td>
-								</tr>
-								<s:iterator var="itr" value="mobileCategs">
-									<td>
-				<!--						 PRODUCTS ROW 1,1-->
-										<table width="100%" border="0" cellspacing="0" cellpadding="0">
-											<tr>
-												<td valign="top">
-				<!--										 PRODUCT 1 -->
-													<table width="100%" border="0" cellspacing="0" cellpadding="0">
-														<td width="4" class="nodealCol">&nbsp;</td>
-														<td width="193" class="dealCol">
-														<s:url id="ItemName" action="ItemDetails">
-														<s:param name="item" value="item_id"/>
-														</s:url>
-														<div class="mdt"><s:a href="%{ItemName}"><s:property value="item_name"/></s:a></div>
-														<br>
-														<div class="dealImg" target="_top" style="text-decoration:none;"><s:a href="%{ItemName}">
-														<img src="./images/<s:property value="item_image"/>" class="lazy" data-original="" width="140" height="140" border="0" style="top: 0px; display: inline-block;"></s:a></div>
-														<div class="priceDiv"><span class="WebRupee WebRupeeMain">Rs.</span> <s:property value = "discount_price"/></div>
-														<div class="priceinfoDiv">MRP <span class="WebRupee WebRupeeInfo">Rs.</span> <s:property value = "item_price"/> | Save <span class="WebRupee WebRupeeInfo">Rs.</span> <s:property value = "save_price"/></div><div class="dealButton"><div style="float: left;">
-														<span class="discDiv">-<s:property value = "item_discount"/>%</span></div>
-														<div style="float: right;padding-right:5px;">
-														<s:a href="%{ItemName}" target="_top" style="text-decoration:none;">
-														<img height="20" border="0" width="70" src="./images/getit.jpg"></s:a></div></div></td>
-													</table>
-												</td>	
-											</tr>
-										</table>
-									</td>
-								</s:iterator>
-							</table>
-						</td>
-					</tr>
-					<!-- end of mobiles category -->
-					<!-- start of cosmetics category -->
-					<tr>
-						<td>
-							<table bordercolor="black" >
-								<tr>
-									<td class="main-head" colspan="4">
-									<br>
-									<br>
-									<b><s:property value="cosmeticsCategs.get(0).getCategory_name()"/></b>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<%-- <s:property value="mobileCategs.size()"/> --%>
-									<s:if test = "cosmeticsCategs.size()<4">
-									</s:if>
-									<s:else>
-									<s:url id="seeMore" action="viewAllDeals">
-									<s:param name="categ_id" value="cosmeticsCategs.get(0).getCateg_id()"/>
-									</s:url>
-									<div style="float: right;padding-right:5px;"><s:a href="%{seeMore}">See more>></s:a></div>
-									</s:else>
-									</td>
-								</tr>
-								<s:iterator var="itr" value="cosmeticsCategs">
-									<td>
-				<!--						 PRODUCTS ROW 1,1-->
-										<table width="100%" border="0" cellspacing="0" cellpadding="0">
-											<tr>
-												<td valign="top">
-				<!--										 PRODUCT 1 -->
-													<table width="100%" border="0" cellspacing="0" cellpadding="0">
-														<td width="4" class="nodealCol">&nbsp;</td>
-														<td width="193" class="dealCol">
-														<s:url id="ItemName" action="ItemDetails">
-														<s:param name="item" value="item_id"/>
-														</s:url>
-														<div class="mdt"><s:a href="%{ItemName}"><s:property value="item_name"/></s:a></div>
-														<br>
-														<div class="dealImg" target="_top" style="text-decoration:none;"><s:a href="%{ItemName}">
-														<img src="./images/<s:property value="item_image"/>" class="lazy" data-original="" width="140" height="140" border="0" style="top: 0px; display: inline-block;"></s:a></div>
-														<div class="priceDiv"><span class="WebRupee WebRupeeMain">Rs.</span> <s:property value = "discount_price"/></div>
-														<div class="priceinfoDiv">MRP <span class="WebRupee WebRupeeInfo">Rs.</span> <s:property value = "item_price"/> | Save <span class="WebRupee WebRupeeInfo">Rs.</span> <s:property value = "save_price"/></div><div class="dealButton"><div style="float: left;">
-														<span class="discDiv">-<s:property value = "item_discount"/>%</span></div>
-														<div style="float: right;padding-right:5px;">
-														<s:a href="%{ItemName}" target="_top" style="text-decoration:none;">
-														<img height="20" border="0" width="70" src="./images/getit.jpg"></s:a></div></div></td>
-													</table>
-												</td>	
-											</tr>
-										</table>
-									</td>
-								</s:iterator>
-							</table>
-						</td>
-					</tr>
-					<!-- end of cosmetics category -->
-				</table>
-			<div>
+							</s:if>
+						</s:iterator>
+					</table>
+				</td>
+			</tr>
+			<!-- END ITERATE -->
+		</table>
+		<div>
 			<br><br></br>
 			<div class="pcontent">
 				<!--cacheStatus: false-->

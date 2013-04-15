@@ -13,6 +13,8 @@ public class Category {
 	private int categ_id;
 	private String categ_name;
 	private List<Category> allcats;
+	private List<SubCategory> subcats;
+	private List<Item> allItems;
 			
 	public static ArrayList<Category> findallcategory() {
 		ArrayList<Category> selection = new ArrayList<Category>();
@@ -88,6 +90,19 @@ public class Category {
 		this.categ_id = categ_id;
 	}
 	
+	public List<SubCategory> getSubcats() {
+		return subcats;
+	}
+	public void setSubcats(List<SubCategory> subcats) {
+		this.subcats = subcats;
+	}
+	
+	public List<Item> getAllItems() {
+		return allItems;
+	}
+	public void setAllItems(List<Item> allItems) {
+		this.allItems = allItems;
+	}
 	/*
 	 * code added by alpna
 	 * */

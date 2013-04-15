@@ -55,7 +55,7 @@
 						<td>
 							<table bordercolor="black" >
 								<tr>
-									<td class="main-head">
+									<td class="main-head" colspan="4" align="left">
 									<b><s:property value="itemDetails.get(0).getCategory_name()"/></b>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -68,6 +68,7 @@
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									</td>
 								</tr>
+								<%int i=0; %>
 								<s:iterator var="itr" value="itemDetails">
 									<td>
 				<!--						 PRODUCTS ROW 1,1-->
@@ -92,10 +93,18 @@
 														<s:a href="%{ItemName}" target="_top" style="text-decoration:none;">
 														<img height="20" border="0" width="70" src="./images/getit.jpg"></s:a></div></div></td>
 													</table>
-												</td>	
-											</tr>
+													<%i++; %>
+												</td>
+																								
 										</table>
+										<%-- <s:if test = "itemDetails.size()%4==0">
+										
+										</s:if> --%>
 									</td>
+									<% if (i%4==0)
+													out.println("</tr><tr>");
+												%>
+
 								</s:iterator>
 							</table>
 						</td>
