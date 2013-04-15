@@ -34,6 +34,13 @@ public class Payment extends ActionSupport{
 	private String courier;
 	private String ProceedToPay;
 	private String commandButton;
+	private String error = "";
+	public String getError() {
+		return error;
+	}
+	public void setError(String error) {
+		this.error = error;
+	}
 	private ArrayList<Item> itemlist = new ArrayList<Item>();
 	public ArrayList<Item> getItemlist() {
 		return itemlist;
@@ -94,6 +101,13 @@ public class Payment extends ActionSupport{
 	}
 	public void setItemId(int itemId) {
 		this.itemId = itemId;
+	}
+	String cart = "";
+	public String getCart() {
+		return cart;
+	}
+	public void setCart(String cart) {
+		this.cart = cart;
 	}
 	public int getQuantity() {
 		return quantity;
@@ -173,10 +187,16 @@ public class Payment extends ActionSupport{
 		
 		System.out.println("payment called");
 		Map<String, Object> session = ActionContext.getContext().getSession();
-				
+		
+		error = (String)session.get("error");
+		if(error!=null && !error.equals("")){
+			System.out.println("adding error ***********************************************************");
+			addActionError("");
+		}
+		session.remove("error");
 		User user = (User) session.get("user");
 		if(user == null || session.get("user") == ""){
-			System.out.println("item.getItem_id() in payment **************************************"+itemId);
+			//System.out.println("item.getItem_id() in payment **************************************"+itemId);
 			if(itemId!=0){
 			Item item = Item.fetchItem("where item_id="+itemId);
 			session.put("item", item);}
@@ -197,7 +217,11 @@ public class Payment extends ActionSupport{
 			listBanks = BankAcct.getAllBankNames();
 		}
 		//System.out.println("Proceed to may come");
-		if(ProceedToPay!=null && ProceedToPay.startsWith("Proceed")){
+		
+		 cart = (String)session.get("cart");
+		 session.remove("cart");
+		System.out.println("cart is qwertyuiopasdfghghghjhhkjhkhjkjhkjhkjhkm"+cart);
+		if((ProceedToPay!=null && ProceedToPay.startsWith("Proceed"))||(cart!=null && !cart.equals("") && cart.equals("true"))){
 			System.out.println("In procees payment..............................and item size is"+ProceedToPay);
 			for(Item i : items){
 				selectedQuantity.add(i.getSelectedQuantity());
@@ -234,14 +258,14 @@ public class Payment extends ActionSupport{
 		}
 		else{
 			if(item!=null){
-				System.out.println("QWERTJJHGNGBGfbklfdnvksdlnklsdncklsdncindlkcnadklcnklanckldnclkndclksdnclk item list "+ itemlist.size());
-				System.out.println("In buy it now Command button is +++++++++++++++++++++++++++++ "+commandButton);
-				System.out.println("item.getItem_id() in payment **************************************"+itemId);
+				//System.out.println("QWERTJJHGNGBGfbklfdnvksdlnklsdncklsdncindlkcnadklcnklanckldnclkndclksdnclk item list "+ itemlist.size());
+				//System.out.println("In buy it now Command button is +++++++++++++++++++++++++++++ "+commandButton);
+				//System.out.println("item.getItem_id() in payment **************************************"+itemId);
 				//Item.fetchItem("where item_id="+item.getItem_id());
 				if(itemId!=0)
 				item=Item.fetchItem("where item_id= "+itemId);
 				String sellerId;
-				System.out.println("item.getItem_id() in payment **************************************"+itemId);
+				//System.out.println("item.getItem_id() in payment **************************************"+itemId);
 				//itemId=item.getItem_id();
 				
 				itemName=item.getItem_name();
@@ -250,9 +274,9 @@ public class Payment extends ActionSupport{
 				//item.setQuantity(quantity);
 				courier = item.getCourier();
 				itemImage=item.getItem_image();
-				sellerId=item.getSeller_name();
-				User user1 = User.userDetails("where user_id='"+sellerId+"';");
-				sellerName = user1.getUsername();
+//				sellerId=item.getSeller_name();
+//				User user1 = User.userDetails("where user_id='"+sellerId+"';");
+				sellerName = item.getSeller_name();
 				//itemSetter(item);
 				//item.setQuantity(quantity);
 				item.setSelectedQuantity(quantity);
@@ -271,6 +295,7 @@ public class Payment extends ActionSupport{
 				
 		return "success";
 	}
+	
 	public List<Category> getAllcats() {
 		return allcats;
 	}
