@@ -128,6 +128,10 @@ function CheckingMode() {
 </script>
 </head>
 <body>
+<s:if test="hasActionErrors()">
+		<span style="color: red; text-align: center;"><s:property value="error"/><s:actionerror />
+		</span>
+	</s:if>
 						<div>
 								<!-- headerType=MIN:DEFAULT:BUY-->
 								<script type="text/javascript">var svrGMT = 1333797554828;</script>
@@ -253,7 +257,7 @@ function CheckingMode() {
 																			<div class="item-summ-body-titleinline">
 						<!-- add proper href which will redirect to item page   -->	
 																				<a
-																				href="BuyItNow.action?itemId=<s:property value="itemId"/>"
+																				href="ItemDetails.action?item=<s:property value="itemId"/>"
 																					style="color: rgb(0, 51, 255);"><s:property
 																						value="itemName" />
 																				</a>
