@@ -70,11 +70,17 @@ public class MakePayment extends ActionSupport{
 		this.commandButton = commandButton;
 	}
 	public String execute(){
+		
 		allcats = Category.findallcategory();
 		System.out.println("12346542676289790809-99-908907make payment called "+paymentmode+"Integer.parseInt(paymentmode)==1 "+paymentmode.equals("1"));
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		Item item = (Item)session.get("item");
 		if(item!=null && quantity!=0){
+			if(validateQty()==0){
+				session.remove("lastAction");
+				session.put("error","The selected Quantity is not available!!\n Please choose some lesser qunatity");
+				return "error";
+			}
 		item.setSelectedQuantity(quantity);
 		System.out.println("the sel qtyi s +++++++++++++"+quantity+"++++++"+item.getItem_id());
 		itemTotal=item.getItem_price()*item.getSelectedQuantity();
@@ -91,8 +97,17 @@ public class MakePayment extends ActionSupport{
 		if(selectedQuantity!=null){
 		for(int i: selectedQuantity){
 			System.out.println("---------------------------------"+i);
+			quantity = i;
+			if(validateQtys(items.get(index).getQuantity(),i)==0){
+				session.remove("lastAction");
+				session.put("error","The selected Quantity is not available!!\n Please choose some lesser qunatity");
+				session.put("cart","true");
+				return "error";
+			}
+			
 		items.get(index).setSelectedQuantity(i);
 		items.get(index).setItem_subTotal(items.get(index).getItem_price() * items.get(index).getSelectedQuantity());
+				
 		index++;
 		}}
 		
@@ -107,6 +122,7 @@ public class MakePayment extends ActionSupport{
 		session.put("itemTotal", itemTotal);
 		session.put("cartTotal", cartTotal);
 		}
+		
 	    User user = (User)session.get("user");
 		if(Integer.parseInt(paymentmode)==1)
 				return "credit";
@@ -115,6 +131,31 @@ public class MakePayment extends ActionSupport{
 			else
 				return "bank";
 }
+	
+	public int validateQtys(int qty, int selQty) {
+		System.out.println("validate metdho is called for array list");
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		//Item item = (Item) session.get("item");
+		if(qty==0 || selQty<0)
+			return 0;
+		if((qty-selQty)<0){
+	        return 0;
+	    }
+		else
+			return 1;
+	}
+	public int validateQty() {
+		System.out.println("validate metdho is called");
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		Item item = (Item) session.get("item");
+		if(item.getQuantity()==0 || quantity<0)
+			return 0;
+		if((item.getQuantity()-quantity)<0){
+	        return 0;
+	    }
+		else
+			return 1;
+	}
 	public int getQuantity() {
 		return quantity;
 	}
