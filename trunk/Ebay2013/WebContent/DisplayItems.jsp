@@ -81,7 +81,10 @@ Rs<s:textfield name="price1" value="" size="10" placeholder="enter price" /> &nb
 <td><s:a href="%{ItemName}"><s:property value="item_name"/></s:a></td>
 <td  class="itemId"><s:hidden name="itemID" id="items" value="%{item_id}"/></td>
 
-<td class="button"><s:submit name="commandButton" label="Buy it Now" value="Buy It Now"/></td>
+<s:url id="ItemName" action="buyitNow">
+<s:param name="itemId" value="item_id"/>
+</s:url>
+<td width="20"><s:a href="%{ItemName}">Buy It Now</s:a></td>
 
 <td>Bid or Buying</td>
 <td>Rs. <s:property value="item_price"/></td>
