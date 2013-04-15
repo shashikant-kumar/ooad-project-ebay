@@ -525,12 +525,12 @@ public static ArrayList<Item> fetchDeals(String param){
 			if(item.item_discount!=0){
 				item.save_price=(item.item_discount*item.item_price)/100;
 				item.discount_price=item.item_price-item.save_price;
+				selection.add(item);
 			}
 			else{
 				item.discount_price=item.item_price;
 				item.save_price=0;
 			}
-			selection.add(item);
 		}
 	} catch (SQLException e) {
        System.out.println("Exception while reading from db"+ e);
