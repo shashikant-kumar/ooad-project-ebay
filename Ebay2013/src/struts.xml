@@ -131,6 +131,7 @@
 			</action>
 <action name="makePayment" class="ebay.action.MakePayment">
 			<result name="input" type="tiles">/Payment.tiles</result>
+			<result name="error" type="redirectAction">buyitNow</result>
 			<result name="credit" type="tiles">/Credit.tiles</result>
 			<result name="debit" type="tiles">/Debit.tiles</result>
 			<result name="bank" type="tiles">/Bank.tiles</result>
