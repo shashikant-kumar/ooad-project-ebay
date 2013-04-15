@@ -91,7 +91,7 @@ function validateForm()
 <br>
  <s:set name="theme" value="'simple'" scope="page" />
   <h3><s:property value="msg"/> </h3>
-  <s:form name="createList" action="createListing" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+  <s:form name="createList" action="createListing" onsubmit="return validateForm()">
   <table>
   <tr>
   <th>Categories where your listing will appear</th></tr>
@@ -148,7 +148,7 @@ function validateForm()
     <br>
     <br>
     <table>
-  <tr><th>Bring your item to life with pictures		Add or remove options</th></tr>
+  <tr><th>Bring your item to life with pictures<img src="images/greenStar.gif" alt="Required"/></th></tr>
   <tr><td><s:file name="image" /></td></tr>
   </table>
   <br>
