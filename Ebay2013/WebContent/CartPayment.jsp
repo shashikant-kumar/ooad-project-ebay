@@ -229,12 +229,11 @@
 																												seller:</b>
 																											<div class="item-summ-body-titleinline"
 																												style="color: #0033ff;">
-																												a title="Member id itplaza2011"
-																												href="sellerInfo?sellername=
-																												<s:property value="seller_name" />
-																												"><b class="g-hdn">Member id</b><span
-																													class="mbg-nw"><s:property
-																														value="seller_name" /> </span> </a>
+																												<a title="Member id itplaza2011"
+																					href="sellerInfo?sellername=<s:property value="seller_name" />"><b
+																					class="g-hdn">Member id</b><span class="mbg-nw"><s:property
+																							value="seller_name" />
+																				</span> </a>
 																											</div>
 																										</div>
 																									</div>
