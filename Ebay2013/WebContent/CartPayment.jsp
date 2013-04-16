@@ -212,7 +212,7 @@ function CheckingMode() {
 																	<div class="item-summ-body-image">
 																		<div style="Height: 80px; Width: 80px;">
 																			<a href="#"><img height="75" width="75"
-																				src="./images/<s:property value="item_image"/>"
+																				src="<s:property value="item_image"/>"
 																				alt="" border="0"> </a>
 																		</div>
 																	</div>
@@ -222,7 +222,7 @@ function CheckingMode() {
 																			<div class="item-summ-body-titleinline">
 						<!-- add proper href which will redirect to item page   -->	
 																				<a
-																				href="BuyItNow.action?item_id=<s:property value="item_id"/>"
+																				href="ItemDetails.action?item=<s:property value="itemId"/>"
 																					style="color: rgb(0, 51, 255);"><s:property
 																						value="item_name" />
 																				</a>
