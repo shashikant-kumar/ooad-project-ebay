@@ -56,7 +56,6 @@
 <s:hidden name="cumPrice" value="%{cum_price}" />
 <td><s:submit name="commandButton"  value="Update to be shipped"/></td>
 
-<hr>
 </s:form>
 
 </tr>
