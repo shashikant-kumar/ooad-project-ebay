@@ -62,7 +62,7 @@ Rs<s:textfield name="price1" value="" size="10" placeholder="enter price" /> &nb
 <s:iterator value="itemlist1">
 
 <tr>
-<td><img src="./images/<s:property value = "item_image" />" alt="image text" width="150" height="175"/></td>
+<td><img src="<s:property value = "item_image" />" alt="image text" width="150" height="175"/></td>
 <s:url id="ItemName" action="ItemDetails">
 <s:param name="item" value="item_id"/>
 </s:url>
@@ -81,7 +81,7 @@ Rs<s:textfield name="price1" value="" size="10" placeholder="enter price" /> &nb
 <table align="center" cellspacing="60">
 <s:iterator value="itemlist2">
 <tr>
-<td><img src="./images/<s:property value = "item_image" />" alt="image text" width="150" height="175"/></td>
+<td><img src="<s:property value = "item_image" />" alt="image text" width="150" height="175"/></td>
 <s:url id="ItemName" action="ItemDetails">
 <s:param name="item" value="item_id"/>
 </s:url>

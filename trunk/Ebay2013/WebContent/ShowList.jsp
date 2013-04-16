@@ -89,7 +89,7 @@
  <td class="dt-alignLft my_itl-alT"><div><div class="my_itl-imrel">
 <div class="my_idd-posrel my_idd-wrpr my_idd-i_ms">
 <s:a href="%{ItemDetailsPage}">
-<img src="./images/<s:property value="itemImage"/>" alt="Item picture" border="0" width="150" height="150"/></s:a>
+<img src="<s:property value="itemImage"/>" alt="Item picture" border="0" width="150" height="150"/></s:a>
 <br/>
 <br/>
 </div></div></div></td>
