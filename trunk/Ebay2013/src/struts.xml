@@ -42,6 +42,7 @@
             <!-- Ruchika's Code Ends here -->
 			<!-- Sruti's Code Starts here-->
 			<result name="addToCart">ShoppingCart.jsp</result>
+			<result name="cannotAddToCart">ItemDetails.jsp</result>
 			<!-- Sruti's Code Ends here-->
 			<!-- ** added by alpna ** -->
 			<result name="sellItem">SellItem.jsp</result>
@@ -128,6 +129,9 @@
 			<result name="cartPayment" type="tiles">/CartPayment.tiles</result>
 			<result name="login" >login.jsp</result>
 			<result name="input" type="tiles">/Payment.tiles</result>
+			<!-- Sruti's code starts here -->
+			<result name="error">ShoppingCart.jsp</result>
+			<!-- Sruti's code ends here -->
 			</action>
 <action name="makePayment" class="ebay.action.MakePayment">
 			<result name="input" type="tiles">/Payment.tiles</result>
@@ -228,6 +232,7 @@
 <action name="myShoppingCart" class="ebay.action.MyShoppingCart">
 	<result name="success">ShoppingCart.jsp</result>
 	<result name="notSignedIn">login.jsp</result>
+	<result name="error">ItemDetails.jsp</result>
 </action>
 <action name="removeFromCart" class="ebay.action.RemoveFromCart">
 	<result name="success">ShoppingCart.jsp</result>

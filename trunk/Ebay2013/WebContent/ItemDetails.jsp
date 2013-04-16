@@ -7,6 +7,19 @@
 <html>
 <head>
 <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
+<!-- Sruti's code starts here -->
+<script type="text/javascript" src="/static/jquery-1.3.1.js"></script>
+<script type="text/javascript"
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script language="javascript" type="text/javascript">
+function func(box) {
+	var selectedValue = box.value;
+	var sub = document.myForm.action + '?quantityEntered=' + selectedValue + '&&item=' + document.forms["myForm"]["item_id"].value; 
+	document.myForm.action = sub;
+	document.myForm.submit();
+}
+</script>
+<!-- Sruti's code ends here -->
 <title>Ebay Items</title>
 <link href="css1.css" type="text/css" rel="stylesheet">
 <link href="css2.css" type="text/css" rel="stylesheet">
@@ -65,7 +78,17 @@
 <h4>Already Added to your <s:a href="%{WatchList}">Watch list</s:a></h4>
 </td></tr>
 </s:if>
-
+<!-- Sruti's code starts here -->
+<s:if test="%{quantityEntered > item_detail.quantity}">
+<h2><s:property value="msg"/></h2>
+</s:if>
+<s:if test="%{quantityEntered <= 0}">
+<h2><s:property value="msg"/></h2>
+</s:if>
+<s:if test="%{msgFromCart != null}">
+<h2><s:property value="msgFromCart"/></h2>
+</s:if>
+<!-- Sruti's code ends here -->
 </table>
 <br>
 <br>
@@ -81,7 +104,8 @@
 <s:param name="sellername" value="item_detail.seller_name"/>
 </s:url>
 <td><s:a href="%{seller}">View Seller Information: <s:property value="item_detail.seller_name"/></s:a></td></tr> <tr></tr><tr></tr>
-    <tr><td><s:textfield label = "Quantity"  name="quantity" value="1" size="10" /></td><td><s:property value="item_detail.quantity"/> available</td></tr><tr></tr><tr></tr>
+    <tr><td>Quantity: &nbsp;&nbsp;<s:textfield label = "Quantity"  name="quantity"  value="%{quantity}" size="10" onchange="func(this);"/></td>
+    <td><s:property value="item_detail.quantity"/> available</td></tr><tr></tr><tr></tr>
     <tr><td>Price:  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; Rs.<s:property value="item_detail.discount_price"/></td></tr><tr></tr><tr></tr>
      <s:hidden name="item_id" value="%{item_detail.item_id}"/>
     <tr><td><s:submit name = "AddtoCart"  value="Add to Cart" align="center" onclick='this.form.action="myShoppingCart";'/></td></tr><tr></tr><tr></tr>

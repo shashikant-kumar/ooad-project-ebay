@@ -99,7 +99,19 @@ public class Login extends ActionSupport {
 	private String url="";
 	int prev_acc_bal=0;
 	int new_acc_bal=0;
+	
+    /* Sruti's code starts here */
+	private String msgFromCart = "";
+	
+	public String getMsgFromCart() {
+		return msgFromCart;
+	}
 
+	public void setMsgFromCart(String msgFromCart) {
+		this.msgFromCart = msgFromCart;
+	}
+    /* Sruti's code ends here */
+	
 	//sravvani
 	Item item_detail=new Item();
 	private String listName="watchlist";
@@ -304,17 +316,26 @@ public class Login extends ActionSupport {
 		System.out.println("Cart value is " + cart);
 		
 		//Sruti Code
-		if(item_id!=0 && cart.equalsIgnoreCase("selectedAddToCart")){
-			System.out.println("Inside Sruti's code in Login.java\n\n");
-        	Cart.addItem(userid, item_id, quantity);  
-        	items = Cart.fetchItems(userid);
-    		
-    		for(int i=0; i<items.size(); i++){
-    			cartTotal = cartTotal + items.get(i).getItem_subTotal();
-    		}
-    		System.out.println("Cart Total Price = " + cartTotal);
-        	return "addToCart";
-        }
+				if(item_id!=0 && cart.equalsIgnoreCase("selectedAddToCart")){
+					System.out.println("Inside Sruti's code in Login.java\n\n");
+					item_detail = Item.fetchItem(" where item_id="+ item_id);
+			    	
+					if(quantity > 0 && quantity <= item_detail.getQuantity()){
+						Cart.addItem(userid, item_id, quantity);
+					}
+					else{
+						msgFromCart = "Please enter a valid quantity!!";				
+						return "cannotAddToCart"; //cannot add item to cart
+					}
+		        	items = Cart.fetchItems(userid);
+		    		
+		    		for(int i=0; i<items.size(); i++){
+		    			cartTotal = cartTotal + items.get(i).getItem_subTotal();
+		    		}
+		    		System.out.println("Cart Total Price = " + cartTotal);
+		        	return "addToCart";
+		        }
+				
 		//sravvani code to fetch the item details and insert item into watch list
 		if(item_id!=0){
 			System.out.println("item id"+item_detail.getItem_id());

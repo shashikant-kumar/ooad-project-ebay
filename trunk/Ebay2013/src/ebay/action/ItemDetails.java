@@ -29,6 +29,33 @@ public class ItemDetails extends ActionSupport{
   	Item item_detail=new Item();
   	ArrayList<NewList> nlist = new ArrayList<NewList>();
   	private List<Category> allcats=new ArrayList<Category>();
+  	
+  	/* Sruti's code starts here */
+  	private int quantity;  //To be displayed as default value in the quantity box 
+  	private int quantityEntered = 0;
+  	private String msg = "";
+	
+  	public String getMsg() {
+		return msg;
+	}
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+	public int getQuantityEntered() {
+		return quantityEntered;
+	}
+	public void setQuantityEntered(int quantityEntered) {
+		this.quantityEntered = quantityEntered;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+ 	
+  	/* Sruti's code ends here */
+  	
 	  
 	public String execute() throws Exception {
 		Map<String, Object> session = ActionContext.getContext().getSession();
@@ -40,6 +67,28 @@ public class ItemDetails extends ActionSupport{
 		item_detail = Item.fetchItem(" where item_id="+ item );
 		allcats = Category.findallcategory();
 		nlist=NewList.fetchList(" where item_id="+item+" and userid='"+user.getUserid()+"'");
+		
+		/* Sruti's code starts here */
+		if(item_detail.getQuantity() >= 1){
+			quantity = 1; //default value for quantity
+		}
+		else 
+			quantity = 0;
+		if(quantityEntered != 0){
+			if(quantityEntered > item_detail.getQuantity()){
+				System.out.println("quantityEntered = " + quantityEntered);
+				msg = "Entered quantity exceeds available quantity!! Please enter again.";
+			}
+			else if(quantityEntered <= item_detail.getQuantity() && quantityEntered > 0){
+				System.out.println("quantityEntered = " + quantityEntered);
+				quantity = quantityEntered;
+			}
+			else if(quantityEntered < 0){
+				System.out.println("quantityEntered = " + quantityEntered);
+				msg = "Please enter a valid quantity!!";
+			}
+		}
+		/* Sruti's code ends here */
 		
 		return "success";
 	}
