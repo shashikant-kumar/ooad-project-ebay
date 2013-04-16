@@ -12,7 +12,8 @@
 <s:form action="homePage" name="ack" theme="simple">
 <h1>Sorry, some error occurred</h1>
 <h3>Your transaction was not successful.</h3>
-<!-- <s:submit name="submit" value="Continue"/> -->
+<h3>Press Continue to go to home page</h3>
+<s:submit name="submit" value="Continue" align="center"></s:submit>
 </s:form>
 </body>
 </html>
