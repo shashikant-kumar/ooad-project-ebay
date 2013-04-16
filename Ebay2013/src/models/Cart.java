@@ -149,8 +149,11 @@ public class Cart {
 					items.get(i).setItem_condition(result.getString("item_condition"));
 					items.get(i).setQuantity(result.getInt("stock"));
 					items.get(i).setItem_image(result.getString("item_image"));
-					subTotal = items.get(i).getItem_price() * items.get(i).getSelectedQuantity();
+					
+					int priceAfterDiscount = items.get(i).getItem_price() - (items.get(i).getItem_discount() * items.get(i).getItem_price())/100;
+					subTotal = priceAfterDiscount  * items.get(i).getSelectedQuantity();
 					items.get(i).setItem_subTotal(subTotal);
+					
 					/*Changes by Ruchika*/
 					sellerId = result.getString("user_id");
 					User user1 = User.userDetails("where user_id='"+sellerId+"';");

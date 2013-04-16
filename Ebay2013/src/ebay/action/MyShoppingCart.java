@@ -25,7 +25,22 @@ public class MyShoppingCart extends ActionSupport {
 	private String username = "";
 	private List<Category> allcats=new ArrayList<Category>();
 	
+	private String msgFromCart = "";
+	private Item item_detail;
 	
+	
+	public String getMsgFromCart() {
+		return msgFromCart;
+	}
+	public void setMsgFromCart(String msgFromCart) {
+		this.msgFromCart = msgFromCart;
+	}
+	public Item getItem_detail() {
+		return item_detail;
+	}
+	public void setItem_detail(Item item_detail) {
+		this.item_detail = item_detail;
+	}
 	public List<Category> getAllcats() {
 		return allcats;
 	}
@@ -98,12 +113,21 @@ public class MyShoppingCart extends ActionSupport {
 		
 		userId = user.getUserid();
 		username = user.getUsername();
+		
 		if(this.AddToCart!=null){
 			System.out.println("AddToCart was pressed!!!");
 			System.out.println("ItemID inside MyShoppingCart.execute() method is " + item_id);
-			Cart.addItem(userId, item_id, quantity);
-			
+			item_detail = Item.fetchItem(" where item_id="+ item_id);
+		    	
+			if(quantity > 0 && quantity <= item_detail.getQuantity()){
+				Cart.addItem(userId, item_id, quantity);
+			}
+			else{
+				msgFromCart = "Please enter a valid quantity!!";				
+				return "error"; //cannot add item to cart
+			}
 		}
+		
 		items = Cart.fetchItems(userId);
 		
 		for(int i=0; i<items.size(); i++){

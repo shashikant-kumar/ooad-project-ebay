@@ -42,6 +42,18 @@ public class Payment extends ActionSupport{
 		this.error = error;
 	}
 	private ArrayList<Item> itemlist = new ArrayList<Item>();
+	
+	/* Sruti's code starts here */
+	private String msgToCart = "";
+	
+	public String getMsgToCart() {
+		return msgToCart;
+	}
+	public void setMsgToCart(String msgToCart) {
+		this.msgToCart = msgToCart;
+	}
+	/* Sruti's code ends here */
+	
 	public ArrayList<Item> getItemlist() {
 		return itemlist;
 	}
@@ -237,6 +249,20 @@ public class Payment extends ActionSupport{
 			//System.out.println("courier and seeler id :-----------------------------------------"+items.get(index).getCourier()+"+++++"+items.get(index).getSellerId());
 			index++;
 			}}
+			
+			/* Sruti's code starts here */
+			for(int i=0; i<items.size(); i++){
+				cartTotal = cartTotal + items.get(i).getItem_subTotal();
+			}
+			
+			for(Item m: items){
+				if(m.getSelectedQuantity() > m.getQuantity() || m.getSelectedQuantity() <= 0){
+					msgToCart = "Please enter a valid quantity!!";
+					return "error";
+				}
+			}
+			
+			/* Sruti's code ends here */
 			
 			session.put("items", items);
 			for(int i=0; i<items.size(); i++){
