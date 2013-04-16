@@ -266,8 +266,8 @@ public class Payment extends ActionSupport{
 			
 			session.put("items", items);
 			for(int i=0; i<items.size(); i++){
-				//System.out.println("cart and items.get(i).getItem_subTotal() "+cartTotal+" "+items.get(i).getItem_subTotal()+";;;;;;;;;;;;;;;;;;;;;;;");
-				cartTotal = cartTotal + items.get(i).getItem_subTotal();
+				System.out.println("cart and items.get(i).getItem_subTotal() "+cartTotal+" "+items.get(i).getItem_subTotal()+";;;;;;;;;;;;;;;;;;;;;;;");
+				//cartTotal = cartTotal + items.get(i).getItem_subTotal();
 				//System.out.println("QWERTJJHGNGBGfbklfdnvksdlnklsdncklsdncindlkcnadklcnklanckldnclkndclksdnclk");
 				//System.out.println("item image: and seller "+items.get(i).getItem_image()+"  "+items.get(i).getSeller_name());
 			}
@@ -278,7 +278,8 @@ public class Payment extends ActionSupport{
 			itemTotal = cartTotal;}
 			System.out.println(itemTotal);
 			session.put("itemTotal", itemTotal);
-			session.put("cartTotal", cartTotal);
+			if(session.get("cartTotal")==null){
+			session.put("cartTotal", cartTotal);}
 		
 			return "cartPayment";
 		}
@@ -286,7 +287,7 @@ public class Payment extends ActionSupport{
 			if(item!=null){
 				//System.out.println("QWERTJJHGNGBGfbklfdnvksdlnklsdncklsdncindlkcnadklcnklanckldnclkndclksdnclk item list "+ itemlist.size());
 				//System.out.println("In buy it now Command button is +++++++++++++++++++++++++++++ "+commandButton);
-				//System.out.println("item.getItem_id() in payment **************************************"+itemId);
+				System.out.println("item.getItem_id() in payment **************************************"+item.getItem_image());
 				//Item.fetchItem("where item_id="+item.getItem_id());
 				if(itemId!=0)
 				item=Item.fetchItem("where item_id= "+itemId);
