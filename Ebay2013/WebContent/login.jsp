@@ -21,7 +21,7 @@
 			<td width="190"></td>
 			<td width="940">
 				<div>
-					<a rel="nofollow" href="ebayhome.jsp"> <img border="0"
+					<a rel="nofollow" href="dummy"> <img border="0"
 						alt="From collectables to cars, buy and sell all kinds of items on eBay"
 						src="images/ebay-logo-01.jpg"> </a>
 				</div>

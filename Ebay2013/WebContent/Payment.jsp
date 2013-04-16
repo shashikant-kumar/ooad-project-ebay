@@ -140,7 +140,7 @@ function CheckingMode() {
 									<div class="gh-emn">&nbsp;</div>
 								</div>
 								<div class="gh-log">
-									<span class="gh-lg"><a href="ebayhome.jsp"
+									<span class="gh-lg"><a href="dummy"
 										rel="nofollow"> <img
 											src="buyitnow/logoEbay_x45.gif" alt="eBay"
 											border="0">
@@ -201,10 +201,10 @@ function CheckingMode() {
 							Please select a payment method, and click the <b>Continue</b>
 							button at the bottom of the page.
 						</div>
-						<span style="float: right; margin-top: -15px;"><span><a
-								href="javascript:void()"><img
+						<span style="float: right; margin-top: -15px;"><span><!-- <a
+								href="javascript:void()"> --><img
 									src="buyitnow/ico_Livehelp_new.gif" id="livechathelp"
-									name="livechathelp" border="0"> </a> </span> </span>
+									name="livechathelp" border="0"> <!-- </a> --> </span> </span>
 					</div>
 					<div>
 						<table class="cr-w cr-nr" style="width: 100%;" cellpadding="0"
@@ -247,7 +247,7 @@ function CheckingMode() {
 																	<div class="item-summ-body-image">
 																		<div style="Height: 80px; Width: 80px;">
 																			<a href="#"><img height="75" width="75"
-																				src="<s:property value="itemImage"/>"
+																				src="./images/<s:property value="itemImage"/>"
 																				alt="" border="0"> </a>
 																		</div>
 																	</div>
@@ -269,8 +269,8 @@ function CheckingMode() {
 																			<div class="item-summ-body-titleinline"
 																				style="color: #0033ff;">
 																				<a title="Member id itplaza2011"
-																					href="http://myworld.ebay.in/itplaza2011"><b
-																					class="g-hdn">Member id </b><span class="mbg-nw"><s:property
+																					href="sellerInfo?sellername=<s:property value="sellerName" />"><b
+																					class="g-hdn">Member id</b><span class="mbg-nw"><s:property
 																							value="sellerName" />
 																				</span> </a>
 																			</div>
@@ -445,7 +445,7 @@ function CheckingMode() {
 													<tbody>
 														<tr>
 															<td valign="top" width="68%"><div>
-																	<div class="ps-ppImgEscrow"
+																	<%-- <div class="ps-ppImgEscrow"
 																		style="padding-left: 25px; float: none;">
 																		<img
 																			src="buyitnow/pp_escrow_full_tag_130807_135x70.gif"
@@ -454,7 +454,7 @@ function CheckingMode() {
 																			know more about PaisaPay <a
 																			href="http://pages.ebay.in/help/buy/payment.html"
 																			target="_blank">click here.</a> </span>
-																	</div>
+																	</div> --%>
 																</div>
 																<div class="ps-ppButton">
 																	<s:radio label="paymentmode" name="paymentmode"
@@ -507,13 +507,13 @@ function CheckingMode() {
 																					<font color="#333333">100% satisfied*</font>
 																				</div>
 																				<br>
-																				<div align="right">
+																				<!-- <div align="right">
 																					<a
 																						href="http://pages.ebay.in/help/policies/paisapay/paisapay-refund-claim.html"
 																						target="_blank" style="color: rgb(0, 51, 255);">Know
 																						more</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
 																						color="#333333">*T&amp;C apply</font>
-																				</div>
+																				</div> -->
 																			</div>
 																		</div>
 																	</div>
