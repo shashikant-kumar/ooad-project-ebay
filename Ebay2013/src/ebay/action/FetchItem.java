@@ -60,6 +60,19 @@ public class FetchItem extends ActionSupport{
   	int price1;
   	int price2;
   	String commandButton="";
+  	String username = "";
+  	
+  	
+	public String getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
 	private int itemId;
 	  
 	public int getItemId() {
@@ -79,6 +92,9 @@ public class FetchItem extends ActionSupport{
 		if (user == null) {
 			user = new User();
 		}
+		
+		username = user.getUsername();
+		
 		if(commandButton.startsWith("search")){
 			itemlist = Item.fetchItemDetails(" where sub_categ_name='"+ subcategory +"' and item_price between "+price1+" and "+price2 +")");	
 		}
