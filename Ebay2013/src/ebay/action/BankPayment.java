@@ -99,7 +99,7 @@ public class BankPayment extends ActionSupport{
 			orderId= OrderTrack.getLatestOrderId(user.getUserid());
 			//insert in transaction table with order id, if cart is there insert transaction for each item in cart with a loop for each item
 			if(orderId!=0){
-				if(items.size()!=0){
+				if(items!=null && items.size()!=0){
 					for(Item i : items){
 					OrderTrack.insertTransaction(orderId,i.getItem_id(),i.getSelectedQuantity(),i.getCourier(),i.getSellerId());
 					}
