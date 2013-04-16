@@ -218,6 +218,9 @@
 <action name="sellingHistory" class="ebay.action.SellingHistory">
 	<result name="sellingHistory">SellingHistory.jsp</result>
 	<result name="initialEntry">login.jsp</result>
+	<!-- Sruti's Code Starts here-->
+	<result name="blockedStatus">StatusBlockedMessageDisplay.jsp</result>
+	<!-- Sruti's Code Ends here-->
 </action>	
 <action name="editItemDetail" class="ebay.action.EditItemDetail">
 	<result name="editItem">EditItemDetail.jsp</result>
