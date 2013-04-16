@@ -82,7 +82,7 @@
 <s:iterator value ="soldItemList">
 
 <tr><td><s:property value="item_name"/></td>
-<td><img src="./images/<s:property value = "item_image" />" alt="image text" width="150" height="175"/></td>
+<td><img src="<s:property value = "item_image" />" alt="image text" width="150" height="175"/></td>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<s:property value="selectedQuantity"/></td>
 <td><s:property value="cum_price"/></td>
 <td><s:property value="tran_date"/></td>
@@ -115,7 +115,7 @@
 <s:iterator value ="activeItemList">
 
 <tr><td><s:property value="item_name"/></td>
-<td><img src="./images/<s:property value = "item_image" />" alt="image text" width="150" height="175"/></td>
+<td><img src="<s:property value = "item_image" />" alt="image text" width="150" height="175"/></td>
 <td><s:property value="selectedQuantity"/></td>
 <td><s:property value="item_price"/></td>
 <td><s:property value="item_discount"/></td>
