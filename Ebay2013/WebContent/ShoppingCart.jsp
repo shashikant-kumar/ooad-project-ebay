@@ -32,7 +32,9 @@ div.important {color:green;}
 	<br />
 </head>
 <body>
-
+<s:if test="%{msgToCart!=null}">
+<h2><s:property value="msgToCart"/></h2>
+</s:if>
 <div>
 <h4 class="intro">My Shopping Cart</h4>
 <ul><li>Your shopping cart might contain items from different sellers.</li></ul>
