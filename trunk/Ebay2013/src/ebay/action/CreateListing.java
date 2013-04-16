@@ -9,6 +9,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
+
 import com.util.MyLog;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -29,6 +31,7 @@ public class CreateListing extends ActionSupport{
 	private int buyItNowQuantity;
 	private String condition;
 	private String image;
+	private String image1="";
 	private String courier;
 	private int sla;
 	private int discount;
@@ -105,7 +108,13 @@ public class CreateListing extends ActionSupport{
 			System.out.println("sub category is "+subCateg);
 			int categId= Category.getCategoryId(categ);
 			int subCategId = Category.getSubCategoryId(subCateg);
-			
+			StringTokenizer st = new StringTokenizer(image,"\\");
+			while (st.hasMoreElements()) {
+				
+				image = (String)st.nextElement();
+				System.out.println(image);
+			}
+			image1 = image;
 			int ret = Item.InsertIntoSellItem(userId, title, buyItNowPrice, discount, condition, buyItNowQuantity, image, categId, subCategId, courier,sla);
 			
 			if(ret != 0){
@@ -655,6 +664,16 @@ public class CreateListing extends ActionSupport{
 
 	public void setCountry(String country) {
 		this.country = country;
+	}
+
+
+	public String getImage1() {
+		return image1;
+	}
+
+
+	public void setImage1(String image1) {
+		this.image1 = image1;
 	}
 	
 	
