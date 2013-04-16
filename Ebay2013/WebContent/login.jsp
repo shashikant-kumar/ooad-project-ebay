@@ -21,7 +21,7 @@
 			<td width="190"></td>
 			<td width="940">
 				<div>
-					<a rel="nofollow" href="home.jsp"> <img border="0"
+					<a rel="nofollow" href="ebayhome.jsp"> <img border="0"
 						alt="From collectables to cars, buy and sell all kinds of items on eBay"
 						src="images/ebay-logo-01.jpg"> </a>
 				</div>
@@ -137,15 +137,15 @@
 																							</label> </span> <span> <input id="pass" class="txtBxF"
 																								type="password" name="password" value=""
 																								maxlength="64" size="27"> </span>
-																							<div class="bltns">
+																							<%-- <div class="bltns">
 																								<span class="smalVerF"> I forgot my <a
 																									href="#">user ID</a> or <a
 																									href="#">password</a> </span>
-																							</div>
+																							</div> --%>
 																						</div>
 																					</div>
 																				</div>
-																				<div class="kpMeWth">
+																				<%-- <div class="kpMeWth">
 																					<div class="snTxSp">
 																						<b class="pcs"> <input id="signed_in"
 																							type="checkbox" value="1"
@@ -156,7 +156,7 @@
 																									public or shared computer.</font> </label> </span>
 																					</div>
 																					
-																				</div>
+																				</div> --%>
 																				<s:hidden name="prevUrl" value="%{prevUrl}"/>
 																				<s:hidden name="item_id" value="%{item_id}"/>
 																				<s:hidden name="cart" value="%{cart}"/>
