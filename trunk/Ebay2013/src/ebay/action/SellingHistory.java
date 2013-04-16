@@ -27,6 +27,7 @@ public class SellingHistory extends ActionSupport {
 	private int SLA=0;
 	public String commandButton="";
 	private int cumPrice=0;
+	private String username;
 	
 	public String getCommandButton() {
 		return commandButton;
@@ -83,6 +84,12 @@ public class SellingHistory extends ActionSupport {
 	public String execute() {
 		allcats = Category.findallcategory();
 		Map<String, Object> session = ActionContext.getContext().getSession();
+		if(session.get("user") != null && session.get("user") != "")
+		{
+		user = (User) session.get("user");
+	 setUsername(user.getUsername());
+		}
+	
 		System.out.println("xxxxxxxxxxxx"+transactionId);
 		System.out.println("CCCCCCCCCCC"+ commandButton);
 		ArrayList<Integer> acc_bal;
@@ -197,6 +204,16 @@ public class SellingHistory extends ActionSupport {
 
 	public void setActiveItemList(ArrayList<Item> activeItemList) {
 		this.activeItemList = activeItemList;
+	}
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 

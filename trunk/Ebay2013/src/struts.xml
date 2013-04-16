@@ -214,7 +214,11 @@
 <action name="sellingHistory" class="ebay.action.SellingHistory">
 	<result name="sellingHistory">SellingHistory.jsp</result>
 	<result name="initialEntry">login.jsp</result>
-</action>				
+</action>	
+<action name="editItemDetail" class="ebay.action.EditItemDetail">
+	<result name="editItem">EditItemDetail.jsp</result>
+</action>
+			
 
 
 <!-- ****************************************************************************************************** -->
