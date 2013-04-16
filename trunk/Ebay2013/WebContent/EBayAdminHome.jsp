@@ -15,7 +15,7 @@
 </head>
 <body>
 	<div>
-					<a rel="nofollow" href="home.jsp"> <img border="0"
+					<a rel="nofollow" href="EBayAdminHome.jsp"> <img border="0"
 						alt="From collectables to cars, buy and sell all kinds of items on eBay"
 						src="images/ebay-logo-01.jpg"> </a>
 				</div>

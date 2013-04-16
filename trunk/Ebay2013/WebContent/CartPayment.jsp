@@ -157,10 +157,10 @@
 													Please select a payment method, and click the <b>Continue</b>
 													button at the bottom of the page.
 												</div>
-												<span style="float: right; margin-top: -15px;"><span><a
-														href="javascript:void()"><img
+												<span style="float: right; margin-top: -15px;"><span><!-- <a
+														href="javascript:void()"> --><img
 															src="buyitnow/ico_Livehelp_new.gif" id="livechathelp"
-															name="livechathelp" border="0"> </a> </span> </span>
+															name="livechathelp" border="0"> <!-- </a> --> </span> </span>
 											</div>
 											<div>
 												<table class="cr-w cr-nr" style="width: 100%;"
