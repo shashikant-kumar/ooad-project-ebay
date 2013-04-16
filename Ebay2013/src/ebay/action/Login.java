@@ -118,15 +118,6 @@ public class Login extends ActionSupport {
 	NewList listvalues=new NewList();
 	private String msg="";
 	private String prevUrl="";
-	private int itemId;
-	
-	public int getItemId() {
-		return itemId;
-	}
-
-	public void setItemId(int itemId) {
-		this.itemId = itemId;
-	}
 
 	public String getMsg() {
 		return msg;
