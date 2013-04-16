@@ -49,7 +49,7 @@
     <th><h4>Give Feedback</h4></th>
         </tr>
 <s:iterator value="orderItemList">
-<tr><td><img src="<s:property value = "item_image" />" alt="image text" width="150" height="175"/></td>
+<tr><td><img src="./images/<s:property value = "item_image" />" alt="image text" width="150" height="175"/></td>
 <td><s:property value="item_name"/></td>
 <td><s:property value="item_price"/></td>
 <td><s:property value="tran_status"/></td>
