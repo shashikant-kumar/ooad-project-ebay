@@ -24,6 +24,7 @@ public class EditItemDetail extends ActionSupport{
 		this.item = item;
 	}
 	private String item_name;
+	private User user;
 	private int price;
 	private int discount;
 	private int stock;
@@ -40,14 +41,18 @@ public class EditItemDetail extends ActionSupport{
 	
 	public String execute() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
-		User user = (User) session.get("user");
-		 setUsername(user.getUsername());
-		
+		if(session.get("user") != null && session.get("user") != "")
+		{
+		user = (User) session.get("user");
+	 setUsername(user.getUsername());
+		}
 		if(commandButton.equalsIgnoreCase("update")){
 			System.out.println("image"+image);
 			String param="where item_id="+item_id;
 			System.out.println("item_name"+item_name);
 			image=image.replace("\\", "\\\\");
+			String[] parts=image.split("\\\\");
+			image=parts[parts.length -1];
 			System.out.println("image"+image);
 			Item.updateItemDetails(item_id,item_name,price,discount,stock,image);
 			item=Item.fetchItem(param);
@@ -116,6 +121,12 @@ public class EditItemDetail extends ActionSupport{
 	}
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }
