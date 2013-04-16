@@ -72,6 +72,13 @@ public class BankPayment extends ActionSupport{
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		User user = (User) session.get("user");
 		items = (ArrayList<Item>)session.get("items");
+		Item item = (Item) session.get("item");
+		Integer totalPrice = (Integer) session.get("itemTotal");
+		
+		if(user==null || session.get("user")=="" || totalPrice==null){
+			System.out.println("user is null");
+			return "error";
+		}
 		BankAcct ba = BankAcct.getUserBankDetails(user.getUserid());
 		System.out.println("userid is "+userid+" "+password+" "+ba.getUserId()+" "+ba.getAccPwd());
 		if (userid==null|userid=="") {
@@ -84,8 +91,7 @@ public class BankPayment extends ActionSupport{
 	        return "error";
 		}
 	
-		Item item = (Item) session.get("item");
-		Integer totalPrice = (Integer) session.get("itemTotal");
+		
 		System.out.println("total price is in cardPayment "+totalPrice);
 		
 		prevBal=BankAcct.getAccountBalance("ACCOUNT_ID="+ba.getAccountId());
@@ -118,7 +124,7 @@ public class BankPayment extends ActionSupport{
 				//insert in ebay account paisapay, in paisapay acctbal
 				itemId=OrderTrack.getTransactionItemId(i);
 //				Item item1 = Item.fetchItem("where item_id= "+itemId);
-				if(items.size()!=0){
+				if(items!=null && items.size()!=0){
 					for(Item j : items){
 						if(j.getItem_id()==itemId){
 						itemAmount = j.getSelectedQuantity()*j.getItem_price();
@@ -166,7 +172,6 @@ public class BankPayment extends ActionSupport{
 			addActionError("Not sufficient balance in your account");
 			return "error";
 		}
-
 
 		return "success";
 	}
