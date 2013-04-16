@@ -152,7 +152,10 @@ public class Item implements Serializable{
 	private int item_subTotal;//
 	private String sellerId;
 
-
+/*
+ * Author: B S Deepthi
+ * Description: To fetch details of a particular item 
+ * */
 public  static Item fetchItem(String param){
 		Item item=new Item();
 		String sql="select * from sell_item "+param;
@@ -180,6 +183,14 @@ public  static Item fetchItem(String param){
 				item.sellerId = resultSet.getString("user_id");
 				User user1 = User.userDetails("where user_id='"+item.sellerId+"';");
 				item.seller_name=user1.getUsername();
+				if(item.item_discount!=0){
+					item.save_price=(item.item_discount*item.item_price)/100;
+					item.discount_price=item.item_price-item.save_price;
+				}
+				else{
+					item.discount_price=item.item_price;
+					item.save_price=0;
+				}
 				
 				
 			}
@@ -235,7 +246,17 @@ public static ArrayList<Item> fetchItemDetails(String param){
 				//item.other=resultSet.getString("other");			
 				item.category_name=Item.findCategoryName(item.categ_id);
 				item.subcategory_name=Item.findSubCategoryName(item.subcategory_id);
-				selection.add(item);
+				if(item.item_discount!=0){
+					item.save_price=(item.item_discount*item.item_price)/100;
+					item.discount_price=item.item_price-item.save_price;
+					selection.add(item);
+				}
+				else{
+					item.discount_price=item.item_price;
+					item.save_price=0;
+					selection.add(item);
+				}
+				
 			}
 		} catch (SQLException e) {
 	       System.out.println("Exception while reading from db"+ e);

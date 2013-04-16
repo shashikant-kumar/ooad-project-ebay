@@ -87,7 +87,7 @@ Rs<s:textfield name="price1" value="" size="10" placeholder="enter price" /> &nb
 <td width="20"><s:a href="%{ItemName}">Buy It Now</s:a></td>
 
 <td>Bid or Buying</td>
-<td>Rs. <s:property value="item_price"/></td>
+<td>Rs. <s:property value="discount_price"/></td>
 <td></td>
 <td><img src="./images/pay.jpg" alt="image text" width="70" height="55"/></td></tr>
 </s:iterator>
