@@ -33,7 +33,7 @@ div.important {color:green;}
 </head>
 <body>
 <s:if test="%{msgToCart!=null}">
-<h5><s:property value="msgToCart"/></h5>
+<h4><s:property value="msgToCart"/></h4>
 </s:if>
 <div>
 <h4 class="intro">My Shopping Cart</h4>

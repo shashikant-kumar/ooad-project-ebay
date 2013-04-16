@@ -80,13 +80,13 @@ function func(box) {
 </s:if>
 <!-- Sruti's code starts here -->
 <s:if test="%{quantityEntered > item_detail.quantity}">
-<h5><s:property value="msg"/></h5>
+<h4><s:property value="msg"/></h4>
 </s:if>
 <s:if test="%{quantityEntered <= 0}">
-<h5><s:property value="msg"/></h5>
+<h4><s:property value="msg"/></h4>
 </s:if>
 <s:if test="%{msgFromCart != null}">
-<h5><s:property value="msgFromCart"/></h5>
+<h4><s:property value="msgFromCart"/></h4>
 </s:if>
 <!-- Sruti's code ends here -->
 </table>

@@ -52,7 +52,28 @@ public class SellingHistory extends ActionSupport {
 	}
 
 
+   /* Sruti's code starts here */
+	
+	private String userStatus = "";
+	private String password = "";
 
+	public String getUserStatus() {
+		return userStatus;
+	}
+	public void setUserStatus(String userStatus) {
+		this.userStatus = userStatus;
+	}
+
+	/* Sruti's code ends here */
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 
 	private ArrayList<Item> orderItemList;
@@ -116,6 +137,19 @@ public class SellingHistory extends ActionSupport {
 		{
 			user = (User) session.get("user");
 		setUserId(user.getUserid());
+		
+		/* Sruti's code starts here */
+		
+		userId = user.getUserid();
+		userStatus = User.findUserStatus(userId);
+		password = user.getPassword();
+		
+		if(userStatus.equalsIgnoreCase("B")){
+			System.out.println("User is in blocked state!!!");
+			return "blockedStatus";
+		}
+		
+		/* Sruti's code ends here */
 		
 		orderItemList = Item.fetchOrderItem(userId);
 		soldItemList = Item.fetchSoldItem(userId);
