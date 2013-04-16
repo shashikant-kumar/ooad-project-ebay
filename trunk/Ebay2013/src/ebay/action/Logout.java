@@ -49,6 +49,9 @@ public void setEmail_id(String email_id) {
 			if(session.get("user") != null && session.get("user") != ""){
 				User user = (User) session.get("user");
 				session.remove("user");
+				session.remove("cart");
+				session.remove("item");
+				session.remove("items");
 				System.out.println("username is"+user.getUsername());
 				user.setUsername(null);
 				System.out.println("username is"+user.getUsername());

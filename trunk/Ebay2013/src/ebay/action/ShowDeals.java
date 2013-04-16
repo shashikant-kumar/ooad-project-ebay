@@ -26,6 +26,7 @@ public class ShowDeals extends ActionSupport{
 	User user =new User();
   	ArrayList<Item> itemDetails=new ArrayList<Item>();
   	private List<Category> allCats;
+  	private List<Category> allcats;
   	private String username="";
 	  
 	public String execute() throws Exception {
@@ -37,6 +38,8 @@ public class ShowDeals extends ActionSupport{
 		username=user.getUsername();
 		allCats = new ArrayList<Category>();
 		allCats = Category.findallcategory();
+		allcats = new ArrayList<Category>();
+		allcats = Category.findallcategory();
 		System.out.println("size display"+allCats.size());
 		
 		for (int i = 0; i < allCats.size(); i++){
@@ -101,6 +104,14 @@ public class ShowDeals extends ActionSupport{
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public List<Category> getAllcats() {
+		return allcats;
+	}
+
+	public void setAllcats(List<Category> allcats) {
+		this.allcats = allcats;
 	}
 	
 
