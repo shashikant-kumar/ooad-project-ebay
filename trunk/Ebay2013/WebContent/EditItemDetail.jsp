@@ -23,7 +23,7 @@
    <tr> <td>Price</td><td><s:textfield name="price" label = "Price "  value="%{item.item_price}"  size="20"  /></td></tr>
   <tr>  <td>Discount</td><td><s:textfield name="discount" label = "Discount " value="%{item.item_discount}"  size="20"  /></td></tr>
   <tr>  <td>Stock</td><td><s:textfield name="stock" label = "Stock" value="%{item.quantity}"  size="20"  /></td></tr>
-  <tr><td></td><td><img src="<s:property value = "item.item_image" />" alt="image text" width="150" height="150"/></td></tr>
+  <tr><td></td><td><img src="./images/<s:property value = "item.item_image" />" alt="image text" width="150" height="150"/></td></tr>
   </table>
   <table align="center">
    <tr><s:file name="image" label="Item Image" value="%{item_detail.item_image}"/></tr>

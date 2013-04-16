@@ -75,7 +75,7 @@
 														<div class="mdt"><s:a href="%{ItemName}"><s:property value="item_name"/></s:a></div>
 														<br>
 														<div class="dealImg" target="_top" style="text-decoration:none;"><s:a href="%{ItemName}">
-														<img src="<s:property value="item_image"/>" class="lazy" data-original="" width="140" height="140" border="0" style="top: 0px; display: inline-block;"></s:a></div>
+														<img src="./images/<s:property value="item_image"/>" class="lazy" data-original="" width="140" height="140" border="0" style="top: 0px; display: inline-block;"></s:a></div>
 														<div class="priceinfoDiv">MRP <span class="WebRupee WebRupeeInfo">Rs.</span> <s:property value = "item_price"/>
 														</div>
 														</td>

@@ -96,7 +96,7 @@ function func(box) {
 <s:form name="myForm" action="ItemDetails">   
 <table align="center">
 <tr>
-<td><img src="<s:property value = "item_detail.item_image" />" alt="image text" width="350" height="375"/></td>
+<td><img src="./images/<s:property value = "item_detail.item_image" />" alt="image text" width="350" height="375"/></td>
 <td><table id="text" cellspacing="5">
     <tr><td><s:property value="item_detail.item_name"/></td></tr><tr></tr><tr></tr>
   <tr> <td>Item Condition:&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<s:property value="item_detail.item_condition"/></td><td></td><td></td><td></td><td></td><td></td>
