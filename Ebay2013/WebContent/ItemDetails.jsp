@@ -80,13 +80,13 @@ function func(box) {
 </s:if>
 <!-- Sruti's code starts here -->
 <s:if test="%{quantityEntered > item_detail.quantity}">
-<h2><s:property value="msg"/></h2>
+<h5><s:property value="msg"/></h5>
 </s:if>
 <s:if test="%{quantityEntered <= 0}">
-<h2><s:property value="msg"/></h2>
+<h5><s:property value="msg"/></h5>
 </s:if>
 <s:if test="%{msgFromCart != null}">
-<h2><s:property value="msgFromCart"/></h2>
+<h5><s:property value="msgFromCart"/></h5>
 </s:if>
 <!-- Sruti's code ends here -->
 </table>
@@ -96,7 +96,7 @@ function func(box) {
 <s:form name="myForm" action="ItemDetails">   
 <table align="center">
 <tr>
-<td><img src="./images/<s:property value = "item_detail.item_image" />" alt="image text" width="350" height="375"/></td>
+<td><img src="<s:property value = "item_detail.item_image" />" alt="image text" width="350" height="375"/></td>
 <td><table id="text" cellspacing="5">
     <tr><td><s:property value="item_detail.item_name"/></td></tr><tr></tr><tr></tr>
   <tr> <td>Item Condition:&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<s:property value="item_detail.item_condition"/></td><td></td><td></td><td></td><td></td><td></td>

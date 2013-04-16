@@ -33,7 +33,7 @@ div.important {color:green;}
 </head>
 <body>
 <s:if test="%{msgToCart!=null}">
-<h2><s:property value="msgToCart"/></h2>
+<h5><s:property value="msgToCart"/></h5>
 </s:if>
 <div>
 <h4 class="intro">My Shopping Cart</h4>
@@ -64,7 +64,7 @@ div.important {color:green;}
 	</td>
 	</tr>
 	<tr>
-	<td width="10%"><img src="./images/<s:property value = "item_image" />" alt="image text" width="150" height="175"/></td>
+	<td width="10%"><img src="<s:property value = "item_image" />" alt="image text" width="150" height="175"/></td>
 	<s:url id="itemDetails" action="ItemDetails">
      <s:param name="item" value="item_id"/>
     </s:url>
