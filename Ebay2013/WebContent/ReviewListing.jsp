@@ -108,7 +108,7 @@ function fnWaver(a){
     <br>
     <table>
   <tr><th>Bring your item to life with pictures	</th></tr>
-  <tr><td><img src="./images/<s:property value = "image" />" alt="image text" width="150" height="175"/></td></tr>
+  <tr><td><img src="./images/<s:property value = "image1" />" alt="image text" width="150" height="175"/></td></tr>
   <s:hidden value="%{image}" name="image"/>
   </table>
   <br>
