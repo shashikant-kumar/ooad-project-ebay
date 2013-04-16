@@ -93,7 +93,7 @@ function func(box) {
 <br>
 <br>
 <br><br><br>
-<s:form>   
+<s:form name="myForm" action="ItemDetails">   
 <table align="center">
 <tr>
 <td><img src="./images/<s:property value = "item_detail.item_image" />" alt="image text" width="350" height="375"/></td>
