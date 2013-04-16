@@ -517,10 +517,19 @@ public static ArrayList<Item>fetchActiveItem(String userId){
 
 }
 public static void updateItemDetails(int item_id,String item_name,int price,int discount,int stock,String image){
-	 String sql="update sell_item set item_name='"+item_name+"',item_price="+price+",item_discount="+discount+",stock="+stock+",item_image='"+image+"' where item_id="+item_id;
+
+	String sql="";
+	if(image.isEmpty() || image== null){
+		 sql="update sell_item set item_name='"+item_name+"',item_price="+price+",item_discount="+discount+",stock="+stock+" where item_id="+item_id;
+	}
+	else
+	{
+	  sql="update sell_item set item_name='"+item_name+"',item_price="+price+",item_discount="+discount+",stock="+stock+",item_image='"+image+"' where item_id="+item_id;
 		
-		Connection connection = DB.getConnection();
+	}
+	Connection connection = DB.getConnection();
 		DB.update(connection, sql);
+
 }
 
 /**
