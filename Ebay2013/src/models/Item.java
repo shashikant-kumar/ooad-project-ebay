@@ -455,42 +455,51 @@ return selection;
 public static ArrayList<Item>fetchActiveItem(String userId){
 	 ArrayList<Item> selection = new ArrayList<Item>();
 	 ResultSet resultSet = null;
-	 int totalPrice;
+	
+	 
+	 //int totalPrice;
 	 Connection connection;
 	 connection = DB.getConnection();
-	String sql="select item_id,item_name,item_price,stock,item_discount,item_image,sla from sell_item where user_id='"+userId+"' and item_id not in (select item_id from transaction where seller_id='"+userId+"')";
+	String sql="select item_id,item_name,item_price,stock,item_discount,item_image,sla from sell_item where user_id='"+userId+"' and stock > 0";
 	resultSet = DB.readFromDB(sql, connection);
 	try {
+		
+		while (resultSet.next()) {
+			Item item=new Item();
+			item.item_id=resultSet.getInt("item_id");
 			
-			while (resultSet.next()) {
-				Item item=new Item();
-				item.item_id=resultSet.getInt("item_id");
+			item.item_name= resultSet.getString("item_name");
+			
+			item.item_price=resultSet.getInt("item_price");
+			item.item_discount=resultSet.getInt("item_discount");
+			item.selectedQuantity= resultSet.getInt("stock");
+	  		
+			item.item_image=resultSet.getString("item_image");
+			item.sla=resultSet.getInt("sla");
+			if(item.item_discount!=0){
+				item.save_price=(item.item_discount*item.item_price)/100;
+				item.discount_price=item.item_price-item.save_price;
+			}
+			else{
+				item.discount_price=item.item_price;
+				item.save_price=0;
+			}
 				
-				item.item_name= resultSet.getString("item_name");
-				
-				item.item_price=resultSet.getInt("item_price");
-				item.item_discount=resultSet.getInt("item_discount");
-				item.selectedQuantity= resultSet.getInt("stock");
-				
-				item.item_image=resultSet.getString("item_image");
-				item.sla=resultSet.getInt("sla");
-				if(item.item_discount!=0){
-					item.save_price=(item.item_discount*item.item_price)/100;
-					item.discount_price=item.item_price-item.save_price;
-				}
-				else{
-					item.discount_price=item.item_price;
-					item.save_price=0;
-				}
-	 				
-	 				selection.add(item);
-	 			}
-	 		} catch (SQLException e) {
-	 	       System.out.println("Exception while reading from db"+ e);
-	 		}
-	return selection;
+				selection.add(item);
+			}
+		} catch (SQLException e) {
+	       System.out.println("Exception while reading from db"+ e);
+		}
+
+		return selection;
 
 
+}
+public static void updateItemDetails(int item_id,String item_name,int price,int discount,int stock,String image){
+	 String sql="update sell_item set item_name='"+item_name+"',item_price="+price+",item_discount="+discount+",stock="+stock+",item_image='"+image+"' where item_id="+item_id;
+		
+		Connection connection = DB.getConnection();
+		DB.update(connection, sql);
 }
 
 /**

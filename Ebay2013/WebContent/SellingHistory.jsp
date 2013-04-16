@@ -101,22 +101,33 @@
 <h3><i>No Item has been shipped</i></h3>
 </s:if>
 <h2  class="cellcolor">ACTIVE ITEMS</h2>
-<s:if test="soldItemList.size()!=0">
+<s:if test="activeItemList.size()!=0">
        <s:set name="theme" value="'simple'" scope="page" />
       
 <table align="center" cellspacing="40">
-<tr><th>ITEM NAME</th>
+<tr><th>NAME</th>
 <th > IMAGE</th>
-<th> QUANTITY</th>
-
-<th>PRICE</th>
+<th> STOCK</th>
+<th>ORIGINAL PRICE</th>
+<th>DISCOUNT</th>
+<th>DIS. PRICE</th>
 </tr>
 <s:iterator value ="activeItemList">
 
 <tr><td><s:property value="item_name"/></td>
 <td><img src="./images/<s:property value = "item_image" />" alt="image text" width="150" height="175"/></td>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<s:property value="selectedQuantity"/></td>
+<td><s:property value="selectedQuantity"/></td>
+<td><s:property value="item_price"/></td>
+<td><s:property value="item_discount"/></td>
 <td><s:property value="discount_price"/></td>
+<s:form action="editItemDetail">
+<s:hidden name="itemId" value="%{item_id}" />
+<td><s:submit name="commandButton"  value="Edit Details"/></td>
+
+
+</s:form>
+
+
 
 
 

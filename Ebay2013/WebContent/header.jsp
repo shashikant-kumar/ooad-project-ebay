@@ -75,7 +75,7 @@
 <li><a href="#">INSURANCE</a></li> -->
 <li><a href="sellItem">Sell</a></li>
 <li><a href="purchasehistory">PURCHASE HISTORY </a></li>
-<li><a href="sellingHistory">SELLING HISTORY</a></li>
+<li><a href="sellingHistory">SELLING</a></li>
 <li><a href="viewdeals">DEALS</a></li>
 </ul>			
 </body>
