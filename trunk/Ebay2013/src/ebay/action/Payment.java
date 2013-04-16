@@ -296,7 +296,7 @@ public class Payment extends ActionSupport{
 				//itemId=item.getItem_id();
 				
 				itemName=item.getItem_name();
-				itemPrice=item.getItem_price();
+				itemPrice=item.getDiscount_price();
 				//quantity = 1;
 				//item.setQuantity(quantity);
 				courier = item.getCourier();
@@ -308,7 +308,7 @@ public class Payment extends ActionSupport{
 				//item.setQuantity(quantity);
 				item.setSelectedQuantity(quantity);
 				//System.out.println("itemPrice is **********"+item.getSelectedQuantity()+"******************"+quantity);
-				itemTotal=item.getItem_price()*item.getSelectedQuantity();
+				itemTotal=item.getDiscount_price()*item.getSelectedQuantity();
 				session.put("item", item);
 				session.put("itemTotal", itemTotal);
 				
