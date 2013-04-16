@@ -140,7 +140,7 @@ function CheckingMode() {
 									<div class="gh-emn">&nbsp;</div>
 								</div>
 								<div class="gh-log">
-									<span class="gh-lg"><a href="home.jsp"
+									<span class="gh-lg"><a href="ebayhome.jsp"
 										rel="nofollow"> <img
 											src="buyitnow/logoEbay_x45.gif" alt="eBay"
 											border="0">
