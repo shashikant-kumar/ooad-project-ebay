@@ -65,6 +65,7 @@ public class ItemDetails extends ActionSupport{
 		}
 		username=user.getUsername();
 		item_detail = Item.fetchItem(" where item_id="+ item );
+		System.out.println("item image is :      **********************************"+item_detail.getItem_image());
 		allcats = Category.findallcategory();
 		nlist=NewList.fetchList(" where item_id="+item+" and userid='"+user.getUserid()+"'");
 		
