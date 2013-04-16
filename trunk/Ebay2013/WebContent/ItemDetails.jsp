@@ -81,8 +81,8 @@
 <s:param name="sellername" value="item_detail.seller_name"/>
 </s:url>
 <td><s:a href="%{seller}">View Seller Information: <s:property value="item_detail.seller_name"/></s:a></td></tr> <tr></tr><tr></tr>
-    <tr><td><s:textfield label = "Quantity"  name="quantity"  size="10" /></td><td><s:property value="item_detail.quantity"/> available</td></tr><tr></tr><tr></tr>
-    <tr><td>Price:  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; Rs.<s:property value="item_detail.item_price"/></td></tr><tr></tr><tr></tr>
+    <tr><td><s:textfield label = "Quantity"  name="quantity" value="1" size="10" /></td><td><s:property value="item_detail.quantity"/> available</td></tr><tr></tr><tr></tr>
+    <tr><td>Price:  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; Rs.<s:property value="item_detail.discount_price"/></td></tr><tr></tr><tr></tr>
      <s:hidden name="item_id" value="%{item_detail.item_id}"/>
     <tr><td><s:submit name = "AddtoCart"  value="Add to Cart" align="center" onclick='this.form.action="myShoppingCart";'/></td></tr><tr></tr><tr></tr>
     <tr><td><s:submit name = "Addtolist"  value="Add to List" align="center" onclick='this.form.action="AddToList";'/></td></tr><tr></tr><tr></tr>
