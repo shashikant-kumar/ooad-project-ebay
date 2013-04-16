@@ -54,7 +54,7 @@ public class BankAcct {
 	}
 	public static ArrayList<String> getAllBankNames(){
 		ArrayList<String> bnkNames= new ArrayList<String>();
-		String query = "SELECT BANK_NAME FROM BANK_ACCT;";
+		String query = "SELECT DISTINCT BANK_NAME FROM BANK_ACCT;";
 		System.out.println("query is "+query);
 		ResultSet rs = null;
 		Connection con = DB.getConnection();
