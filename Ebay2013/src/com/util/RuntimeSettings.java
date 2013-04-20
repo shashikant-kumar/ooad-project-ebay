@@ -28,6 +28,9 @@ public class RuntimeSettings {
 			+"PWD VARCHAR(100) NOT NULL,"
 			+"EMAIL_ID VARCHAR(50) NOT NULL,"
 			+"MOBILE VARCHAR(10),"
+			+"SECRET_QUESTION VARCHAR(50),"
+			+"SECRET_ANSWER VARCHAR(50) ,"
+			+"DOB DATE,"
 			+"MEMBER_SINCE TIMESTAMP);",
 			
 
