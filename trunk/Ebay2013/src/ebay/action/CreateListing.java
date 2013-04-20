@@ -33,6 +33,7 @@ public class CreateListing extends ActionSupport{
 	private String image;
 	private String image1="";
 	private String courier;
+	private String offer;
 	private int sla;
 	private int discount;
 	private List<Category> allcats=new ArrayList<Category>();
@@ -115,8 +116,14 @@ public class CreateListing extends ActionSupport{
 				System.out.println(image);
 			}
 			image1 = image;
-			int ret = Item.InsertIntoSellItem(userId, title, buyItNowPrice, discount, condition, buyItNowQuantity, image, categId, subCategId, courier,sla);
-			
+			int ret=0;
+			System.out.println("Offer Status" + offer);
+			if(offer.equalsIgnoreCase("Yes")){
+			ret = Item.InsertIntoSellItem(userId, title, buyItNowPrice, discount, condition, buyItNowQuantity, image, categId, subCategId, courier,sla,offer);
+			}
+			else{
+			ret = Item.InsertIntoSellItem(userId, title, buyItNowPrice, discount, condition, buyItNowQuantity, image, categId, subCategId, courier,sla,"N");
+			}
 			if(ret != 0){
 				//get the item id.
 				int itemId = Item.getItemIdForSellerListing(userId);
@@ -674,6 +681,16 @@ public class CreateListing extends ActionSupport{
 
 	public void setImage1(String image1) {
 		this.image1 = image1;
+	}
+
+
+	public String getOffer() {
+		return offer;
+	}
+
+
+	public void setOffer(String offer) {
+		this.offer = offer;
 	}
 	
 	

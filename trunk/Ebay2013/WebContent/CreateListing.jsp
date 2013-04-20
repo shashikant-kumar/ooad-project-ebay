@@ -44,7 +44,8 @@ function validateForm()
 	var b=document.forms["createList"]["buyItNowQuantity"].value;
 	var c=document.forms["createList"]["sla"].value;
 	var j=document.forms["createList"]["image"].value;
-	if (x==null || x=="" || y==null || y=="" ||z==""||z==null||a==""||a==null||b==""||b==null||j==null||j=="")
+	var off=document.forms["createList"]["offer"].value;
+	if (x==null || x=="" || y==null || y=="" ||z==""||z==null||a==""||a==null||b==""||b==null||j==null||j==""||off==null||off=="")
 	  {
 		  alert("Enter The Mandatory Field's Values");
 		  return false;
@@ -109,7 +110,9 @@ function validateForm()
   <tr><td><s:textfield name="title" placeholder="Enter title for your item." mandatory="yes" onblur="fnAlphaNumeric(this)"/></td> </tr>
   <tr><td>Subtitle<img src="images/greenStar.gif" alt="Required"/></td></tr>
   <tr><td><s:textfield name="subTitle" placeholder="Enter subtitle for your item." onblur="fnAlphaNumeric(this)"/></td> </tr>
-  <tr><td>Condition<img src="images/greenStar.gif" alt="Required"/></td></tr>
+  <tr><td>Offer<img src="images/greenStar.gif" alt="Required"/></td></tr>
+  <tr><td><s:select name="offer" list="#{'Yes':'Yes','No':'No'}" headerKey="" headerValue="Select" required="true"  placeholder="Select Yes if you want to give offer"/></td> </tr>
+   <tr><td>Condition<img src="images/greenStar.gif" alt="Required"/></td></tr>
   <tr><td><s:select name="condition" list="#{'Brand New':'Brand New','Like New':'Like New','Very Good':'Very Good','Good':'Good','Acceptable':'Acceptable'}" headerKey="" headerValue="Select" required="true"  placeholder="Select condition of your item." /></td> </tr>
   <table>
   <br>

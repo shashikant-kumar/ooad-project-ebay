@@ -32,6 +32,7 @@ public class Item implements Serializable{
 	private int subcategory_id;
 	private int categ_id;
 	private String courier;
+	private String offer;
 	private String item_image;//
 	private String category_name;
 	private String subcategory_name;
@@ -46,6 +47,18 @@ public class Item implements Serializable{
     private int tranId;
 
 	
+	public String getOffer() {
+		return offer;
+	}
+
+
+
+	public void setOffer(String offer) {
+		this.offer = offer;
+	}
+
+
+
 	public String getTran_status() {
 		return tran_status;
 	}
@@ -165,7 +178,7 @@ public  static Item fetchItem(String param){
 		resultSet = DB.readFromDB(sql, connection);
 		try {
 			while (resultSet.next()) {
-				
+				item.offer=resultSet.getString("has_offer");
 				item.item_id=resultSet.getInt("item_id");
 				item.item_name= resultSet.getString("item_name");
 				item.item_price=resultSet.getInt("item_price");
@@ -230,6 +243,7 @@ public static ArrayList<Item> fetchItemDetails(String param){
 			
 			while (resultSet.next()) {
 				Item item=new Item();
+				item.offer=resultSet.getString("has_offer");
 				item.item_id=resultSet.getInt("item_id");
 				item.item_name= resultSet.getString("item_name");
 				item.sellerId = resultSet.getString("user_id");
@@ -831,10 +845,10 @@ public void setItem_subTotal(int item_subTotal) {
  * Input: item
  * Output: ret
  */
-public static int InsertIntoSellItem(String userId,String itemName,int itemPrice,int itemDiscount,String itemCondition,int stock,String itemImage,int categId,int subCategId,String courier,int sla){
+public static int InsertIntoSellItem(String userId,String itemName,int itemPrice,int itemDiscount,String itemCondition,int stock,String itemImage,int categId,int subCategId,String courier,int sla,String offer){
 	int ret=0;
-	String InsertQuery="insert into sell_item(user_Id,item_name,item_price,item_discount,item_condition,stock,item_image,categ_id,sub_categ_id,courier,sla) " +
-			"values(?,?,?,?,?,?,?,?,?,?,?)";
+	String InsertQuery="insert into sell_item(user_Id,item_name,item_price,item_discount,item_condition,stock,item_image,categ_id,sub_categ_id,courier,sla,has_offer) " +
+			"values(?,?,?,?,?,?,?,?,?,?,?,?)";
 	try{
 		Connection con = DB.getConnection();
 		try{
@@ -850,6 +864,7 @@ public static int InsertIntoSellItem(String userId,String itemName,int itemPrice
 	    	   ps.setInt(9,subCategId);
 	    	   ps.setString(10,courier);
 	    	   ps.setInt(11,sla);
+	    	   ps.setString(12, offer);
 	    	   ret=ps.executeUpdate();
 	    }
 		finally{

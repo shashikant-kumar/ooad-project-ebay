@@ -62,6 +62,9 @@ function fnWaver(a){
   <s:hidden value="%{subTitle}" name="subTitle"/>
   <tr><td>Condition: </td><td><s:property value="condition"/></td> </tr>
   <s:hidden value="%{condition}" name="condition"/>
+  <tr><td>Offer: </td><td><s:property value="offer"/></td> </tr>
+  <s:hidden value="%{offer}" name="offer"/>
+  
   <table>
   <br>
   <br>

@@ -74,7 +74,10 @@ Rs<s:textfield name="price1" value="" size="10" placeholder="enter price" /> &nb
 <td>
 <s:iterator value="itemlist" status="stats" id="list">
 <tr>
-<td><img src="./images/<s:property value = "item_image" />" alt="image text" width="150" height="175"/></td>
+<td>
+<s:if test="%{offer=='Yes'}">
+<img src="./images/offer.jpg" alt="image text" width="50" height="75"/>
+</s:if><img src="./images/<s:property value = "item_image" />" alt="image text" width="150" height="175"/></td>
 <s:url id="ItemName" action="ItemDetails">
 <s:param name="item" value="item_id"/>
 </s:url>
