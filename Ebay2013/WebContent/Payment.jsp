@@ -17,6 +17,25 @@
 <script src="jquery-1.9.1.min.js"></script>
 <script src="jquery.validate.js"></script>
 <script src="jquery.validate.min.js"></script>
+<script language="javascript">
+function AddInputs()
+{
+	var itemTotal =0;
+    var qty = document.forms["makePayment"]["quantity"].value;
+    var price = document.forms["makePayment"]["itemPrice"].value;
+    //alert("qty and price "+qty+" "+price);
+    //alert(qty.length);
+    itemTotal = price*qty;
+    //alert(itemTotal);
+    var Display = document.getElementById("regsubtotal");
+    Display.innerHTML = parseInt(itemTotal);
+    Display = document.getElementById("regsubtotal1");
+    Display.innerHTML = parseInt(itemTotal);
+    Display = document.getElementById("regsubtotal2");
+    Display.innerHTML = parseInt(itemTotal);
+}
+
+</script>
 <script>
 $(document).ready(function() {
 	  $("#SSPMformID").validate({
@@ -282,7 +301,8 @@ function CheckingMode() {
 																	</div>
 																	<div class="single-item-summ-body-qty">
 																	<div class="controls">
-																		<s:textfield name="quantity" value="%{quantity}" size="2" width="2" id="inputInfo" placeholder="Enter quantity of product, you would like to purchase" onblur="return fnNumeric(this)" onSubmit="return fnNumeric(this)"/>
+																		<s:textfield name="quantity" value="%{quantity}" size="2" width="2" id="inputInfo" placeholder="Enter quantity of product, you would like to purchase" onblur="return fnNumeric(this)" onSubmit="return fnNumeric(this)" onchange="AddInputs();"/>
+																		<s:hidden name="itemPrice" />
 																		</div>
 																	</div>
 																	<div class="stDiv">
@@ -391,7 +411,7 @@ function CheckingMode() {
 																	<b>Sub-Total</b>
 																</div>
 																<div class="sub-div-middle2">Rs.</div>
-																<div class="sub-div-right2">
+																<div class="sub-div-right2" id="regsubtotal1">
 																	<s:property value="itemTotal" />
 																</div>
 																<div class="sub-div-left">
@@ -408,7 +428,7 @@ function CheckingMode() {
 																</div>
 																<div class="sub-div-ltotal">Total</div>
 																<div class="sub-div-mtotal" style="width: 7.7%">Rs.</div>
-																<div class="sub-div-rtotal">
+																<div class="sub-div-rtotal" id="regsubtotal2">
 																	<s:property value="itemTotal" />
 																</div>
 																<div class="taxmessage">The item price is
