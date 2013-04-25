@@ -44,6 +44,8 @@ public class Payment extends ActionSupport{
 	}
 	private ArrayList<Item> itemlist = new ArrayList<Item>();
 	private ArrayList<Item> offerlist = new ArrayList<Item>();
+	private ArrayList<Item> reductionList = new ArrayList<Item>();
+	
 	/* Sruti's code starts here */
 	private String msgToCart = "";
 	
@@ -278,9 +280,11 @@ public class Payment extends ActionSupport{
 				
 				cartTotal = cartTotal + items.get(i).getItem_subTotal();
 			}
+			reductionList=new ArrayList<Item>();
 			for(int j=0; j<sellerList.size(); j++){
 				String seller=sellerList.get(j);
 				offerlist=new ArrayList<Item>();
+				
 				for(int i=0; i<items.size(); i++){
 					//offer code
 					Item curr=items.get(i);
@@ -319,7 +323,7 @@ public class Payment extends ActionSupport{
 						System.out.println("min"+min);
 						//cartTotal=cartTotal-min;
 						offerlist.remove(removeItem);
-						//reductionList.add(offerlist.get(removeItem));
+						reductionList.add(offerlist.get(removeItem));
 					}
 					cartTotal=cartTotal-sum_free;
 					
@@ -339,19 +343,28 @@ public class Payment extends ActionSupport{
 			/* Sruti's code ends here */
 			
 			session.put("items", items);
-			
+			//tax code
 			for(int i=0; i<items.size(); i++){
-				System.out.println("cart and items.get(i).getItem_subTotal() "+cartTotal+" "+items.get(i).getItem_subTotal()+";;;;;;;;;;;;;;;;;;;;;;;");
 				Item it=items.get(i);
 				int ite_id=it.getItem_id();
 				int tax_percent=Item.getItemTax(ite_id);
-				int item_tax=(it.getItem_price()*it.getQuantity()*tax_percent)/100;
+			//	System.out.println("Tax:"+tax_percent);
+			//	System.out.println("item details:"+it.getItem_price()*it.getQuantity());
+				int item_tax=(it.getItem_price()*it.getSelectedQuantity()*tax_percent)/100;
+			//	System.out.println("item tax"+item_tax);
 				tax_sum=tax_sum+item_tax;
-				//cartTotal = cartTotal + items.get(i).getItem_subTotal();
-				//System.out.println("QWERTJJHGNGBGfbklfdnvksdlnklsdncklsdncindlkcnadklcnklanckldnclkndclksdnclk");
-				//System.out.println("item image: and seller "+items.get(i).getItem_image()+"  "+items.get(i).getSeller_name());
 			}
 			cartTotal=cartTotal+tax_sum;
+			int free_tax=0;
+			for(int i=0; i<reductionList.size(); i++){
+				Item it=items.get(i);
+				int ite_id=it.getItem_id();
+				int tax_percent=Item.getItemTax(ite_id);
+				int item_tax=(it.getItem_price()*tax_percent)/100;
+				free_tax=free_tax+item_tax;
+			}
+			cartTotal=cartTotal-free_tax;
+			tax_sum=tax_sum-free_tax;
 			//System.out.println("cart and items.get(i).getItem_subTotal() "+cartTotal+";;;;;;;;;;;;;;;;;;;;;;;");
 			if(items.size()!=0){
 				//System.out.println("QWERTJJHGNGBGfbklfdnvksdlnklsdncklsdncindlkcnadklcnklanckldnclkndclksdnclk");
