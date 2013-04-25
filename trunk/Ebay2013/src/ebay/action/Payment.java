@@ -35,7 +35,63 @@ public class Payment extends ActionSupport{
 	private String courier;
 	private String ProceedToPay;
 	private String commandButton;
+	public String getAddress1() {
+		return address1;
+	}
+	public void setAddress1(String address1) {
+		this.address1 = address1;
+	}
+	public String getAddress2() {
+		return address2;
+	}
+	public void setAddress2(String address2) {
+		this.address2 = address2;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getState() {
+		return state;
+	}
+	public String getItemIdAdd() {
+		return itemIdAdd;
+	}
+	public void setItemIdAdd(String itemIdAdd) {
+		this.itemIdAdd = itemIdAdd;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public String getPincode() {
+		return pincode;
+	}
+	public void setPincode(String pincode) {
+		this.pincode = pincode;
+	}
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	public ArrayList<Item> getOfferlist() {
+		return offerlist;
+	}
+	public void setOfferlist(ArrayList<Item> offerlist) {
+		this.offerlist = offerlist;
+	}
 	private String error = "";
+	
+	private String address1;
+	private String address2;
+	private String city;
+	private String state;
+	private String pincode;
+	private String country;
+	private String itemIdAdd;
 	public String getError() {
 		return error;
 	}
@@ -228,6 +284,7 @@ public class Payment extends ActionSupport{
 		//System.out.println("**************lets c if item has value "+items.size());
 		
 		Item item = (Item) session.get("item");
+		//System.out.println("item from session is uwrihiwri3iiiruwiruiruirii3uri3uri3uriouirou3irui3 "+item.getItem_name());
 		if(user!=null){
 			System.out.println("user is "+user);
 			userName=user.getUsername();
@@ -243,11 +300,13 @@ public class Payment extends ActionSupport{
 		 cart = (String)session.get("cart");
 		 session.remove("cart");
 		System.out.println("cart is qwertyuiopasdfghghghjhhkjhkhjkjhkjhkjhkm"+cart);
-		if((ProceedToPay!=null && ProceedToPay.startsWith("Proceed"))||(cart!=null && !cart.equals("") && cart.equals("true"))){
-			System.out.println("In procees payment..............................and item size is"+ProceedToPay);
+		System.out.println("address is knajkjkabjbjbhbhbhbhbhbhbhbb "+address1+", "+address2+", "+itemIdAdd);
+		if((ProceedToPay!=null && ProceedToPay.startsWith("Proceed"))||(cart!=null && !cart.equals("") && cart.equals("true"))||item==null){
+			System.out.println("In procees payment..............................and item size is"+items);
+			session.remove("item");
 			for(Item i : items){
 				selectedQuantity.add(i.getSelectedQuantity());
-			}
+				}
 			items = Cart.fetchItems(user.getUserid());
 			//System.out.println("selectedQuantity is (((((((((("+selectedQuantity);
 			int index=0;
@@ -260,6 +319,20 @@ public class Payment extends ActionSupport{
 			index++;
 			}}
 			
+			for(Item i:items){
+				System.out.println("address is knajkjkabjbjbhbhbhbhbhbhbhbb "+address1+", "+address2+", "+itemIdAdd);
+				if(itemIdAdd!=null){
+				if(i.getItem_id()==Integer.parseInt(itemIdAdd)){
+					System.out.println("address is knajkjkabjbjbhbhbhbhbhbhbhbb "+address1+", "+address2);
+					i.getAdd().setAdd1(address1);
+					i.getAdd().setAdd2(address2);
+					i.getAdd().setCity(city);
+					i.getAdd().setCountry(country);
+					i.getAdd().setPin(pincode);
+					i.getAdd().setState(state);
+				}
+				}
+			}
 			/* Sruti's code starts here */
 			ArrayList<String> sellerList = new ArrayList<String>();
 			
@@ -367,7 +440,7 @@ public class Payment extends ActionSupport{
 			tax_sum=tax_sum-free_tax;
 			//System.out.println("cart and items.get(i).getItem_subTotal() "+cartTotal+";;;;;;;;;;;;;;;;;;;;;;;");
 			if(items.size()!=0){
-				//System.out.println("QWERTJJHGNGBGfbklfdnvksdlnklsdncklsdncindlkcnadklcnklanckldnclkndclksdnclk");
+				System.out.println("QWERTJJHGNGBGfbklfdnvksdlnklsdncklsdncindlkcnadklcnklanckldnclkndclksdnclk");
 				
 			itemTotal = cartTotal;}
 			System.out.println(itemTotal);
@@ -407,7 +480,7 @@ public class Payment extends ActionSupport{
 				session.put("itemTotal", itemTotal);
 				
 			}else{
-				System.out.println("setting item as null\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"+item.getItem_name()+" "+commandButton);
+				System.out.println("setting item as null\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"+commandButton);
 				
 				//item=null;
 			}
