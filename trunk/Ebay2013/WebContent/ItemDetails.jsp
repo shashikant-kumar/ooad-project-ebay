@@ -98,7 +98,10 @@ function func(box) {
 <tr>
 <td><img src="./images/<s:property value = "item_detail.item_image" />" alt="image text" width="350" height="375"/></td>
 <td><table id="text" cellspacing="5">
-    <tr><td><s:property value="item_detail.item_name"/></td></tr><tr></tr><tr></tr>
+<s:url id="item_Report" action="itemReport">
+<s:param name="itemId" value="item_detail.item_id"/>
+</s:url>
+<td><s:a href="%{item_Report}"><s:property value="item_detail.item_name"/></s:a></td></tr><tr></tr><tr></tr>
   <tr> <td>Item Condition:&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<s:property value="item_detail.item_condition"/></td><td></td><td></td><td></td><td></td><td></td>
 <s:url id="seller" action="sellerInfo">
 <s:param name="sellername" value="item_detail.seller_name"/>
