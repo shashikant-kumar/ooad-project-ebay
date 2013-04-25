@@ -25,6 +25,7 @@ public class MakePayment extends ActionSupport{
 	private int itemTotal;
 	private ArrayList<Item> items = new ArrayList<Item>();
 	private ArrayList<Item> offerlist = new ArrayList<Item>();
+	private ArrayList<Item> reductionList = new ArrayList<Item>();
 	private int cartTotal=0;
 	private int tax_sum=0;
 	ArrayList<Integer> selectedQuantity = new ArrayList<Integer>();
@@ -138,6 +139,7 @@ public class MakePayment extends ActionSupport{
 			
 			cartTotal = cartTotal + items.get(i).getItem_subTotal();
 		}
+		reductionList=new ArrayList<Item>();
 		for(int j=0; j<sellerList.size(); j++){
 			String seller=sellerList.get(j);
 			offerlist=new ArrayList<Item>();
@@ -187,15 +189,29 @@ public class MakePayment extends ActionSupport{
 		//}
 			
 		}
+		//tax code
 		for(int i=0; i<items.size(); i++){
-			System.out.println("cart and items.get(i).getItem_subTotal() "+cartTotal+" "+items.get(i).getItem_subTotal()+";;;;;;;;;;;;;;;;;;;;;;;");
 			Item it=items.get(i);
 			int ite_id=it.getItem_id();
 			int tax_percent=Item.getItemTax(ite_id);
-			int item_tax=(it.getItem_price()*it.getQuantity()*tax_percent)/100;
+		//	System.out.println("Tax:"+tax_percent);
+		//	System.out.println("item details:"+it.getItem_price()*it.getQuantity());
+			int item_tax=(it.getItem_price()*it.getSelectedQuantity()*tax_percent)/100;
+		//	System.out.println("item tax"+item_tax);
 			tax_sum=tax_sum+item_tax;
 		}
 		cartTotal=cartTotal+tax_sum;
+		int free_tax=0;
+		for(int i=0; i<reductionList.size(); i++){
+			Item it=items.get(i);
+			int ite_id=it.getItem_id();
+			int tax_percent=Item.getItemTax(ite_id);
+			int item_tax=(it.getItem_price()*tax_percent)/100;
+			free_tax=free_tax+item_tax;
+		}
+		cartTotal=cartTotal-free_tax;
+		tax_sum=tax_sum-free_tax;
+
 		session.put("items", items);
 		/*for(int i=0; i<items.size(); i++){
 			cartTotal = cartTotal + items.get(i).getItem_subTotal();
