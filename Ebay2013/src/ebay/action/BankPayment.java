@@ -130,12 +130,12 @@ public class BankPayment extends ActionSupport{
 						itemAmount = j.getSelectedQuantity()*j.getItem_price();
 						int rows = PaisaPay.insertPaisa(i,itemAmount);
 						//update seller
-						itemId= item.getItem_id();
+						itemId= j.getItem_id();
 						 System.out.println("item id is"+itemId);
-						 int stock=item.getQuantity()-item.getSelectedQuantity();
+						 int stock=j.getQuantity()-j.getSelectedQuantity();
 						 	if(stock<=1){
 						 		System.out.println("updATING the seller about stock");
-						 	Item.updateseller(itemId);
+						 	//Item.updateseller(itemId);
 						 	}
 						if(rows!=0){
 						Item.reduceQty(j, j.getSelectedQuantity(), j.getQuantity());
@@ -149,18 +149,19 @@ public class BankPayment extends ActionSupport{
 				PaisaPay.insertPaisa(i,itemAmount);
 				//reduce quantity
 				Item.reduceQty(item, item.getSelectedQuantity(), item.getQuantity());
+				//update seller
+				itemId= item.getItem_id();
+				 System.out.println("item id is"+itemId);
+				 int stock=item.getQuantity()-item.getSelectedQuantity();
+				 	if(stock<=1){
+				 		System.out.println("updATING the seller about stock");
+				 	//Item.updateseller(itemId);
+				 	}
 				session.remove("items");	
 				}
 			}
 
-			//update seller
-			itemId= item.getItem_id();
-			 System.out.println("item id is"+itemId);
-			 int stock=item.getQuantity()-item.getSelectedQuantity();
-			 	if(stock<=1){
-			 		System.out.println("updATING the seller about stock");
-			 	Item.updateseller(itemId);
-			 	}
+			
 			System.out.println("item is : "+session.get("item"));
 			session.remove("item");
 			session.remove("itemTotal");
