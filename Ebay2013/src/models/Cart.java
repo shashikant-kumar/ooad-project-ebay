@@ -149,6 +149,7 @@ public class Cart {
 					items.get(i).setItem_condition(result.getString("item_condition"));
 					items.get(i).setQuantity(result.getInt("stock"));
 					items.get(i).setItem_image(result.getString("item_image"));
+					items.get(i).setOffer(result.getString("has_offer"));
 					
 					int priceAfterDiscount = items.get(i).getItem_price() - (items.get(i).getItem_discount() * items.get(i).getItem_price())/100;
 					items.get(i).setItem_price(priceAfterDiscount);
