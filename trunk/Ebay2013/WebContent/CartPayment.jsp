@@ -267,8 +267,22 @@
 																											</tbody>
 																										</table>
 																									</div>
+																									<div id="shippingaddressbox">
+																			<!-- Make change address page-->	
+																			<s:url id="addressC" action="homePage">
+																			<s:param name="itemIdAdd" value="%{item_id}"/>
+																			</s:url>
+																			<td><s:a href="%{addressC}">Change Shipping Address</s:a></td></div>
 																									<input name="req_item" id="req_item"
 																										value="270950260152" type="hidden">
+																										</div>
+																										<%-- <s:property value="add.add1"/>--%>
+																								<tr><s:if test="%{!add.city.isEmpty()}">
+																								<tr><td><p>Gifting Address:</p></td></tr>
+																								<tr><td><s:property value="%{add.add1}"/>&nbsp;<s:property value="%{add.add2}"/></td></tr>
+																								<tr><td><s:property value="%{add.city}"/>,&nbsp; <s:property value="%{add.pin}"/></td></tr>
+																								<tr><td><s:property value="%{add.state}"/>,&nbsp; <s:property value="%{add.country}"/></td></tr>
+																								</s:if></tr>
 																								</div>
 																							</div>
 																						</td>
@@ -326,10 +340,9 @@
 																				</div>
 																			</div>
 
-																			<div id="shippingaddressbox"></div>
-																			<!-- Make change address page									<s:submit id="change" name="changeAdd"
-														value="Change Shipping Address" action="changeAdd"
-														onclick="loadtextarea(this)" />Make change address page -->
+																								
+																			<%-- <s:submit id="change" name="changeAdd" value="Change Shipping Address" action="changeAdd"
+														onclick="loadtextarea(this)" /> --%> <!--Make change address page -->
 
 																		</div>
 

@@ -265,7 +265,7 @@ function CheckingMode() {
 																<div class="item-summ-body-c">
 																	<div class="item-summ-body-image">
 																		<div style="Height: 80px; Width: 80px;">
-																			<a href="#"><img height="75" width="75"
+																			<a href="ItemDetails.action?item=<s:property value="itemId"/>"><img height="75" width="75"
 																				src="./images/<s:property value="itemImage"/>"
 																				alt="" border="0"> </a>
 																		</div>
