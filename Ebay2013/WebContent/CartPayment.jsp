@@ -359,6 +359,13 @@
 																					<div class="sub-div" style="height: 100px;"
 																						id="gxoshippingid">
 																						<div class="sub-div-left2">
+																							<b>Tax</b>
+																						</div>
+																						<div class="sub-div-middle2">Rs.</div>
+																						<div class="sub-div-right2">
+																							<s:property value="tax_sum" />
+																						</div>
+																						<div class="sub-div-left2">
 																							<b>Cart-Total</b>
 																						</div>
 																						<div class="sub-div-middle2">Rs.</div>
