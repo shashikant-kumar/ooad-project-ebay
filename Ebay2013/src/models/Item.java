@@ -31,6 +31,7 @@ public class Item implements Serializable{
 	private int selectedQuantity;//
 	private int subcategory_id;
 	private int categ_id;
+	private Address add = new Address();
 	private String courier;
 	private String offer;
 	private String item_image;//
@@ -965,6 +966,18 @@ public static int getItemTax(int itemId) {
 	}
 	DB.close(connection);
 	return tax;
+}
+
+
+
+public Address getAdd() {
+	return add;
+}
+
+
+
+public void setAdd(Address add) {
+	this.add = add;
 }
 
 	
