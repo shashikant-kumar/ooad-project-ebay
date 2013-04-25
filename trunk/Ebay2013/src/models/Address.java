@@ -1,5 +1,6 @@
 package models;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +14,7 @@ import com.util.DB;
  * 
  * @author Ruchika Sharma
  */
-public class Address {
+public class Address implements Serializable{
 
 	private String addressType;
 	private String houseNo;
