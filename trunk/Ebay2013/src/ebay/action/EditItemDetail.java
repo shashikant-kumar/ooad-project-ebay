@@ -28,6 +28,7 @@ public class EditItemDetail extends ActionSupport{
 	private int price;
 	private int discount;
 	private int stock;
+	private String offer="";
 	private String image="";
 	private String commandButton="";
 	private String username="";
@@ -54,7 +55,7 @@ public class EditItemDetail extends ActionSupport{
 			String[] parts=image.split("\\\\");
 			image=parts[parts.length -1];
 			System.out.println("image"+image);
-			Item.updateItemDetails(item_id,item_name,price,discount,stock,image);
+			Item.updateItemDetails(item_id,item_name,price,discount,stock,image,offer);
 			item=Item.fetchItem(param);
 			
 		}
@@ -127,6 +128,12 @@ public class EditItemDetail extends ActionSupport{
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	public String getOffer() {
+		return offer;
+	}
+	public void setOffer(String offer) {
+		this.offer = offer;
 	}
 
 }
