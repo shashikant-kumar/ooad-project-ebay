@@ -18,6 +18,11 @@
 		<tr>
 			<td width="190"></td>
 			<td width="940">
+			<div align="right">
+			<a rel="nofollow" href="myShoppingCart"> <img border="0" width="5%" height="5%"
+						alt="Cart Items"
+						src="images/cart.png"> </a>
+			</div>
 				<div>
 					<a rel="nofollow" href="dummy"> <img border="0"
 						alt="From collectables to cars, buy and sell all kinds of items on eBay"
