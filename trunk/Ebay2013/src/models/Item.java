@@ -947,5 +947,25 @@ public static String getItemCategoryName(int itemId) {
 	return categoryName;
 }
 
+public static int getItemTax(int itemId) {
+	ResultSet resultSet = null;
+	//String categoryName="";
+	int tax=0;
+	String query = "SELECT TAX FROM STATE, ADDRESS,USER WHERE USER.USER_ID=(select user_id from sell_item where item_id="+itemId+") AND USER.USER_ID=ADDRESS.USER_ID AND ADDRESS.STATE=STATE.STATE_NAME" ;
+	Connection connection = DB.getConnection();
+	resultSet = DB.readFromDB(query, connection);
+	try {
+		if (resultSet.next()){
+			tax =resultSet.getInt("tax");
+			/*fetch the value of semester name for the id*/
+			
+		}
+	} catch (SQLException e) {
+       System.out.println("Exception while reading from db"+ e);
+	}
+	DB.close(connection);
+	return tax;
+}
+
 	
 }

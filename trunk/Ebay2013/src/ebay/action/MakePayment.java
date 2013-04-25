@@ -26,6 +26,7 @@ public class MakePayment extends ActionSupport{
 	private ArrayList<Item> items = new ArrayList<Item>();
 	private ArrayList<Item> offerlist = new ArrayList<Item>();
 	private int cartTotal=0;
+	private int tax_sum=0;
 	ArrayList<Integer> selectedQuantity = new ArrayList<Integer>();
 	public ArrayList<Integer> getSelectedQuantity() {
 		return selectedQuantity;
@@ -69,6 +70,13 @@ public class MakePayment extends ActionSupport{
 	}
 	public void setCommandButton(String commandButton) {
 		this.commandButton = commandButton;
+	}
+	
+	public int getTax_sum() {
+		return tax_sum;
+	}
+	public void setTax_sum(int tax_sum) {
+		this.tax_sum = tax_sum;
 	}
 	public String execute(){
 		
@@ -179,7 +187,15 @@ public class MakePayment extends ActionSupport{
 		//}
 			
 		}
-		
+		for(int i=0; i<items.size(); i++){
+			System.out.println("cart and items.get(i).getItem_subTotal() "+cartTotal+" "+items.get(i).getItem_subTotal()+";;;;;;;;;;;;;;;;;;;;;;;");
+			Item it=items.get(i);
+			int ite_id=it.getItem_id();
+			int tax_percent=Item.getItemTax(ite_id);
+			int item_tax=(it.getItem_price()*it.getQuantity()*tax_percent)/100;
+			tax_sum=tax_sum+item_tax;
+		}
+		cartTotal=cartTotal+tax_sum;
 		session.put("items", items);
 		/*for(int i=0; i<items.size(); i++){
 			cartTotal = cartTotal + items.get(i).getItem_subTotal();

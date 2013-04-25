@@ -20,6 +20,7 @@ import com.opensymphony.xwork2.ActionSupport;
  */
 public class Payment extends ActionSupport{
 	private List<Category> allcats=new ArrayList<Category>();
+	private int tax_sum=0;
 	private int itemId;
 	private int quantity=1;  
 	private String itemName; 
@@ -193,8 +194,13 @@ public class Payment extends ActionSupport{
 	public void setUserCountry(String userCountry) {
 		this.userCountry = userCountry;
 	}
-	
 
+	public int getTax_sum() {
+		return tax_sum;
+	}
+	public void setTax_sum(int tax_sum) {
+		this.tax_sum = tax_sum;
+	}
 	private String userCountry;
 	public String execute(){
 		allcats = Category.findallcategory();
@@ -322,6 +328,7 @@ public class Payment extends ActionSupport{
 				
 			}
 			
+			
 			for(Item m: items){
 				if(m.getSelectedQuantity() > m.getQuantity() || m.getSelectedQuantity() <= 0){
 					msgToCart = "Please enter a valid quantity!!";
@@ -332,12 +339,19 @@ public class Payment extends ActionSupport{
 			/* Sruti's code ends here */
 			
 			session.put("items", items);
+			
 			for(int i=0; i<items.size(); i++){
 				System.out.println("cart and items.get(i).getItem_subTotal() "+cartTotal+" "+items.get(i).getItem_subTotal()+";;;;;;;;;;;;;;;;;;;;;;;");
+				Item it=items.get(i);
+				int ite_id=it.getItem_id();
+				int tax_percent=Item.getItemTax(ite_id);
+				int item_tax=(it.getItem_price()*it.getQuantity()*tax_percent)/100;
+				tax_sum=tax_sum+item_tax;
 				//cartTotal = cartTotal + items.get(i).getItem_subTotal();
 				//System.out.println("QWERTJJHGNGBGfbklfdnvksdlnklsdncklsdncindlkcnadklcnklanckldnclkndclksdnclk");
 				//System.out.println("item image: and seller "+items.get(i).getItem_image()+"  "+items.get(i).getSeller_name());
 			}
+			cartTotal=cartTotal+tax_sum;
 			//System.out.println("cart and items.get(i).getItem_subTotal() "+cartTotal+";;;;;;;;;;;;;;;;;;;;;;;");
 			if(items.size()!=0){
 				//System.out.println("QWERTJJHGNGBGfbklfdnvksdlnklsdncklsdncindlkcnadklcnklanckldnclkndclksdnclk");
