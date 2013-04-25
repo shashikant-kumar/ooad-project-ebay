@@ -190,6 +190,9 @@
 <result name="feedbackError">GiveFeedback.jsp</result>
 <result name="feedbackInitial">GiveFeedback.jsp</result>
 </action>
+<action name="itemReport" class="ebay.action.ItemReport">
+<result name="reportSuccess">ItemReport.jsp</result>
+</action>
 <!-- ****************************************************************************************************** -->
 <!-- ********************************************Suhani code********************************************  -->
 <!-- ****************************************************************************************************** -->			
