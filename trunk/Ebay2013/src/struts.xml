@@ -151,6 +151,7 @@
 <!-- add type="tiles" in result -->
 <action name="homePage" class="ebay.action.SuccessHome">
 			<result name="success" >ebayhome.jsp</result>
+			<result name="address" >ShippingAddress.jsp</result>
 			</action>
 <!-- ****************************************************************************************************** -->
 <!-- ********************************************Alpna code********************************************  -->
@@ -247,7 +248,10 @@
 	<result name="success">AdminManageUsers.jsp</result>
 	<result name="adminhome">EBayAdminHome.jsp</result>
 </action>
-
-				
-</package>
+<!-- <action name="changAdd" class="ebay.action.ChangeAdd">
+			<result name="success" type="tiles">/Ack.tiles</result>
+			<result name="error" type="tiles">/Fail.tiles</result>
+			</action> 
+ --></package>
 </struts>
+
