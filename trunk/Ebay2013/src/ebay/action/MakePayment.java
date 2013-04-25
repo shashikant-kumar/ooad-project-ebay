@@ -24,6 +24,7 @@ public class MakePayment extends ActionSupport{
 	private int quantity;
 	private int itemTotal;
 	private ArrayList<Item> items = new ArrayList<Item>();
+	private ArrayList<Item> offerlist = new ArrayList<Item>();
 	private int cartTotal=0;
 	ArrayList<Integer> selectedQuantity = new ArrayList<Integer>();
 	public ArrayList<Integer> getSelectedQuantity() {
@@ -110,11 +111,79 @@ public class MakePayment extends ActionSupport{
 				
 		index++;
 		}}
+		ArrayList<String> sellerList = new ArrayList<String>();
 		
-		session.put("items", items);
 		for(int i=0; i<items.size(); i++){
+			//offer code
+			Item curr=items.get(i);
+			int flag=0;
+			for(int m=0;m<sellerList.size();m++){
+				if(sellerList.get(m).equals(curr.getSellerId())){
+					flag=1;
+				}
+				
+			}
+			if(flag!=1)
+			{
+				sellerList.add(curr.getSellerId());
+			}
+			
 			cartTotal = cartTotal + items.get(i).getItem_subTotal();
 		}
+		for(int j=0; j<sellerList.size(); j++){
+			String seller=sellerList.get(j);
+			offerlist=new ArrayList<Item>();
+			for(int i=0; i<items.size(); i++){
+				//offer code
+				Item curr=items.get(i);
+				System.out.println("here offer "+curr.getOffer());
+				if(curr.getOffer().equalsIgnoreCase("Yes") && curr.getSellerId().equals(seller)){
+					for(int n=0; n<curr.getSelectedQuantity();n++)
+						offerlist.add(curr);
+				}
+			}
+			if(offerlist.size()==1){
+				
+			}
+			else{
+				int sum_free=0;
+				int offer_items_deduct=1;
+				//Buy x get y free
+				int x=2;
+				int y=1;
+				System.out.println("offer size"+offerlist.size());
+				int offer_num=offerlist.size()/(x+y);//x=3 y=2
+				offer_items_deduct=offer_num*y;//y=2
+				System.out.println("offer num"+offer_num);
+				for(int l=0; l<offer_items_deduct; l++){
+					int removeItem=0;
+					int min=offerlist.get(0).getItem_price();
+					for(int k=1; k<offerlist.size(); k++){
+						int checkmin=offerlist.get(k).getItem_price();
+						if(checkmin<=min){
+							min=checkmin;
+							removeItem=k;
+						}
+					}
+					sum_free=sum_free+min;
+					System.out.println("item given free"+offerlist.get(removeItem).getItem_name());
+					System.out.println("cart total before"+cartTotal);
+					System.out.println("min"+min);
+					//cartTotal=cartTotal-min;
+					offerlist.remove(removeItem);
+					//reductionList.add(offerlist.get(removeItem));
+				}
+				cartTotal=cartTotal-sum_free;
+				
+			}
+		//}
+			
+		}
+		
+		session.put("items", items);
+		/*for(int i=0; i<items.size(); i++){
+			cartTotal = cartTotal + items.get(i).getItem_subTotal();
+		}*/
 		System.out.println("cart and items.get(i).getItem_subTotal() "+cartTotal+";;;;;;;;;;;;;;;;;;;;;;;");
 		if(items.size()!=0){			
 		itemTotal = cartTotal;}
