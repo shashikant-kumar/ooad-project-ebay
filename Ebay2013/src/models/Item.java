@@ -530,15 +530,15 @@ public static ArrayList<Item>fetchActiveItem(String userId){
 
 
 }
-public static void updateItemDetails(int item_id,String item_name,int price,int discount,int stock,String image){
+public static void updateItemDetails(int item_id,String item_name,int price,int discount,int stock,String image,String offer){
 
 	String sql="";
 	if(image.isEmpty() || image== null){
-		 sql="update sell_item set item_name='"+item_name+"',item_price="+price+",item_discount="+discount+",stock="+stock+" where item_id="+item_id;
+		 sql="update sell_item set item_name='"+item_name+"',item_price="+price+",item_discount="+discount+",stock="+stock+", has_offer='"+offer+"' where item_id="+item_id;
 	}
 	else
 	{
-	  sql="update sell_item set item_name='"+item_name+"',item_price="+price+",item_discount="+discount+",stock="+stock+",item_image='"+image+"' where item_id="+item_id;
+	  sql="update sell_item set item_name='"+item_name+"',item_price="+price+",item_discount="+discount+",stock="+stock+", has_offer='"+offer+"',item_image='"+image+"' where item_id="+item_id;
 		
 	}
 	Connection connection = DB.getConnection();
