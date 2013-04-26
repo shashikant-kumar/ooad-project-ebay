@@ -99,4 +99,10 @@ public class Address implements Serializable{
 		return add;
 	}
 	
+	public static int insertAdd(Address add, int transId){
+		String query = "INSERT INTO SHIPPING_ADDRESS(TRANS_ID,ADD1,ADD2,CITY,PIN,STATE,COUNTRY) VALUES("+transId+", '"+add.getAdd1()+"', '"+add.getAdd2()+"', '"+add.getCity()+"', '"+add.getPin()+"', '"+add.getState()+"', '"+add.getCountry()+"');";
+		System.out.println("query is "+query);
+		int rowsUpdated = DB.update(query);
+		return rowsUpdated;
+	}
 }
