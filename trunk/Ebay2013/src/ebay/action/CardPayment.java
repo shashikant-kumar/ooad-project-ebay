@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
+import models.Address;
 import models.BankAcct;
 import models.Cart;
 import models.Item;
@@ -110,7 +111,7 @@ public class CardPayment extends ActionSupport{
 				}
 				//get all transaction ids for order id
 				transId = OrderTrack.getOrderTransactionIdList(orderId);
-
+				
 				for(int i:transId ){
 					System.out.println("trans id is "+i);
 					//insert in status for each transaction.
@@ -121,6 +122,8 @@ public class CardPayment extends ActionSupport{
 					if(items!=null && items.size()!=0){
 						for(Item j : items){
 							if(j.getItem_id()==itemId){
+								if(j.getAdd().getCity()!=null){
+							Address.insertAdd(j.getAdd(), i);}
 							itemAmount = j.getSelectedQuantity()*j.getItem_price();
 							int rows = PaisaPay.insertPaisa(i,itemAmount);
 							if(rows!=0){
