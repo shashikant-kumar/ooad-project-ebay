@@ -113,10 +113,10 @@ public class MyShoppingCart extends ActionSupport {
 		
 		userId = user.getUserid();
 		username = user.getUsername();
-		if(this.AddToCart==null || this.AddToCart.isEmpty()){
+		/*if(this.AddToCart==null || this.AddToCart.isEmpty()){
 			items = Cart.fetchItems(userId);
 			return "success";
-		}
+		}*/
 		if(this.AddToCart!=null){
 			System.out.println("AddToCart was pressed!!!");
 			System.out.println("ItemID inside MyShoppingCart.execute() method is " + item_id);

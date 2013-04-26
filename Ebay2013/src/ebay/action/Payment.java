@@ -357,7 +357,7 @@ public class Payment extends ActionSupport{
 			for(int j=0; j<sellerList.size(); j++){
 				String seller=sellerList.get(j);
 				offerlist=new ArrayList<Item>();
-				
+			
 				for(int i=0; i<items.size(); i++){
 					//offer code
 					Item curr=items.get(i);
@@ -391,12 +391,13 @@ public class Payment extends ActionSupport{
 							}
 						}
 						sum_free=sum_free+min;
+						reductionList.add(offerlist.get(removeItem));
+						System.out.println("reduction item"+reductionList.get(0).getItem_name());
 						System.out.println("item given free"+offerlist.get(removeItem).getItem_name());
 						System.out.println("cart total before"+cartTotal);
 						System.out.println("min"+min);
 						//cartTotal=cartTotal-min;
 						offerlist.remove(removeItem);
-						reductionList.add(offerlist.get(removeItem));
 					}
 					cartTotal=cartTotal-sum_free;
 					
@@ -404,18 +405,6 @@ public class Payment extends ActionSupport{
 			//}
 				
 			}
-			
-			
-			for(Item m: items){
-				if(m.getSelectedQuantity() > m.getQuantity() || m.getSelectedQuantity() <= 0){
-					msgToCart = "Please enter a valid quantity!!";
-					return "error";
-				}
-			}
-			
-			/* Sruti's code ends here */
-			
-			session.put("items", items);
 			//tax code
 			for(int i=0; i<items.size(); i++){
 				Item it=items.get(i);
@@ -430,7 +419,9 @@ public class Payment extends ActionSupport{
 			cartTotal=cartTotal+tax_sum;
 			int free_tax=0;
 			for(int i=0; i<reductionList.size(); i++){
-				Item it=items.get(i);
+				
+				Item it=reductionList.get(i);
+				System.out.println("Reduction list items"+it.getItem_name());
 				int ite_id=it.getItem_id();
 				int tax_percent=Item.getItemTax(ite_id);
 				int item_tax=(it.getItem_price()*tax_percent)/100;
@@ -438,6 +429,44 @@ public class Payment extends ActionSupport{
 			}
 			cartTotal=cartTotal-free_tax;
 			tax_sum=tax_sum-free_tax;
+			for(int a=0; a<reductionList.size(); a++){
+				System.out.println("before tax:"+reductionList.get(a).getItem_name());
+			}
+			
+			for(Item m: items){
+				if(m.getSelectedQuantity() > m.getQuantity() || m.getSelectedQuantity() <= 0){
+					msgToCart = "Please enter a valid quantity!!";
+					return "error";
+				}
+			}
+			
+			/* Sruti's code ends here */
+			
+			session.put("items", items);
+		/*	//tax code
+			for(int i=0; i<items.size(); i++){
+				Item it=items.get(i);
+				int ite_id=it.getItem_id();
+				int tax_percent=Item.getItemTax(ite_id);
+			//	System.out.println("Tax:"+tax_percent);
+			//	System.out.println("item details:"+it.getItem_price()*it.getQuantity());
+				int item_tax=(it.getItem_price()*it.getSelectedQuantity()*tax_percent)/100;
+			//	System.out.println("item tax"+item_tax);
+				tax_sum=tax_sum+item_tax;
+			}
+			cartTotal=cartTotal+tax_sum;
+			int free_tax=0;
+			for(int i=0; i<reductionList.size(); i++){
+				
+				Item it=items.get(i);
+				System.out.println("Reduction list items"+it.getItem_name());
+				int ite_id=it.getItem_id();
+				int tax_percent=Item.getItemTax(ite_id);
+				int item_tax=(it.getItem_price()*tax_percent)/100;
+				free_tax=free_tax+item_tax;
+			}
+			cartTotal=cartTotal-free_tax;
+			tax_sum=tax_sum-free_tax;*/
 			//System.out.println("cart and items.get(i).getItem_subTotal() "+cartTotal+";;;;;;;;;;;;;;;;;;;;;;;");
 			if(items.size()!=0){
 				System.out.println("QWERTJJHGNGBGfbklfdnvksdlnklsdncklsdncindlkcnadklcnklanckldnclkndclksdnclk");

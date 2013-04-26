@@ -180,8 +180,9 @@ public class MakePayment extends ActionSupport{
 					System.out.println("cart total before"+cartTotal);
 					System.out.println("min"+min);
 					//cartTotal=cartTotal-min;
+					reductionList.add(offerlist.get(removeItem));
 					offerlist.remove(removeItem);
-					//reductionList.add(offerlist.get(removeItem));
+					
 				}
 				cartTotal=cartTotal-sum_free;
 				
@@ -203,7 +204,7 @@ public class MakePayment extends ActionSupport{
 		cartTotal=cartTotal+tax_sum;
 		int free_tax=0;
 		for(int i=0; i<reductionList.size(); i++){
-			Item it=items.get(i);
+			Item it=reductionList.get(i);
 			int ite_id=it.getItem_id();
 			int tax_percent=Item.getItemTax(ite_id);
 			int item_tax=(it.getItem_price()*tax_percent)/100;

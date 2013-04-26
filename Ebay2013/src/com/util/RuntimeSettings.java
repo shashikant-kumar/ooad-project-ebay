@@ -11,13 +11,19 @@ public class RuntimeSettings {
 	public static final String SERVER_IP = "localhost";
 	static String databaseName = "ebay";
 	static String dbUserID = "root";
-	static String dbPassword = ""; 
+	static String dbPassword = "mysql"; 
 	public static String RUN_MODE = "Test"; // "Production"; //
 	public static boolean IS_IN_DEBUG_MODE = true; // false; //
 	static int portNo = 3306;
 	public static String scriptSql[] = {
 			//use ebay database
 			"USE EBAY;",
+			
+			"DROP TABLE IF EXISTS STATE;",
+
+			"CREATE TABLE STATE("
+			+"STATE_NAME VARCHAR(30) NOT NULL PRIMARY KEY,"
+			+"TAX INT(5) NOT NULL);",
 
 			"DROP TABLE IF EXISTS USER;",
 
